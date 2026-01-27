@@ -86,7 +86,10 @@ export default function Testimonials() {
                     <div className="flex items-center gap-4">
                       {/* Avatar placeholder */}
                       <motion.div
-                        className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary"
+                        className={cn(
+                          "flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br shadow-lg",
+                          testimonial.avatarColor || "from-primary to-secondary"
+                        )}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
                         <span className="font-display text-lg font-bold text-white">

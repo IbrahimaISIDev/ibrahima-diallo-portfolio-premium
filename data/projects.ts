@@ -8,7 +8,7 @@ export const projects: Project[] = [
       "Système de gestion complet pour une clinique médicale en Mauritanie. Digitalisation des dossiers patients, rendez-vous et facturation.",
     image: "/images/projects/mimap.jpg",
     tags: ["React", "TypeScript", "Node.js", "PostgreSQL"],
-    category: "Healthcare",
+    category: "Santé",
     impact: "Digitalisation complète d'une clinique médicale en Mauritanie",
   },
   {
@@ -39,7 +39,7 @@ export const projects: Project[] = [
       "Plateforme communautaire digitalisant l'Association des Étudiants Musulmans de l'UN-CHK.",
     image: "/images/projects/aem-unchk.jpg",
     tags: ["React", "Firebase", "Tailwind CSS"],
-    category: "Community",
+    category: "Communauté",
     impact:
       "Digitalisation de l'Association des Étudiants Musulmans de l'UN-CHK",
   },
@@ -68,8 +68,8 @@ export const projects: Project[] = [
 export const projectCategories = [
   "Tous",
   "Web",
-  "Healthcare",
+  "Santé",
   "B2B",
   "E-commerce",
-  "Community",
+  "Communauté",
 ];

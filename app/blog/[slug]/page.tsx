@@ -3,26 +3,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { blogPosts } from "@/data/blog";
+import ReadingProgress from "@/components/shared/ReadingProgress";
 
 interface Props {
     params: Promise<{ slug: string }>;
-}
-
-export async function generateStaticParams() {
-    return blogPosts.map((post) => ({
-        slug: post.slug,
-    }));
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
-    const post = blogPosts.find((p) => p.slug === slug);
-    if (!post) return { title: "Article introuvable" };
-
-    return {
-        title: `${post.title} - Ibrahima Sory Diallo`,
-        description: post.excerpt,
-    };
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -38,6 +22,7 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <main className="pt-20 bg-background min-h-screen">
+            <ReadingProgress />
             <div className="absolute inset-0 -z-10 overflow-hidden">
                 <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-primary/5 blur-[120px]" />
                 <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-secondary/5 blur-[100px]" />

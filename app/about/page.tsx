@@ -67,7 +67,7 @@ export default function AboutPage() {
               communautés.
             </p>
             <p className="leading-relaxed text-muted">
-              Mon parcours, de Sonatel Academy à Saraya Tech en passant par la
+              Mon parcours, de ISI en passant à la Sonatel Academy à Saraya Tech Senegal en passant par la
               fondation de Teranga Farm , m&apos;a permis de développer une
               approche unique alliant rigueur technique, créativité et
               compréhension des enjeux africains.
