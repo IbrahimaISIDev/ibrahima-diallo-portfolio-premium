@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, Tag } from "lucide-react";
+import Link from "next/link";
 import { blogPosts } from "@/data/blog";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -30,16 +31,18 @@ export default function BlogPreview() {
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="group overflow-hidden rounded-2xl border border-border bg-background transition-all duration-300 hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5"
             >
-              {/* Image placeholder */}
-              <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-surface-light to-surface">
-                <motion.div
-                  className="flex h-full items-center justify-center"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Tag size={32} className="text-muted/30" />
-                </motion.div>
-              </div>
+              <Link href={`/blog/${post.slug}`} className="block">
+                {/* Image placeholder */}
+                <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-surface-light to-surface">
+                  <motion.div
+                    className="flex h-full items-center justify-center"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Tag size={32} className="text-muted/30" />
+                  </motion.div>
+                </div>
+              </Link>
 
               {/* Content */}
               <div className="p-6 space-y-4">
@@ -60,21 +63,23 @@ export default function BlogPreview() {
                   </span>
                 </div>
 
-                <h3 className="font-display text-lg font-semibold leading-snug text-foreground transition-all group-hover:text-secondary line-clamp-2">
-                  {post.title}
-                </h3>
+                <Link href={`/blog/${post.slug}`}>
+                  <h3 className="font-display text-lg font-semibold leading-snug text-foreground transition-all hover:text-secondary line-clamp-2">
+                    {post.title}
+                  </h3>
+                </Link>
 
                 <p className="text-sm leading-relaxed text-muted line-clamp-2">
                   {post.excerpt}
                 </p>
 
-                <motion.span
-                  className="inline-flex items-center gap-1 text-sm font-medium text-secondary transition-all"
-                  whileHover={{ gap: "8px" }}
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-secondary transition-all hover:gap-2"
                 >
                   Lire la suite
                   <ArrowRight size={14} />
-                </motion.span>
+                </Link>
               </div>
             </motion.article>
           ))}

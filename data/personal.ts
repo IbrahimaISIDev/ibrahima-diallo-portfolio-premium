@@ -16,7 +16,7 @@ export const personalInfo = {
     github: "https://github.com/IbrahimaISIDev",
   },
   stats: {
-    clients: "50+",
+    clients: "15+",
     projects: "38",
     // awards: "30",
     experience: "03",

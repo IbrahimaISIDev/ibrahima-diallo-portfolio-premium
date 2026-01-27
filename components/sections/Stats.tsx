@@ -9,13 +9,12 @@ export default function Stats() {
     { value: personalInfo.stats.clients, label: "Clients satisfaits" },
     { value: personalInfo.stats.projects, label: "Projets terminés", highlight: true },
     { value: personalInfo.stats.experience, label: "Années d'expérience" },
-    { value: "99", label: "Cafés par semaine" },
   ];
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="grid grid-cols-2 gap-8 lg:grid-cols-4"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
