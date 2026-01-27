@@ -31,12 +31,14 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="mb-24 grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Photo */}
-          <div className="relative">
-            <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-surface-light">
-              <div className="space-y-4 text-center">
-                <Code2 size={64} className="mx-auto text-secondary" />
-                <p className="text-muted">Photo à ajouter</p>
-              </div>
+          <div className="relative group">
+            <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-surface-light shadow-2xl border-4 border-surface">
+              <img
+                src={personalInfo.profileImage}
+                alt={personalInfo.fullName}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 -z-10 h-full w-full rounded-3xl border-2 border-secondary/20" />
