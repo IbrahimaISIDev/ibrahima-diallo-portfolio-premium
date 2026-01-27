@@ -1,45 +1,32 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import { projects } from "@/data/projects";
-import { Link } from "@/i18n/navigation";
 
 interface Props {
-  params: Promise<{ slug: string; locale: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const locales = ["fr", "en"];
-  const params: { locale: string; slug: string }[] = [];
-
-  locales.forEach((locale) => {
-    projects.forEach((project) => {
-      params.push({ locale, slug: project.slug });
-    });
-  });
-
-  return params;
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug, locale } = await params;
+  const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Projet introuvable" };
 
-  const t = await getTranslations({ locale, namespace: "Portfolio" });
-
   return {
-    title: `${t(`projects.${project.slug}.title`)} - Ibrahima Sory Diallo`,
-    description: t(`projects.${project.slug}.description`),
+    title: `${project.title} - Ibrahima Sory Diallo`,
+    description: project.description,
   };
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const { slug, locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Portfolio" });
-  const tDetails = await getTranslations({ locale, namespace: "Portfolio.details" });
-
+  const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) notFound();
@@ -49,30 +36,28 @@ export default async function ProjectPage({ params }: Props) {
   const prevProject =
     projects[(projectIndex - 1 + projects.length) % projects.length];
 
-  const pKey = `projects.${project.slug}`;
-
   return (
     <main className="pt-20">
       <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Back button */}
         <Link
-          href="/projects"
+          href="/#portfolio"
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-secondary"
         >
           <ArrowLeft size={16} />
-          {t("backToProjects")}
+          Retour aux projets
         </Link>
 
         {/* Header */}
         <header className="mb-12 space-y-6">
           <span className="inline-block text-sm font-semibold uppercase tracking-widest text-secondary">
-            {t(`categories.${project.category.toLowerCase()}`)}
+            {project.category}
           </span>
           <h1 className="font-display text-4xl font-bold text-foreground sm:text-5xl">
-            {t(`${pKey}.title`)}
+            {project.title}
           </h1>
           <p className="text-xl leading-relaxed text-muted">
-            {t(`${pKey}.description`)}
+            {project.description}
           </p>
 
           {/* Links */}
@@ -85,7 +70,7 @@ export default async function ProjectPage({ params }: Props) {
                 className="inline-flex items-center gap-2 rounded-full bg-secondary px-6 py-3 font-semibold text-background transition-all duration-300 hover:bg-secondary-light"
               >
                 <ExternalLink size={18} />
-                {t("viewProject")}
+                Voir le projet
               </a>
             )}
             {project.githubUrl && (
@@ -96,7 +81,7 @@ export default async function ProjectPage({ params }: Props) {
                 className="inline-flex items-center gap-2 rounded-full border-2 border-border px-6 py-3 font-semibold text-foreground transition-all duration-300 hover:border-foreground"
               >
                 <Github size={18} />
-                {t("viewCode")}
+                Voir le code
               </a>
             )}
           </div>
@@ -105,7 +90,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Hero Image placeholder */}
         <div className="mb-16 flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-surface-light">
           <span className="font-display text-3xl font-bold text-muted/20">
-            {t(`${pKey}.title`)}
+            {project.title}
           </span>
         </div>
 
@@ -113,16 +98,16 @@ export default async function ProjectPage({ params }: Props) {
         <div className="space-y-12">
           <section className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-foreground">
-              {tDetails("challenge")}
+              Le D&eacute;fi & l'Impact
             </h2>
             <p className="leading-relaxed text-muted">
-              {t(`${pKey}.impact`)}.
+              {project.impact}. L'architecture a &eacute;t&eacute; pens&eacute;e pour &ecirc;tre modulaire, maintenable et scalable, r&eacute;pondant aux besoins sp&eacute;cifiques du projet.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-foreground">
-              {tDetails("techStack")}
+              Stack Technique
             </h2>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {project.tags.map((tag) => (
@@ -141,11 +126,11 @@ export default async function ProjectPage({ params }: Props) {
 
           <section className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-foreground">
-              {tDetails("results")}
+              R&eacute;sultats
             </h2>
             <div className="rounded-2xl border border-secondary/30 bg-secondary/5 p-8">
               <p className="text-lg font-medium text-secondary">
-                {t(`${pKey}.impact`)}
+                {project.impact}
               </p>
             </div>
           </section>
@@ -158,10 +143,10 @@ export default async function ProjectPage({ params }: Props) {
             className="group rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:border-secondary/50"
           >
             <span className="text-xs font-medium uppercase tracking-wider text-muted">
-              {tDetails("prevProject")}
+              Projet pr&eacute;c&eacute;dent
             </span>
             <p className="mt-2 font-display text-lg font-semibold text-foreground transition-colors group-hover:text-secondary">
-              {t(`projects.${prevProject.slug}.title`)}
+              {prevProject.title}
             </p>
           </Link>
           <Link
@@ -169,10 +154,10 @@ export default async function ProjectPage({ params }: Props) {
             className="group rounded-2xl border border-border bg-surface p-6 text-right transition-all duration-300 hover:border-secondary/50"
           >
             <span className="text-xs font-medium uppercase tracking-wider text-muted">
-              {tDetails("nextProject")}
+              Projet suivant
             </span>
-            <p className="mt-2 font-display text-lg font-semibold text-foreground transition-colors group-hover:text-secondary">
-              {t(`projects.${nextProject.slug}.title`)}
+            <p className="mt-2 font-display text-lg font-semibold text-foreground transition-colors group-hover:text-secondary" >
+              {nextProject.title}
             </p>
           </Link>
         </nav>

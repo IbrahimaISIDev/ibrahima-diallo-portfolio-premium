@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { personalInfo } from "@/data/personal";
@@ -9,9 +8,6 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 
 export default function Contact() {
-  const t = useTranslations("Contact");
-  const tForm = useTranslations("Contact.form");
-
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
@@ -56,9 +52,9 @@ export default function Contact() {
     <section id="contact" className="py-24 bg-surface/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          subtitle={t("subtitle")}
-          title={t("title")}
-          description={t("description")}
+          subtitle="Contact"
+          title="Travaillons ensemble"
+          description="Vous avez un projet en t&ecirc;te ? N'h&eacute;sitez pas &agrave; me contacter pour en discuter."
         />
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
@@ -72,10 +68,10 @@ export default function Contact() {
           >
             <div className="space-y-6">
               <h3 className="font-display text-2xl font-bold text-foreground">
-                {t("title")}
+                Parlons de votre prochain projet
               </h3>
               <p className="text-lg text-muted">
-                {t("description")}
+                Que ce soit pour une nouvelle id&eacute;e, une collaboration ou simplement pour dire bonjour, je suis toujours ouvert &agrave; de nouvelles opportunit&eacute;s.
               </p>
             </div>
 
@@ -83,19 +79,19 @@ export default function Contact() {
               {[
                 {
                   icon: Mail,
-                  label: tForm("email"),
+                  label: "Email",
                   value: personalInfo.email,
                   href: `mailto:${personalInfo.email}`,
                 },
                 {
                   icon: Phone,
-                  label: tForm("phone"),
+                  label: "T&eacute;l&eacute;phone",
                   value: personalInfo.phone,
                   href: `tel:${personalInfo.phone.replace(/\s/g, "")}`,
                 },
                 {
                   icon: MapPin,
-                  label: tForm("location"),
+                  label: "Localisation",
                   value: personalInfo.location,
                 },
               ].map((item) => (
@@ -137,27 +133,27 @@ export default function Contact() {
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-muted">
-                    {tForm("name")}
+                    Nom
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    placeholder={tForm("namePlaceholder")}
+                    placeholder="Votre nom"
                     className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-muted">
-                    {tForm("email")}
+                    Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    placeholder={tForm("emailPlaceholder")}
+                    placeholder="votre@email.com"
                     className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
                   />
                 </div>
@@ -165,28 +161,28 @@ export default function Contact() {
 
               <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-medium text-muted">
-                  {tForm("subject")}
+                  Sujet
                 </label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   required
-                  placeholder={tForm("subjectPlaceholder")}
+                  placeholder="Sujet de votre message"
                   className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-muted">
-                  {tForm("message")}
+                  Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows={4}
-                  placeholder={tForm("messagePlaceholder")}
+                  placeholder="D&eacute;crivez votre projet..."
                   className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
                 />
               </div>
@@ -204,22 +200,22 @@ export default function Contact() {
                     >
                       <Send size={20} />
                     </motion.div>
-                    {tForm("sending")}
+                    Envoi en cours...
                   </>
                 ) : status === "sent" ? (
                   <>
                     <CheckCircle2 size={20} />
-                    {tForm("sent")}
+                    Message envoy&eacute; !
                   </>
                 ) : status === "error" ? (
                   <>
                     <AlertCircle size={20} />
-                    {tForm("error")}
+                    Erreur, r&eacute;essayez
                   </>
                 ) : (
                   <>
                     <Send size={20} />
-                    {tForm("send")}
+                    Envoyer le message
                   </>
                 )}
               </button>

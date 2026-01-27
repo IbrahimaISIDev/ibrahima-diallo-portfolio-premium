@@ -3,15 +3,13 @@
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/personal";
 import { staggerContainer, counterUp } from "@/lib/animations";
-import { useTranslations } from "next-intl";
 
 export default function Stats() {
-  const t = useTranslations("About");
-
   const stats = [
-    { value: personalInfo.stats.clients, label: t("clients") },
-    { value: personalInfo.stats.projects, label: t("projects"), highlight: true },
-    { value: personalInfo.stats.experience, label: t("experience") },
+    { value: personalInfo.stats.clients, label: "Clients satisfaits" },
+    { value: personalInfo.stats.projects, label: "Projets termin&eacute;s", highlight: true },
+    { value: personalInfo.stats.experience, label: "Ann&eacute;es d'exp&eacute;rience" },
+    { value: "99", label: "Caf&eacute;s par semaine" },
   ];
   return (
     <section className="py-20">

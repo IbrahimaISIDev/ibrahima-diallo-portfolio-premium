@@ -2,15 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { ArrowRight, Download, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 
 export default function Hero() {
-  const t = useTranslations("Hero");
-  const tCommon = useTranslations("Common");
-
   return (
     <section
       id="accueil"
@@ -61,18 +57,17 @@ export default function Hero() {
           >
             {/* Badge */}
             <motion.div variants={heroChild} className="space-y-4">
-              <span className="inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-secondary text-center lg:text-left">
-                {t("greeting")} {t("firstName")}
+              <span className="inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-secondary">
+                Bonjour, je suis Ibrahima
               </span>
               <h1 className="font-display text-5xl font-bold leading-tight text-foreground sm:text-7xl">
-                {t("firstName")}{" "}
+                Ibrahima{" "}
                 <span className="bg-gradient-to-r from-secondary via-secondary-light to-secondary bg-clip-text text-transparent animate-gradient-x">
-                  {t("lastName")}
+                  Sory Diallo
                 </span>
               </h1>
               <p className="text-2xl font-medium text-muted sm:text-3xl">
-                {t("title")}{" "}
-                <span className="text-secondary">{t("subtitle")}</span>
+                Développeur Full-Stack <span className="text-secondary">& Entrepreneur Tech</span>
               </p>
             </motion.div>
 
@@ -81,7 +76,7 @@ export default function Hero() {
               variants={heroChild}
               className="mx-auto max-w-xl text-lg leading-relaxed text-muted lg:mx-0"
             >
-              {t("tagline")}
+              Je con&ccedil;ois et d&eacute;veloppe des solutions web et mobile qui transforment les id&eacute;es en produits digitaux exceptionnels.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -93,14 +88,14 @@ export default function Hero() {
                 href="#contact"
                 className="group flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20"
               >
-                {tCommon("contactMe")}
+                Me contacter
                 <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
               </a>
               <a
                 href="#portfolio"
                 className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"
               >
-                {tCommon("viewProjects")}
+                Voir mes projets
               </a>
             </motion.div>
           </motion.div>
@@ -146,7 +141,7 @@ export default function Hero() {
                 transition={{ delay: 1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-xs text-muted">Expérience</p>
+                <p className="text-xs text-muted">Exp&eacute;rience</p>
                 <p className="font-display text-xl font-bold text-secondary">
                   {personalInfo.stats.experience}
                   <span className="text-sm text-muted"> ans</span>

@@ -55,35 +55,20 @@ export const metadata: Metadata = {
   },
 };
 
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { locales } from "@/i18n/navigation";
-
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params;
-  const messages = await getMessages();
-
   return (
-    <html lang={locale} className="scroll-smooth">
+    <html lang="fr" className="scroll-smooth">
       <body
         className={`${dmSans.variable} ${sora.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <CustomCursor />
-          <Header />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
-        </NextIntlClientProvider>
+        <CustomCursor />
+        <Header />
+        <PageTransition>{children}</PageTransition>
+        <Footer />
       </body>
     </html>
   );

@@ -1,15 +1,10 @@
 "use client";
 
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
 import { personalInfo } from "@/data/personal";
 import { navigationItems } from "@/data/navigation";
 
 export default function Footer() {
-  const t = useTranslations("Footer");
-  const tNav = useTranslations("Navigation");
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -20,13 +15,13 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-1 text-2xl font-bold font-display">
+            <a href="#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
               <span className="text-foreground">Ibra</span>
               <span className="text-secondary">h</span>
               <span className="text-foreground">ima</span>
-            </Link>
+            </a>
             <p className="max-w-xs text-muted leading-relaxed">
-              Développeur Full-Stack & Entrepreneur Tech passionné par la création de solutions innovantes.
+              D&eacute;veloppeur Full-Stack & Entrepreneur Tech passionn&eacute; par la cr&eacute;ation de solutions innovantes.
             </p>
             <div className="flex gap-4">
               {[
@@ -60,7 +55,7 @@ export default function Footer() {
                     href={item.href}
                     className="text-muted transition-colors hover:text-secondary"
                   >
-                    {tNav(item.label.toLowerCase())}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -73,7 +68,7 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-4 text-muted text-sm">
-              <li>Dakar, Sénégal 🇸🇳</li>
+              <li>Dakar, S&eacute;n&eacute;gal 🇸🇳</li>
               <li>{personalInfo.email}</li>
               <li>{personalInfo.phone}</li>
             </ul>
@@ -82,11 +77,11 @@ export default function Footer() {
 
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-border pt-12 sm:flex-row">
           <p className="text-sm text-muted">
-            © {new Date().getFullYear()} {personalInfo.fullName}. {t("rights")}
+            © {new Date().getFullYear()} {personalInfo.fullName}. Tous droits r&eacute;serv&eacute;s.
           </p>
           <div className="flex items-center gap-6">
             <p className="text-xs text-muted/50 italic">
-              {t("madeWith")}
+              Fait avec passion &agrave; Dakar.
             </p>
             <button
               onClick={scrollToTop}

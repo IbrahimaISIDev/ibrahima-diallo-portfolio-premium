@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations, useLocale } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation"; // Placeholder for custom navigation
 import { cn } from "@/lib/utils";
-import { Globe, ChevronDown } from "lucide-react";
 import { navigationItems } from "@/data/navigation";
 import MobileMenu from "./MobileMenu";
 
@@ -20,12 +17,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const t = useTranslations("Navigation");
-  const tCommon = useTranslations("Common");
-  const locale = useLocale();
-  const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <>
@@ -57,7 +48,7 @@ export default function Header() {
                   href={item.href}
                   className="relative group text-sm font-medium text-muted transition-colors duration-200 hover:text-secondary"
                 >
-                  {t(item.label.toLowerCase())}
+                  {item.label}
                   <motion.span
                     className="absolute -bottom-1 left-0 h-0.5 w-0 bg-secondary"
                     whileHover={{ width: "100%" }}
@@ -67,41 +58,15 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="hidden items-center gap-6 lg:flex">
-              {/* Language Switcher */}
-              <div className="relative group/lang">
-                <button className="flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-secondary py-2">
-                  <Globe size={18} />
-                  <span className="uppercase font-semibold">{locale}</span>
-                  <ChevronDown size={14} className="transition-transform group-hover/lang:rotate-180" />
-                </button>
-
-                <div className="absolute right-0 top-full mt-1 w-32 origin-top-right rounded-xl border border-border bg-surface p-2 shadow-2xl opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible transition-all duration-200 backdrop-blur-lg">
-                  {["fr", "en"].map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => router.push(pathname, { locale: l })}
-                      className={cn(
-                        "flex w-full items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors",
-                        locale === l ? "bg-secondary/10 text-secondary" : "text-muted hover:bg-white/5 hover:text-foreground"
-                      )}
-                    >
-                      {l === 'fr' ? 'Français' : 'English'}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA Button (desktop) */}
-              <motion.a
-                href="#contact"
-                className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {tCommon("hireMe")}
-              </motion.a>
-            </div>
+            {/* CTA Button (desktop) */}
+            <motion.a
+              href="#contact"
+              className="hidden rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25 lg:inline-flex"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Me contacter
+            </motion.a>
 
             {/* Hamburger (mobile) */}
             <button

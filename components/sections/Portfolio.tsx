@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { projects, projectCategories } from "@/data/projects";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { cn } from "@/lib/utils";
@@ -10,7 +9,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function Portfolio() {
-  const t = useTranslations("Portfolio");
   const [activeCategory, setActiveCategory] = useState("Tous");
 
   const filteredProjects =
@@ -22,46 +20,41 @@ export default function Portfolio() {
     <section id="portfolio" className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          subtitle={t("subtitle")}
-          title={t("title")}
-          description={t("description")}
+          subtitle="Mon travail"
+          title="Portfolio"
+          description="D&eacute;couvrez mes r&eacute;alisations r&eacute;centes, du web au mobile en passant par le e-commerce."
         />
 
         {/* Filters */}
         <motion.div
           className="mb-12 flex flex-wrap justify-center gap-3"
-          initial={{ opacity: 0, y: 10 }
-          }
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {
-            projectCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={cn(
-                  "relative rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer overflow-hidden",
-                  activeCategory === category
-                    ? "text-background"
-                    : "bg-surface text-muted hover:bg-surface-light hover:text-foreground"
-                )}
-              >
-                <span className="relative z-10">
-                  {category === "Tous" ? t("all") : t(`categories.${category.toLowerCase()}`)}
-                </span>
-                {activeCategory === category && (
-                  <motion.div
-                    layoutId="activeCategory"
-                    className="absolute inset-0 bg-secondary shadow-lg shadow-secondary/25"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </button>
-            ))
-          }
-        </motion.div >
+          {projectCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={cn(
+                "relative rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer overflow-hidden",
+                activeCategory === category
+                  ? "text-background"
+                  : "bg-surface text-muted hover:bg-surface-light hover:text-foreground"
+              )}
+            >
+              <span className="relative z-10">{category}</span>
+              {activeCategory === category && (
+                <motion.div
+                  layoutId="activeCategory"
+                  className="absolute inset-0 bg-secondary shadow-lg shadow-secondary/25"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </button>
+          ))}
+        </motion.div>
 
         {/* Projects Grid */}
         <motion.div

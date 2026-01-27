@@ -10,7 +10,6 @@ import {
   Cloud,
   type LucideIcon,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { services } from "@/data/services";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -25,15 +24,13 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function Services() {
-  const t = useTranslations("Services");
-
   return (
     <section id="services" className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          subtitle={t("subtitle")}
-          title={t("title")}
-          description={t("description")}
+          subtitle="Ce que je fais"
+          title="Mes Services"
+          description="Des solutions complètes pour concrétiser vos projets digitaux, du design au déploiement."
         />
 
         <motion.div
@@ -45,9 +42,6 @@ export default function Services() {
         >
           {services.map((service) => {
             const Icon = iconMap[service.icon];
-            // Match service.icon from data/services to the key in fr.json/en.json if possible
-            // For now mapping manually or using keys
-            const serviceKey = service.icon.toLowerCase();
             return (
               <motion.div
                 key={service.title}
@@ -62,10 +56,10 @@ export default function Services() {
 
                 {/* Content */}
                 <h3 className="mb-3 font-display text-xl font-semibold text-foreground">
-                  {t(`items.${serviceKey}.title`)}
+                  {service.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-muted">
-                  {t(`items.${serviceKey}.description`)}
+                  {service.description}
                 </p>
 
                 {/* Hover accent line */}
