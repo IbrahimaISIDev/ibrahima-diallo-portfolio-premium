@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { services } from "@/data/services";
 import SectionTitle from "@/components/shared/SectionTitle";
+import FlippableCard from "./FlippableCard";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -40,33 +41,16 @@ export default function Services() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {services.map((service) => {
-            const Icon = iconMap[service.icon];
-            return (
-              <motion.div
-                key={service.title}
-                variants={fadeInUp}
-                whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-8 transition-colors duration-300 hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5"
-              >
-                {/* Icon */}
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10 text-secondary transition-colors duration-300 group-hover:bg-secondary group-hover:text-background">
-                  {Icon && <Icon size={28} />}
-                </div>
-
-                {/* Content */}
-                <h3 className="mb-3 font-display text-xl font-semibold text-foreground">
-                  {service.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted">
-                  {service.description}
-                </p>
-
-                {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-secondary to-accent transition-all duration-500 group-hover:w-full" />
-              </motion.div>
-            );
-          })}
+          {services.map((service) => (
+            <motion.div key={service.title} variants={fadeInUp}>
+              <FlippableCard
+                title={service.title}
+                description={service.description}
+                technologies={service.technologies}
+                Icon={iconMap[service.icon]}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
