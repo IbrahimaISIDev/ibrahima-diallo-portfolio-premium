@@ -1,0 +1,155 @@
+{
+    "Common": {
+        "hireMe": "Hire Me!",
+        "contactMe": "Contact Me",
+        "viewProjects": "View Projects",
+        "backToProjects": "Back to Projects",
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "success": "Success!"
+    },
+    "Navigation": {
+        "home": "Home",
+        "services": "Services",
+        "about": "About",
+        "portfolio": "Portfolio",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "Hero": {
+        "greeting": "Hi, I am",
+        "firstName": "Ibrahima",
+        "lastName": "Sory Diallo",
+        "title": "Full-Stack Developer",
+        "subtitle": "& Tech Entrepreneur",
+        "tagline": "I design and develop web and mobile solutions that transform ideas into exceptional digital products.",
+        "location": "Based in Dakar, Senegal 🇸🇳"
+    },
+    "About": {
+        "title": "Let's work together",
+        "subtitle": "About",
+        "description": "Developer passionate about technological innovation and entrepreneurship in Africa.",
+        "intro": "Based in Dakar, I combine technical expertise and entrepreneurial vision to create solutions that have a real impact.",
+        "experience": "Years of experience",
+        "projects": "Projects completed",
+        "clients": "Happy clients"
+    },
+    "Contact": {
+        "title": "Let's work together",
+        "subtitle": "Contact",
+        "description": "Have a project in mind? Feel free to contact me to discuss it.",
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "subject": "Subject",
+            "message": "Message",
+            "phone": "Phone",
+            "location": "Location",
+            "send": "Send message",
+            "sending": "Sending...",
+            "sent": "Message sent!",
+            "error": "Error, try again",
+            "namePlaceholder": "Your name",
+            "emailPlaceholder": "your@email.com",
+            "subjectPlaceholder": "Subject of your message",
+            "messagePlaceholder": "Describe your project..."
+        }
+    },
+    "Services": {
+        "title": "My Services",
+        "subtitle": "What I do",
+        "description": "Comprehensive solutions to bring your digital projects to life, from design to deployment.",
+        "items": {
+            "web": {
+                "title": "Web Development",
+                "description": "Creating modern, fast, and responsive websites using React, Next.js, and Tailwind CSS."
+            },
+            "mobile": {
+                "title": "Mobile Development",
+                "description": "Designing high-performance native and cross-platform mobile apps with Flutter and React Native."
+            },
+            "backend": {
+                "title": "Backend Architecture",
+                "description": "Developing robust and scalable APIs with Node.js, NestJS and database integration."
+            },
+            "ecommerce": {
+                "title": "E-commerce & CMS",
+                "description": "Setting up online stores and custom content management systems for your business."
+            },
+            "design": {
+                "title": "UI/UX Design",
+                "description": "Designing intuitive and aesthetic interfaces centered on the user experience."
+            },
+            "devops": {
+                "title": "Cloud & DevOps",
+                "description": "Deployment, automation, and management of cloud infrastructure for maximum availability."
+            }
+        }
+    },
+    "Portfolio": {
+        "title": "Portfolio",
+        "subtitle": "My Work",
+        "description": "Discover my recent achievements, from web to mobile and e-commerce.",
+        "categories": {
+            "tous": "All",
+            "web": "Web",
+            "mobile": "Mobile",
+            "ecommerce": "E-commerce",
+            "saas": "SaaS",
+            "logiciel": "Software"
+        },
+        "viewProject": "View Project",
+        "viewCode": "View Code",
+        "all": "All",
+        "projects": {
+            "mimap": {
+                "title": "MIMAP",
+                "description": "Comprehensive clinic management system for Mauritania.",
+                "impact": "Digitization of medical records and optimization of patient flow."
+            },
+            "gestion-flotte": {
+                "title": "Fleet Management",
+                "description": "B2B solution for Saraya Tech optimizing automotive logistics.",
+                "impact": "Reduction of operational costs and real-time vehicle tracking."
+            },
+            "teranga-farm": {
+                "title": "Teranga Farm",
+                "description": "Agricultural marketplace connecting producers and processors.",
+                "impact": "Supporting the local economy and securing supplies."
+            }
+        },
+        "details": {
+            "challenge": "The Challenge",
+            "solution": "My Solution",
+            "techStack": "Tech Stack",
+            "results": "Results",
+            "prevProject": "Previous Project",
+            "nextProject": "Next Project"
+        }
+    },
+    "Blog": {
+        "title": "Latest Articles",
+        "subtitle": "Blog",
+        "description": "Tutorials, feedback and reflections on web development and the African tech ecosystem.",
+        "readMore": "Read More",
+        "readTime": "{time} read",
+        "posts": {
+            "gestion-flotte-reactjs": {
+                "title": "How I built a fleet management system with ReactJS",
+                "excerpt": "Feedback on the design and development of a complex automotive fleet management application for Saraya Tech."
+            },
+            "deployer-flutter-cicd": {
+                "title": "Guide: Deploying a Flutter app with CI/CD",
+                "excerpt": "A complete guide to automating the deployment of your Flutter applications with GitHub Actions and CodeMagic."
+            },
+            "parcours-developpeur-senegal": {
+                "title": "From Sonatel Academy to Saraya Tech: My journey as a developer",
+                "excerpt": "My developer journey in Senegal, from intensive training at Sonatel Academy to my current role at Saraya Tech."
+            }
+        }
+    },
+    "Footer": {
+        "rights": "All rights reserved.",
+        "madeWith": "Made with passion in Dakar."
+    }
+}

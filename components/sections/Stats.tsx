@@ -3,14 +3,16 @@
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/personal";
 import { staggerContainer, counterUp } from "@/lib/animations";
-
-const stats = [
-  { value: personalInfo.stats.clients, label: "Clients" },
-  { value: personalInfo.stats.projects, label: "Projets", highlight: true },
-  { value: personalInfo.stats.experience, label: "Années d'expérience" },
-];
+import { useTranslations } from "next-intl";
 
 export default function Stats() {
+  const t = useTranslations("About");
+
+  const stats = [
+    { value: personalInfo.stats.clients, label: t("clients") },
+    { value: personalInfo.stats.projects, label: t("projects"), highlight: true },
+    { value: personalInfo.stats.experience, label: t("experience") },
+  ];
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

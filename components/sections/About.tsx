@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Code2, Target, Zap, GraduationCap, Heart, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { skills } from "@/data/skills";
@@ -13,20 +14,38 @@ const topSkills = skills
   .slice(0, 6);
 
 export default function About() {
+  const t = useTranslations("About");
+
+  const highlights = [
+    {
+      icon: Code2,
+      title: t("experience"),
+      text: personalInfo.stats.experience + " ans d'expertise",
+    },
+    {
+      icon: Target,
+      title: t("projects"),
+      text: personalInfo.stats.projects + "+ réalisations",
+    },
+    {
+      icon: Zap,
+      title: t("clients"),
+      text: personalInfo.stats.clients + " collaborators",
+    },
+  ];
+
   return (
-    <section id="about" className="py-24 bg-surface">
+    <section id="about" className="py-24 bg-surface/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          subtitle="À propos"
-          title="Mon Histoire"
-          description="Développeur passionné par l'innovation technologique et l'entrepreneuriat en Afrique."
+          subtitle={t("subtitle")}
+          title={t("title")}
+          description={t("description")}
         />
 
-        <div className="grid gap-16 lg:grid-cols-2">
-          {/* Left - Image */}
+        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-center">
+          {/* Image side */}
           <motion.div
-            className="space-y-6"
-            variants={fadeInLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -44,41 +63,35 @@ export default function About() {
               </div>
               {/* Experience badge */}
               <motion.div
-                className="absolute bottom-6 left-6 rounded-xl bg-background/90 px-5 py-3 shadow-xl backdrop-blur-sm border border-border"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                viewport={{ once: true }}
+                className="absolute -bottom-6 -right-6 rounded-2xl bg-secondary p-6 text-background shadow-xl"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
               >
-                <p className="font-display text-3xl font-bold text-secondary">
-                  {personalInfo.stats.experience}
-                </p>
-                <p className="text-xs font-medium text-muted">
-                  Années d&apos;expérience
+                <p className="font-display text-4xl font-bold">{personalInfo.stats.experience}+</p>
+                <p className="text-sm font-semibold uppercase tracking-wider opacity-80">
+                  {t("experience")}
                 </p>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Right - Content */}
+          {/* Text side */}
           <motion.div
             className="space-y-8"
-            variants={fadeInRight}
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
           >
-            <div className="space-y-4">
-              <h3 className="font-display text-2xl font-bold text-foreground">
-                {personalInfo.title} {personalInfo.subtitle}
+            <motion.div variants={fadeInUp} className="space-y-4">
+              <h3 className="text-2xl font-display font-bold text-foreground">
+                {t("intro")}
               </h3>
-              <p className="leading-relaxed text-muted">
-                Basé à {personalInfo.location}, je combine expertise technique
-                et vision entrepreneuriale pour créer des solutions qui ont un
-                impact réel. De la conception au déploiement, je m&apos;engage à
-                livrer des produits digitaux de qualité.
+              <p className="text-lg leading-relaxed text-muted">
+                {personalInfo.tagline}
               </p>
-            </div>
+            </motion.div>
 
             {/* Values */}
             <motion.div

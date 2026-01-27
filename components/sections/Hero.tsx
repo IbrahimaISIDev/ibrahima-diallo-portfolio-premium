@@ -2,32 +2,37 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, Download, Github, Linkedin, MousePointer2, Briefcase } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ArrowRight, Download, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 
 export default function Hero() {
+  const t = useTranslations("Hero");
+  const tCommon = useTranslations("Common");
+
   return (
     <section
       id="accueil"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="relative flex min-h-[90vh] items-center overflow-hidden pt-20"
     >
-      {/* Background gradient mesh */}
-      <div className="pointer-events-none absolute inset-0">
+      {/* Background Blobs */}
+      <div className="absolute inset-0 -z-10">
         <motion.div
-          className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]"
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -left-20 top-0 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-secondary/8 blur-[120px]"
-          animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-accent/5 blur-[120px]"
-          animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -right-20 top-40 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-[100px]"
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 60, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
       </div>
 
@@ -45,95 +50,62 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left content */}
+      <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
+          {/* Text Content */}
           <motion.div
-            className="space-y-8"
+            className="flex-1 space-y-8 text-center lg:text-left"
             variants={heroStagger}
             initial="hidden"
             animate="visible"
           >
             {/* Badge */}
-            <motion.div
-              variants={heroChild}
-              className="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-4 py-2 text-sm font-medium text-secondary"
-            >
-              <span className="h-2 w-2 rounded-full bg-secondary" />
-              Bonjour, je suis
-            </motion.div>
-
-            {/* Name */}
             <motion.div variants={heroChild} className="space-y-4">
-              <h1 className="font-display text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
-                <motion.span
-                  className="text-foreground inline-block"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  {personalInfo.firstName}
-                </motion.span>
-                <br />
-                <motion.span
-                  className="bg-gradient-to-r from-secondary via-accent to-secondary bg-[length:200%_auto] bg-clip-text text-transparent inline-block"
-                  animate={{
-                    backgroundPosition: ["0% center", "200% center"]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  {personalInfo.lastName}
-                </motion.span>
+              <span className="inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-secondary text-center lg:text-left">
+                {t("greeting")} {t("firstName")}
+              </span>
+              <h1 className="font-display text-5xl font-bold leading-tight text-foreground sm:text-7xl">
+                {t("firstName")}{" "}
+                <span className="bg-gradient-to-r from-secondary via-secondary-light to-secondary bg-clip-text text-transparent animate-gradient-x">
+                  {t("lastName")}
+                </span>
               </h1>
-              <p className="font-display text-xl font-medium text-muted sm:text-2xl">
-                {personalInfo.title}{" "}
-                <motion.span
-                  className="text-secondary"
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  {personalInfo.subtitle}
-                </motion.span>
+              <p className="text-2xl font-medium text-muted sm:text-3xl">
+                {t("title")}{" "}
+                <span className="text-secondary">{t("subtitle")}</span>
               </p>
             </motion.div>
 
-            {/* Description */}
+            {/* Tagline */}
             <motion.p
               variants={heroChild}
-              className="max-w-lg text-lg leading-relaxed text-muted"
+              className="mx-auto max-w-xl text-lg leading-relaxed text-muted lg:mx-0"
             >
-              {personalInfo.tagline}
+              {t("tagline")}
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div variants={heroChild} className="flex flex-wrap gap-4">
-              <motion.a
-                href="/cv/ibrahima-cv.pdf"
-                download
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 font-semibold text-white transition-colors duration-300 hover:bg-primary-light"
-                whileHover={{ scale: 1.04, boxShadow: "0 10px 30px rgba(27,94,32,0.3)" }}
-                whileTap={{ scale: 0.98 }}
+            <motion.div
+              variants={heroChild}
+              className="flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+            >
+              <a
+                href="#contact"
+                className="group flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20"
               >
-                <Download size={18} />
-                Download CV
-              </motion.a>
-              <motion.a
+                {tCommon("contactMe")}
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
+              </a>
+              <a
                 href="#portfolio"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 px-8 py-3.5 font-semibold text-foreground transition-colors duration-300 hover:border-secondary hover:text-secondary"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
+                className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"
               >
-                <Briefcase size={18} />
-                My Work
-              </motion.a>
+                {tCommon("viewProjects")}
+              </a>
             </motion.div>
           </motion.div>
 
-          {/* Right side - Photo placeholder */}
+          {/* Right side - Photo */}
           <motion.div
             className="relative hidden lg:flex lg:justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -141,7 +113,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Decorative border */}
+              {/* Decorative borders */}
               <div className="absolute -inset-4 rounded-full border-2 border-dashed border-secondary/20 animate-[spin_40s_linear_infinite]" />
               <div className="absolute -inset-8 rounded-full border border-primary/10 animate-[spin_60s_linear_infinite_reverse]" />
 
@@ -160,7 +132,7 @@ export default function Hero() {
                       fill
                       priority
                       className="object-cover"
-                      sizes="(max-width: 768px) 400px, 450px"
+                      sizes="450px"
                     />
                   </motion.div>
                 </div>
@@ -186,10 +158,7 @@ export default function Hero() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                }}
+                whileHover={{ scale: 1.05 }}
               >
                 <p className="text-xs text-muted">Projets</p>
                 <p className="font-display text-xl font-bold text-primary-light">
