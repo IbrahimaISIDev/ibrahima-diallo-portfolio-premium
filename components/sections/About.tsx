@@ -6,6 +6,8 @@ import { Code2, Target, Zap, GraduationCap, Heart, Briefcase } from "lucide-reac
 import { personalInfo } from "@/data/personal";
 import { skills } from "@/data/skills";
 import SectionTitle from "@/components/shared/SectionTitle";
+import ExperienceTimeline from "./ExperienceTimeline";
+import MagneticButton from "@/components/shared/MagneticButton";
 import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer, progressBar } from "@/lib/animations";
 
 const topSkills = skills
@@ -47,16 +49,17 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="relative overflow-hidden rounded-2xl bg-background p-1 group">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+            <div className="relative overflow-hidden rounded-3xl bg-background p-1.5 group shadow-2xl">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
                   src={personalInfo.profileImage}
                   alt={personalInfo.fullName}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-60" />
               </div>
               {/* Experience badge */}
               <motion.div
@@ -149,25 +152,32 @@ export default function About() {
 
             {/* CTA */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-accent-light"
-                whileHover={{ scale: 1.04, boxShadow: "0 10px 30px rgba(220,38,38,0.3)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                J'ai besoin d'un dev !
-              </motion.a>
-              <motion.a
-                href="#portfolio"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 px-6 py-3 font-semibold text-foreground transition-colors duration-300 hover:border-secondary hover:text-secondary"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Mes Projets
-              </motion.a>
+              <MagneticButton>
+                <motion.a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-accent-light"
+                  whileHover={{ scale: 1.04, boxShadow: "0 10px 30px rgba(220,38,38,0.3)" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  J'ai besoin d'un dev !
+                </motion.a>
+              </MagneticButton>
+              <MagneticButton>
+                <motion.a
+                  href="#portfolio"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 px-6 py-3 font-semibold text-foreground transition-colors duration-300 hover:border-secondary hover:text-secondary"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Mes Projets
+                </motion.a>
+              </MagneticButton>
             </div>
           </motion.div>
         </div>
+
+        {/* Path Timeline */}
+        <ExperienceTimeline />
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
+import MagneticButton from "@/components/shared/MagneticButton";
 
 export default function Freelancing() {
   return (
@@ -49,15 +50,17 @@ export default function Freelancing() {
               Du développement web au mobile, je vous accompagne dans la
               réalisation de vos projets digitaux.
             </p>
-            <motion.a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-3.5 font-semibold text-background transition-all duration-300 hover:bg-secondary-light hover:shadow-lg hover:shadow-secondary/25"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Hire Me
-              <ArrowRight size={18} />
-            </motion.a>
+            <MagneticButton className="inline-flex">
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-3.5 font-semibold text-background transition-all duration-300 hover:bg-secondary-light hover:shadow-lg hover:shadow-secondary/25"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Me contacter
+                <ArrowRight size={18} />
+              </motion.a>
+            </MagneticButton>
           </motion.div>
         </motion.div>
       </div>

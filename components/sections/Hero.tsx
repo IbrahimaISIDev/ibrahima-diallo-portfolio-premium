@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Download, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
+import MagneticButton from "@/components/shared/MagneticButton";
 
 export default function Hero() {
   return (
@@ -84,19 +85,23 @@ export default function Hero() {
               variants={heroChild}
               className="flex flex-wrap items-center justify-center gap-4 lg:justify-start"
             >
-              <a
-                href="#contact"
-                className="group flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20"
-              >
-                Me contacter
-                <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
-              </a>
-              <a
-                href="#portfolio"
-                className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"
-              >
-                Voir mes projets
-              </a>
+              <MagneticButton>
+                <a
+                  href="#contact"
+                  className="group flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20"
+                >
+                  Me contacter
+                  <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
+                </a>
+              </MagneticButton>
+              <MagneticButton>
+                <a
+                  href="#portfolio"
+                  className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"
+                >
+                  Voir mes projets
+                </a>
+              </MagneticButton>
             </motion.div>
           </motion.div>
 

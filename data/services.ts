@@ -20,7 +20,7 @@ export const services: Service[] = [
   {
     title: "Backend & API",
     description:
-      "APIs robustes et scalables avec Node.js, NestJS, Express et PostgreSQL.",
+      "APIs robustes et scalables avec Node.js, NestJS, Express, PHP, Laravel et PostgreSQL.",
     icon: "Server",
   },
   {
