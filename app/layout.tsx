@@ -3,6 +3,7 @@ import { DM_Sans, Sora, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/shared/PageTransition";
+import CustomCursor from "@/components/shared/CustomCursor";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${sora.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <CustomCursor />
         <Header />
         <PageTransition>{children}</PageTransition>
         <Footer />
