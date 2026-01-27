@@ -6,6 +6,7 @@ import { ArrowRight, Download, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 import MagneticButton from "@/components/shared/MagneticButton";
+import Typewriter from "@/components/shared/Typewriter";
 
 export default function Hero() {
   return (
@@ -56,7 +57,6 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
           >
-            {/* Badge */}
             <motion.div variants={heroChild} className="space-y-4">
               <span className="inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold tracking-wider text-secondary">
                 Bonjour, je suis Ibrahima
@@ -67,8 +67,8 @@ export default function Hero() {
                   Sory Diallo
                 </span>
               </h1>
-              <p className="text-2xl font-medium text-muted sm:text-3xl">
-                Développeur Full-Stack <span className="text-secondary">& Entrepreneur Tech</span>
+              <p className="text-2xl font-medium text-muted sm:text-3xl flex flex-wrap items-center gap-2">
+                Développeur Full-Stack <span className="text-secondary"><Typewriter text="& Entrepreneur Tech" /></span>
               </p>
             </motion.div>
 
@@ -96,10 +96,13 @@ export default function Hero() {
               </MagneticButton>
               <MagneticButton>
                 <a
-                  href="#portfolio"
+                  href="/cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"
                 >
-                  Voir mes projets
+                  Télécharger mon CV
+                  <Download size={20} className="transition-transform group-hover:-translate-y-1" />
                 </a>
               </MagneticButton>
             </motion.div>
