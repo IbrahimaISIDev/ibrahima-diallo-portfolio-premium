@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-foreground">ima</span>
             </a>
             <p className="max-w-xs text-muted leading-relaxed">
-              D&eacute;veloppeur Full-Stack & Entrepreneur Tech passionn&eacute; par la cr&eacute;ation de solutions innovantes.
+              Développeur Full-Stack & Entrepreneur Tech passionné par la création de solutions innovantes.
             </p>
             <div className="flex gap-4">
               {[
@@ -68,7 +68,7 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-4 text-muted text-sm">
-              <li>Dakar, S&eacute;n&eacute;gal 🇸🇳</li>
+              <li>Dakar, Sénégal 🇸🇳</li>
               <li>{personalInfo.email}</li>
               <li>{personalInfo.phone}</li>
             </ul>
@@ -77,11 +77,11 @@ export default function Footer() {
 
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-border pt-12 sm:flex-row">
           <p className="text-sm text-muted">
-            © {new Date().getFullYear()} {personalInfo.fullName}. Tous droits r&eacute;serv&eacute;s.
+            © {new Date().getFullYear()} {personalInfo.fullName}. Tous droits réservés.
           </p>
           <div className="flex items-center gap-6">
             <p className="text-xs text-muted/50 italic">
-              Fait avec passion &agrave; Dakar.
+              Fait avec passion à Dakar.
             </p>
             <button
               onClick={scrollToTop}

@@ -16,13 +16,13 @@ export default function About() {
   const highlights = [
     {
       icon: Code2,
-      title: "Exp&eacute;rience",
+      title: "Expérience",
       text: personalInfo.stats.experience + " ans d'expertise",
     },
     {
       icon: Target,
       title: "Projets",
-      text: personalInfo.stats.projects + "+ r&eacute;alisations",
+      text: personalInfo.stats.projects + "+ réalisations",
     },
     {
       icon: Zap,
@@ -35,9 +35,9 @@ export default function About() {
     <section id="about" className="py-24 bg-surface/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          subtitle="&Agrave; propos"
+          subtitle="À propos"
           title="Travaillons ensemble"
-          description="D&eacute;veloppeur passionn&eacute; par l'innovation technologique et l'entrepreneuriat en Afrique."
+          description="Développeur passionné par l'innovation technologique et l'entrepreneuriat en Afrique."
         />
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -67,7 +67,7 @@ export default function About() {
               >
                 <p className="font-display text-4xl font-bold">{personalInfo.stats.experience}+</p>
                 <p className="text-sm font-semibold uppercase tracking-wider opacity-80">
-                  Ans d'exp&eacute;rience
+                  Ans d'expérience
                 </p>
               </motion.div>
             </div>
@@ -83,7 +83,7 @@ export default function About() {
           >
             <motion.div variants={fadeInUp} className="space-y-4">
               <h3 className="text-2xl font-display font-bold text-foreground">
-                Bas&eacute; &agrave; Dakar, je combine expertise technique et vision entrepreneuriale pour cr&eacute;er des solutions qui ont un impact r&eacute;el.
+                Basé à Dakar, je combine expertise technique et vision entrepreneuriale pour créer des solutions qui ont un impact réel.
               </h3>
               <p className="text-lg leading-relaxed text-muted">
                 {personalInfo.tagline}
@@ -122,7 +122,7 @@ export default function About() {
             {/* Skills progress bars */}
             <div className="space-y-5">
               <h4 className="font-display text-lg font-semibold text-foreground">
-                Comp&eacute;tences cl&eacute;s
+                Compétences clés
               </h4>
               {topSkills.map((skill) => (
                 <div key={skill.name} className="space-y-2">

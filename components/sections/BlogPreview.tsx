@@ -13,7 +13,7 @@ export default function BlogPreview() {
         <SectionTitle
           subtitle="Blog"
           title="Derniers Articles"
-          description="Tutoriels, retours d'exp&eacute;rience et r&eacute;flexions sur le d&eacute;veloppement web et l'&eacute;cosyst&egrave;me tech africain."
+          description="Tutoriels, retours d'expérience et réflexions sur le développement web et l'écosystème tech africain."
         />
 
         <motion.div

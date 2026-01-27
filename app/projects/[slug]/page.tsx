@@ -98,10 +98,10 @@ export default async function ProjectPage({ params }: Props) {
         <div className="space-y-12">
           <section className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-foreground">
-              Le D&eacute;fi & l'Impact
+              Le Défi & l'Impact
             </h2>
             <p className="leading-relaxed text-muted">
-              {project.impact}. L'architecture a &eacute;t&eacute; pens&eacute;e pour &ecirc;tre modulaire, maintenable et scalable, r&eacute;pondant aux besoins sp&eacute;cifiques du projet.
+              {project.impact}. L'architecture a été pensée pour être modulaire, maintenable et scalable, répondant aux besoins spécifiques du projet.
             </p>
           </section>
 
@@ -126,7 +126,7 @@ export default async function ProjectPage({ params }: Props) {
 
           <section className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-foreground">
-              R&eacute;sultats
+              Résultats
             </h2>
             <div className="rounded-2xl border border-secondary/30 bg-secondary/5 p-8">
               <p className="text-lg font-medium text-secondary">
@@ -143,7 +143,7 @@ export default async function ProjectPage({ params }: Props) {
             className="group rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:border-secondary/50"
           >
             <span className="text-xs font-medium uppercase tracking-wider text-muted">
-              Projet pr&eacute;c&eacute;dent
+              Projet précédent
             </span>
             <p className="mt-2 font-display text-lg font-semibold text-foreground transition-colors group-hover:text-secondary">
               {prevProject.title}

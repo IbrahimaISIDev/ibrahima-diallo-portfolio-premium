@@ -76,7 +76,7 @@ export default function Hero() {
               variants={heroChild}
               className="mx-auto max-w-xl text-lg leading-relaxed text-muted lg:mx-0"
             >
-              Je con&ccedil;ois et d&eacute;veloppe des solutions web et mobile qui transforment les id&eacute;es en produits digitaux exceptionnels.
+              Je conçois et développe des solutions web et mobile qui transforment les idées en produits digitaux exceptionnels.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -141,7 +141,7 @@ export default function Hero() {
                 transition={{ delay: 1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-xs text-muted">Exp&eacute;rience</p>
+                <p className="text-xs text-muted">Expérience</p>
                 <p className="font-display text-xl font-bold text-secondary">
                   {personalInfo.stats.experience}
                   <span className="text-sm text-muted"> ans</span>

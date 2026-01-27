@@ -7,9 +7,9 @@ import { staggerContainer, counterUp } from "@/lib/animations";
 export default function Stats() {
   const stats = [
     { value: personalInfo.stats.clients, label: "Clients satisfaits" },
-    { value: personalInfo.stats.projects, label: "Projets termin&eacute;s", highlight: true },
-    { value: personalInfo.stats.experience, label: "Ann&eacute;es d'exp&eacute;rience" },
-    { value: "99", label: "Caf&eacute;s par semaine" },
+    { value: personalInfo.stats.projects, label: "Projets terminés", highlight: true },
+    { value: personalInfo.stats.experience, label: "Années d'expérience" },
+    { value: "99", label: "Cafés par semaine" },
   ];
   return (
     <section className="py-20">

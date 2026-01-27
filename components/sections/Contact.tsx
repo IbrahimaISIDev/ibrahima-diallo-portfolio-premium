@@ -54,7 +54,7 @@ export default function Contact() {
         <SectionTitle
           subtitle="Contact"
           title="Travaillons ensemble"
-          description="Vous avez un projet en t&ecirc;te ? N'h&eacute;sitez pas &agrave; me contacter pour en discuter."
+          description="Vous avez un projet en tête ? N'hésitez pas à me contacter pour en discuter."
         />
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
@@ -71,7 +71,7 @@ export default function Contact() {
                 Parlons de votre prochain projet
               </h3>
               <p className="text-lg text-muted">
-                Que ce soit pour une nouvelle id&eacute;e, une collaboration ou simplement pour dire bonjour, je suis toujours ouvert &agrave; de nouvelles opportunit&eacute;s.
+                Que ce soit pour une nouvelle idée, une collaboration ou simplement pour dire bonjour, je suis toujours ouvert à de nouvelles opportunités.
               </p>
             </div>
 
@@ -85,7 +85,7 @@ export default function Contact() {
                 },
                 {
                   icon: Phone,
-                  label: "T&eacute;l&eacute;phone",
+                  label: "Téléphone",
                   value: personalInfo.phone,
                   href: `tel:${personalInfo.phone.replace(/\s/g, "")}`,
                 },
@@ -182,7 +182,7 @@ export default function Contact() {
                   name="message"
                   required
                   rows={4}
-                  placeholder="D&eacute;crivez votre projet..."
+                  placeholder="Décrivez votre projet..."
                   className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
                 />
               </div>
@@ -205,12 +205,12 @@ export default function Contact() {
                 ) : status === "sent" ? (
                   <>
                     <CheckCircle2 size={20} />
-                    Message envoy&eacute; !
+                    Message envoyé !
                   </>
                 ) : status === "error" ? (
                   <>
                     <AlertCircle size={20} />
-                    Erreur, r&eacute;essayez
+                    Erreur, réessayez
                   </>
                 ) : (
                   <>

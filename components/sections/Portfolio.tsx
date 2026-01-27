@@ -22,7 +22,7 @@ export default function Portfolio() {
         <SectionTitle
           subtitle="Mon travail"
           title="Portfolio"
-          description="D&eacute;couvrez mes r&eacute;alisations r&eacute;centes, du web au mobile en passant par le e-commerce."
+          description="Découvrez mes réalisations récentes, du web au mobile en passant par le e-commerce."
         />
 
         {/* Filters */}
