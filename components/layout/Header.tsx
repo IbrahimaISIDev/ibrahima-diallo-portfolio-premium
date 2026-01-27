@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navigationItems } from "@/data/navigation";
 import MobileMenu from "./MobileMenu";
+import ConfettiTrigger from "@/components/shared/ConfettiTrigger";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,11 +35,13 @@ export default function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <a href="#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
-              <span className="text-foreground">Ibra</span>
-              <span className="text-secondary">h</span>
-              <span className="text-foreground">ima</span>
-            </a>
+            <ConfettiTrigger>
+              <a href="#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
+                <span className="text-foreground">Ibra</span>
+                <span className="text-secondary">h</span>
+                <span className="text-foreground">ima</span>
+              </a>
+            </ConfettiTrigger>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center gap-8 lg:flex">
