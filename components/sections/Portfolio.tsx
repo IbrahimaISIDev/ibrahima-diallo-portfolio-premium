@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, Github, Info } from "lucide-react";
 import { projects, projectCategories } from "@/data/projects";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { cn } from "@/lib/utils";
@@ -91,6 +92,16 @@ export default function Portfolio() {
 
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/80 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white transition-transform"
+                        aria-label={`Détails de ${project.title}`}
+                      >
+                        <Info size={20} />
+                      </Link>
+                    </motion.div>
+
                     {project.liveUrl && (
                       <motion.a
                         href={project.liveUrl}
@@ -127,9 +138,11 @@ export default function Portfolio() {
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">
-                    {project.title}
-                  </h3>
+                  <Link href={`/projects/${project.slug}`}>
+                    <h3 className="font-display text-lg font-semibold text-foreground hover:text-secondary transition-colors">
+                      {project.title}
+                    </h3>
+                  </Link>
                   <p className="text-sm leading-relaxed text-muted line-clamp-2">
                     {project.description}
                   </p>
