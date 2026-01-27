@@ -2,6 +2,7 @@ export const personalInfo = {
   firstName: "Ibrahima",
   lastName: "Sory Diallo",
   fullName: "Ibrahima Sory Diallo",
+  profileImage: "/images/Ibrahima_Sory_Diallo_ISI_L3_GL_G2.jpg",
   title: "Développeur Full-Stack",
   subtitle: "& Entrepreneur Tech",
   tagline:
@@ -16,9 +17,9 @@ export const personalInfo = {
   },
   stats: {
     clients: "50+",
-    projects: "68",
-    awards: "30",
-    experience: "06",
+    projects: "38",
+    // awards: "30",
+    experience: "03",
   },
   services: [
     "Développement Web (React, Next.js)",

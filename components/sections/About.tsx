@@ -30,12 +30,14 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="relative overflow-hidden rounded-2xl bg-background p-1">
-              <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-gradient-to-br from-surface to-surface-light">
-                <div className="space-y-3 text-center">
-                  <Code2 size={48} className="mx-auto text-secondary" />
-                  <p className="text-sm text-muted">Photo à ajouter</p>
-                </div>
+            <div className="relative overflow-hidden rounded-2xl bg-background p-1 group">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                <motion.img
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.fullName}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               {/* Experience badge */}
               <motion.div

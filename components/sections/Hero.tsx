@@ -145,16 +145,16 @@ export default function Hero() {
               <div className="absolute -inset-8 rounded-full border border-primary/10 animate-[spin_60s_linear_infinite_reverse]" />
 
               {/* Photo container */}
-              <div className="relative h-[400px] w-[400px] overflow-hidden rounded-full bg-gradient-to-br from-surface to-surface-light xl:h-[450px] xl:w-[450px]">
+              <div className="relative h-[400px] w-[400px] overflow-hidden rounded-full bg-gradient-to-br from-surface to-surface-light xl:h-[450px] xl:w-[450px] border-4 border-surface shadow-2xl">
                 <div className="flex h-full w-full items-center justify-center">
-                  <div className="space-y-4 text-center">
-                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary/20">
-                      <span className="font-display text-3xl font-bold text-secondary">
-                        IS
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted">Photo à ajouter</p>
-                  </div>
+                  <motion.img
+                    src={personalInfo.profileImage}
+                    alt={personalInfo.fullName}
+                    className="h-full w-full object-cover"
+                    initial={{ scale: 1.2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
                 </div>
               </div>
 
