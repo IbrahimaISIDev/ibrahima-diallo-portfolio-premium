@@ -96,11 +96,15 @@
             "mobile": "Mobile",
             "ecommerce": "E-commerce",
             "saas": "SaaS",
-            "logiciel": "Software"
+            "logiciel": "Software",
+            "healthcare": "Healthcare",
+            "b2b": "B2B",
+            "community": "Community"
         },
         "viewProject": "View Project",
         "viewCode": "View Code",
         "all": "All",
+        "backToProjects": "Back to Projects",
         "projects": {
             "mimap": {
                 "title": "MIMAP",
@@ -116,11 +120,27 @@
                 "title": "Teranga Farm",
                 "description": "Agricultural marketplace connecting producers and processors.",
                 "impact": "Supporting the local economy and securing supplies."
+            },
+            "aem-unchk": {
+                "title": "AEM-UNCHK Connect",
+                "description": "Community platform for the Muslim Students Association of UN-CHK.",
+                "impact": "Digitization of services and strengthening of community ties."
+            },
+            "portfolio": {
+                "title": "Premium Portfolio",
+                "description": "This very portfolio, built with Next.js 15 and Tailwind CSS v4.",
+                "impact": "Modern and high-performance technological showcase."
+            },
+            "dashboard-analytics": {
+                "title": "Dashboard Analytics",
+                "description": "Data visualization tool for tracking business KPIs.",
+                "impact": "Facilitated decision-making through real-time indicators."
             }
         },
         "details": {
             "challenge": "The Challenge",
             "solution": "My Solution",
+            "solutionText": "I designed and developed a complete solution using {tech}. The architecture was designed to be modular, maintainable and scalable.",
             "techStack": "Tech Stack",
             "results": "Results",
             "prevProject": "Previous Project",

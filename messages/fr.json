@@ -96,11 +96,15 @@
             "mobile": "Mobile",
             "ecommerce": "E-commerce",
             "saas": "SaaS",
-            "logiciel": "Logiciel"
+            "logiciel": "Logiciel",
+            "healthcare": "Santé",
+            "b2b": "B2B",
+            "community": "Communauté"
         },
         "viewProject": "Voir le projet",
         "viewCode": "Code source",
         "all": "Tous",
+        "backToProjects": "Retour aux projets",
         "projects": {
             "mimap": {
                 "title": "MIMAP",
@@ -116,11 +120,27 @@
                 "title": "Teranga Farm",
                 "description": "Marketplace agricole connectant producteurs et transformateurs.",
                 "impact": "Soutien à l'économie locale et sécurisation des approvisionnements."
+            },
+            "aem-unchk": {
+                "title": "AEM-UNCHK Connect",
+                "description": "Plateforme communautaire pour l'Association des Étudiants Musulmans de l'UN-CHK.",
+                "impact": "Digitalisation des services et renforcement du lien communautaire."
+            },
+            "portfolio": {
+                "title": "Portfolio Premium",
+                "description": "Ce portfolio même, conçu avec Next.js 15 et Tailwind CSS v4.",
+                "impact": "Vitrines technologique moderne et performante."
+            },
+            "dashboard-analytics": {
+                "title": "Dashboard Analytics",
+                "description": "Outil de visualisation de données pour le suivi de KPIs métier.",
+                "impact": "Prise de décision facilitée par des indicateurs en temps réel."
             }
         },
         "details": {
             "challenge": "Le Défi",
             "solution": "Ma Solution",
+            "solutionText": "J'ai conçu et développé une solution complète en utilisant {tech}. L'architecture a été pensée pour être modulaire, maintenable et scalable.",
             "techStack": "Stack Technique",
             "results": "Résultats",
             "prevProject": "Projet précédent",

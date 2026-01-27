@@ -6,7 +6,9 @@ export const locales = ["fr", "en"] as const;
 export const routing = defineRouting({
     locales,
     defaultLocale: "fr",
+    localePrefix: "as-needed",
 });
 
-export const { Link, redirect, usePathname, useRouter } =
-    createNavigation(routing);
+const { Link, redirect, usePathname, useRouter } = createNavigation(routing);
+
+export { Link, redirect, usePathname, useRouter };

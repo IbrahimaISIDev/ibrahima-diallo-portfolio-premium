@@ -22,11 +22,11 @@ export const projects: Project[] = [
     impact: "Optimisation de la gestion de flottes automobiles",
   },
   {
-    title: "Teranga Farm ",
-    slug: "Teranga Farm ",
+    title: "Teranga Farm",
+    slug: "teranga-farm",
     description:
       "Marketplace B2B connectant les producteurs agricoles de Casamance aux transformateurs de Dakar.",
-    image: "/images/projects/Teranga Farm .jpg",
+    image: "/images/projects/teranga-farm.jpg",
     tags: ["Next.js", "Node.js", "MongoDB", "Stripe"],
     category: "E-commerce",
     impact:
