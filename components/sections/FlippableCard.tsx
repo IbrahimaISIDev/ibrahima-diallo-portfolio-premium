@@ -30,19 +30,24 @@ export default function FlippableCard({
 
     return (
         <div
-            className="group relative h-[320px] w-full cursor-pointer perspective-1000"
+            className="group relative h-[320px] w-full cursor-pointer"
+            style={{ perspective: "1000px" }}
             onMouseEnter={() => !isAnimating && setIsFlipped(true)}
             onMouseLeave={() => !isAnimating && setIsFlipped(false)}
         >
             <motion.div
-                className="relative h-full w-full preserve-3d transition-all duration-500"
+                className="relative h-full w-full transition-all duration-500"
+                style={{ transformStyle: "preserve-3d" }}
                 initial={false}
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6 }}
                 onAnimationComplete={() => setIsAnimating(false)}
             >
                 {/* Front Face */}
-                <div className="absolute inset-0 backface-hidden">
+                <div
+                    className="absolute inset-0"
+                    style={{ backfaceVisibility: "hidden" }}
+                >
                     <div className="h-full rounded-2xl border border-border bg-surface p-8 shadow-lg transition-colors duration-300 group-hover:border-secondary/50 group-hover:shadow-secondary/5 flex flex-col justify-between">
                         <div>
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
@@ -68,8 +73,11 @@ export default function FlippableCard({
 
                 {/* Back Face */}
                 <div
-                    className="absolute inset-0 backface-hidden"
-                    style={{ transform: "rotateY(180deg)" }}
+                    className="absolute inset-0"
+                    style={{
+                        backfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)"
+                    }}
                 >
                     <div className="h-full flex flex-col justify-center items-center rounded-2xl border border-secondary bg-surface p-8 shadow-xl text-center bg-gradient-to-br from-surface to-surface-light">
                         <h4 className="mb-6 font-display text-lg font-bold text-foreground">Technologies</h4>
