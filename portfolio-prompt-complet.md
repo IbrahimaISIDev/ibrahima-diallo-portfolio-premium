@@ -13,7 +13,7 @@ Créer un portfolio web exceptionnel pour **Ibrahima Sory Diallo**, développeur
 2. **Attirer des clients pour du freelancing/consulting** (particulièrement en Afrique de l'Ouest)
 3. **Démontrer l'expertise technique** en développement Full-Stack moderne
 4. **Établir une présence professionnelle forte** dans l'écosystème tech africain
-5. **Servir de vitrine** pour les projets entrepreneuriaux (TerrangaFarm, AEM-UNCHK)
+5. **Servir de vitrine** pour les projets entrepreneuriaux (Teranga Farm , AEM-UNCHK)
 
 ### Objectifs Secondaires
 - Générer des opportunités de collaboration
@@ -279,7 +279,7 @@ Basé à Dakar, Sénégal 🇸🇳
    - Tags : NestJS, PostgreSQL, Flutter
    - Impact : "Solution B2B pour optimiser la gestion de flottes automobiles"
 
-3. **TerrangaFarm** - E-commerce Agricole B2B
+3. **Teranga Farm ** - E-commerce Agricole B2B
    - Screenshot : Interface plateforme
    - Tags : Next.js, E-commerce, Agriculture
    - Impact : "Marketplace connectant producteurs de Casamance et transformateurs de Dakar"
@@ -355,7 +355,7 @@ Basé à Dakar, Sénégal 🇸🇳
 - Technologies utilisées
 - Projets livrés
 
-**2024 : Fondateur @ TerrangaFarm**
+**2024 : Fondateur @ Teranga Farm **
 - Vision entrepreneuriale
 - Impact social/économique
 - Défis relevés
@@ -395,7 +395,7 @@ Mes valeurs :
 
 Au-delà du code :
 • Leadership technique à l'AEM-UNCHK
-• Fondateur de TerrangaFarm
+• Fondateur de Teranga Farm 
 • Contributeur à l'écosystème tech sénégalais
 • Passionné de sports et cinéma anglophone
 ```
@@ -412,7 +412,7 @@ Au-delà du code :
 - "Comment j'ai construit un système de gestion de flotte avec ReactJS"
 - "Guide : Déployer une app Flutter avec CI/CD (GitHub Actions + CodeMagic)"
 - "De Sonatel Academy à Saraya Tech : Mon parcours de développeur au Sénégal"
-- "TerrangaFarm : Tech et Agriculture, retour d'expérience"
+- "Teranga Farm  : Tech et Agriculture, retour d'expérience"
 
 **Design**
 - 3 derniers articles en cards

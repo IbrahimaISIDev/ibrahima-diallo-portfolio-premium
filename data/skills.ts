@@ -11,17 +11,17 @@ export const skills: Skill[] = [
   // Backend
   { name: "Node.js / Express", level: 90, category: "backend" },
   { name: "NestJS", level: 85, category: "backend" },
-  { name: "PHP / Laravel", level: 75, category: "backend" },
+  { name: "PHP / Laravel", level: 95, category: "backend" },
   { name: "Python", level: 70, category: "backend" },
 
   // Mobile
-  { name: "Flutter", level: 82, category: "mobile" },
-  { name: "React Native", level: 75, category: "mobile" },
+  { name: "Flutter", level: 85, category: "mobile" },
+  { name: "React Native", level: 70, category: "mobile" },
 
   // Database
-  { name: "PostgreSQL", level: 88, category: "database" },
+  { name: "PostgreSQL", level: 90, category: "database" },
   { name: "MongoDB", level: 85, category: "database" },
-  { name: "Firebase", level: 80, category: "database" },
+  { name: "Firebase", level: 85, category: "database" },
 
   // DevOps
   { name: "Docker", level: 78, category: "devops" },

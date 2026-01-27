@@ -17,7 +17,7 @@ export const experiences: Experience[] = [
   },
   {
     title: "Fondateur & Lead Developer",
-    company: "TerrangaFarm",
+    company: "Teranga Farm ",
     period: "2024",
     description:
       "Création d'une marketplace B2B connectant les producteurs agricoles de Casamance aux transformateurs de Dakar.",

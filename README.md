@@ -33,7 +33,7 @@ Ce portfolio allie la modernité technologique internationale (Stripe-like clari
 
 - **MIMAP** : Système de gestion clinique (Mauritanie).
 - **Gestion de Flotte** : Solution B2B pour Saraya Tech.
-- **TerrangaFarm** : Marketplace agricole B2B (Casamance - Dakar).
+- **Teranga Farm ** : Marketplace agricole B2B (Casamance - Dakar).
 - **AEM-UNCHK Connect** : Plateforme associative pour l'UN-CHK.
 
 ---

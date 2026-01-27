@@ -62,7 +62,7 @@ export default function AboutPage() {
             </p>
             <p className="leading-relaxed text-muted">
               Mon parcours, de Sonatel Academy à Saraya Tech en passant par la
-              fondation de TerrangaFarm, m&apos;a permis de développer une
+              fondation de Teranga Farm , m&apos;a permis de développer une
               approche unique alliant rigueur technique, créativité et
               compréhension des enjeux africains.
             </p>
