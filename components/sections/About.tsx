@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Briefcase, GraduationCap, Heart } from "lucide-react";
+import Image from "next/image";
+import { Code2, Target, Zap, GraduationCap, Heart, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { skills } from "@/data/skills";
 import SectionTitle from "@/components/shared/SectionTitle";
@@ -32,10 +33,12 @@ export default function About() {
           >
             <div className="relative overflow-hidden rounded-2xl bg-background p-1 group">
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                <motion.img
+                <Image
                   src={personalInfo.profileImage}
                   alt={personalInfo.fullName}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Briefcase } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Download, Github, Linkedin, MousePointer2, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 
@@ -147,14 +148,21 @@ export default function Hero() {
               {/* Photo container */}
               <div className="relative h-[400px] w-[400px] overflow-hidden rounded-full bg-gradient-to-br from-surface to-surface-light xl:h-[450px] xl:w-[450px] border-4 border-surface shadow-2xl">
                 <div className="flex h-full w-full items-center justify-center">
-                  <motion.img
-                    src={personalInfo.profileImage}
-                    alt={personalInfo.fullName}
-                    className="h-full w-full object-cover"
+                  <motion.div
+                    className="relative h-full w-full"
                     initial={{ scale: 1.2, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                  />
+                  >
+                    <Image
+                      src={personalInfo.profileImage}
+                      alt={personalInfo.fullName}
+                      fill
+                      priority
+                      className="object-cover"
+                      sizes="(max-width: 768px) 400px, 450px"
+                    />
+                  </motion.div>
                 </div>
               </div>
 

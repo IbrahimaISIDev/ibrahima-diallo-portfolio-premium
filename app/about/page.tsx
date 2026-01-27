@@ -9,6 +9,7 @@ import {
   Languages,
   Gamepad2,
 } from "lucide-react";
+import Image from "next/image";
 import { personalInfo } from "@/data/personal";
 import { experiences } from "@/data/experience";
 import { skills, skillCategories } from "@/data/skills";
@@ -32,11 +33,14 @@ export default function AboutPage() {
         <section className="mb-24 grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Photo */}
           <div className="relative group">
-            <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-surface-light shadow-2xl border-4 border-surface">
-              <img
+            <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-surface-light shadow-2xl border-4 border-surface relative">
+              <Image
                 src={personalInfo.profileImage}
                 alt={personalInfo.fullName}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                priority
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
