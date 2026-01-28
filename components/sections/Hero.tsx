@@ -1,38 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 import { ArrowRight, Download, Briefcase, Calendar } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 import MagneticButton from "@/components/shared/MagneticButton";
 import Typewriter from "@/components/shared/Typewriter";
+import Link from "next/link";
 
 export default function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
   return (
     <section
+      ref={ref}
       id="accueil"
       className="relative flex min-h-[90vh] items-center overflow-hidden pt-20"
     >
-      {/* Background Blobs */}
-      <div className="absolute inset-0 -z-10">
-        <motion.div
-          className="absolute -left-20 top-0 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -right-20 top-40 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-[100px]"
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 60, 0],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-      </div>
+      {/* Background Blobs removed in favor of global ConstellationBackground */}
 
       {/* Geometric pattern overlay */}
       <div
@@ -48,7 +44,10 @@ export default function Hero() {
         }}
       />
 
-      <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <motion.div
+        style={{ opacity, scale }}
+        className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
+      >
         <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
           {/* Text Content */}
           <motion.div
@@ -95,16 +94,13 @@ export default function Hero() {
                 </a>
               </MagneticButton>
               <MagneticButton>
-                <a
-                  href="/cv/Ibrahima-Sory-Diallo-CV_1.pdf"
-                  download="Ibrahima-Sory-Diallo-CV.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/cv"
                   className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"
                 >
-                  Télécharger mon CV
+                  Mon CV Interactif
                   <Download size={20} className="transition-transform group-hover:-translate-y-1" />
-                </a>
+                </Link>
               </MagneticButton>
               <MagneticButton>
                 <a
@@ -184,7 +180,7 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
