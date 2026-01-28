@@ -14,6 +14,7 @@ export const personalInfo = {
   social: {
     linkedin: "https://www.linkedin.com/in/ibrahima-sory-diallo-363069249",
     github: "https://github.com/IbrahimaISIDev",
+    calendly: "https://calendly.com/ibrahimadev6", // Placeholder
   },
   stats: {
     clients: "15+",

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { blogPosts } from "@/data/blog";
 import ReadingProgress from "@/components/shared/ReadingProgress";
+import ShareButtons from "@/components/shared/ShareButtons";
+import { siteConfig } from "@/lib/constants";
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -76,12 +78,17 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
 
                 {/* Post Content */}
-                <div className="prose prose-invert prose-lg max-w-none">
+                <div className="prose prose-invert prose-lg max-w-none mb-12">
                     <div
                         className="text-muted leading-loose space-y-6 text-lg"
                         dangerouslySetInnerHTML={{ __html: post.content.trim().replace(/\n/g, '<br/>') }}
                     />
                 </div>
+
+                <ShareButtons
+                    url={`${siteConfig.url}/blog/${post.slug}`}
+                    title={post.title}
+                />
 
                 {/* Navigation between posts */}
                 <nav className="mt-20 grid gap-6 border-t border-border pt-12 sm:grid-cols-2">

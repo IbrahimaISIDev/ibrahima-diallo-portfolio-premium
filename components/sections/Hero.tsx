@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, Download, Briefcase } from "lucide-react";
+import { ArrowRight, Download, Briefcase, Calendar } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 import MagneticButton from "@/components/shared/MagneticButton";
@@ -104,6 +104,17 @@ export default function Hero() {
                 >
                   Télécharger mon CV
                   <Download size={20} className="transition-transform group-hover:-translate-y-1" />
+                </a>
+              </MagneticButton>
+              <MagneticButton>
+                <a
+                  href={personalInfo.social.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-full border-2 border-secondary/30 bg-secondary/5 px-8 py-4 font-bold text-secondary transition-all hover:border-secondary hover:bg-secondary/10"
+                >
+                  Réserver un appel
+                  <Calendar size={20} className="transition-transform group-hover:scale-110" />
                 </a>
               </MagneticButton>
             </motion.div>

@@ -4,15 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Code2, Target, Zap, GraduationCap, Heart, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
-import { skills } from "@/data/skills";
 import SectionTitle from "@/components/shared/SectionTitle";
 import ExperienceTimeline from "./ExperienceTimeline";
+import SkillsWall from "./SkillsWall";
 import MagneticButton from "@/components/shared/MagneticButton";
-import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer, progressBar } from "@/lib/animations";
-
-const topSkills = skills
-  .sort((a, b) => (b.level ?? 0) - (a.level ?? 0))
-  .slice(0, 6);
+import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function About() {
   const highlights = [
@@ -122,36 +118,16 @@ export default function About() {
               ))}
             </motion.div>
 
-            {/* Skills progress bars */}
-            <div className="space-y-5">
-              <h4 className="font-display text-lg font-semibold text-foreground">
-                Compétences clés
+            {/* Visual Skills Wall */}
+            <div className="pt-4">
+              <h4 className="mb-6 font-display text-lg font-semibold text-foreground">
+                Compétences & Expertise
               </h4>
-              {topSkills.map((skill) => (
-                <div key={skill.name} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-foreground">
-                      {skill.name}
-                    </span>
-                    <span className="text-sm text-secondary">
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-background">
-                    <motion.div
-                      className="h-full rounded-full bg-gradient-to-r from-primary to-secondary"
-                      variants={progressBar(skill.level ?? 0)}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                    />
-                  </div>
-                </div>
-              ))}
+              <SkillsWall />
             </div>
 
             {/* CTA */}
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="flex flex-wrap gap-4 pt-4">
               <MagneticButton>
                 <motion.a
                   href="#contact"
