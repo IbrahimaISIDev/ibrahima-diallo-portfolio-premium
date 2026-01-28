@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/shared/PageTransition";
 import CustomCursor from "@/components/shared/CustomCursor";
+import MouseGlow from "@/components/shared/MouseGlow";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
@@ -72,6 +73,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <MouseGlow />
           <CustomCursor />
           <Header />
           <PageTransition>{children}</PageTransition>

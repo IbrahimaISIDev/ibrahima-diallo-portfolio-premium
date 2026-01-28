@@ -8,6 +8,7 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+import SpotlightCard from "@/components/shared/SpotlightCard";
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Tous");
@@ -75,90 +76,91 @@ export default function Portfolio() {
                 initial="hidden"
                 animate="visible"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-300 hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5"
+                className="group relative h-full"
               >
-                {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-surface-light to-background">
-                  <motion.div
-                    className="flex h-full items-center justify-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <span className="font-display text-2xl font-bold text-muted/30">
-                      {project.title}
-                    </span>
-                  </motion.div>
-
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/80 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white transition-transform"
-                        aria-label={`Détails de ${project.title}`}
-                      >
-                        <Info size={20} />
-                      </Link>
+                <SpotlightCard className="h-full border-border bg-surface hover:border-secondary/50" spotlightColor="rgba(245, 158, 11, 0.1)">
+                  {/* Image */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-surface-light to-background">
+                    <motion.div
+                      className="flex h-full items-center justify-center"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <span className="font-display text-2xl font-bold text-muted/30">
+                        {project.title}
+                      </span>
                     </motion.div>
 
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-background transition-transform"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label={`Voir ${project.title} en ligne`}
-                      >
-                        <ExternalLink size={20} />
-                      </motion.a>
-                    )}
-                    {project.githubUrl && (
-                      <motion.a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-background transition-transform"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label={`Code source de ${project.title}`}
-                      >
-                        <Github size={20} />
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/80 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white transition-transform"
+                          aria-label={`Détails de ${project.title}`}
+                        >
+                          <Info size={20} />
+                        </Link>
+                      </motion.div>
 
-                {/* Content */}
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium uppercase tracking-wider text-secondary">
-                      {project.category}
-                    </span>
+                      {project.liveUrl && (
+                        <motion.a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-background transition-transform"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          aria-label={`Voir ${project.title} en ligne`}
+                        >
+                          <ExternalLink size={20} />
+                        </motion.a>
+                      )}
+                      {project.githubUrl && (
+                        <motion.a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-background transition-transform"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          aria-label={`Code source de ${project.title}`}
+                        >
+                          <Github size={20} />
+                        </motion.a>
+                      )}
+                    </div>
                   </div>
-                  <Link href={`/projects/${project.slug}`}>
-                    <h3 className="font-display text-lg font-semibold text-foreground hover:text-secondary transition-colors">
-                      {project.title}
-                    </h3>
-                  </Link>
-                  <p className="text-sm leading-relaxed text-muted line-clamp-2">
-                    {project.description}
-                  </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
-                      >
-                        {tag}
+                  {/* Content */}
+                  <div className="p-6 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium uppercase tracking-wider text-secondary">
+                        {project.category}
                       </span>
-                    ))}
+                    </div>
+                    <Link href={`/projects/${project.slug}`}>
+                      <h3 className="font-display text-lg font-semibold text-foreground hover:text-secondary transition-colors">
+                        {project.title}
+                      </h3>
+                    </Link>
+                    <p className="text-sm leading-relaxed text-muted line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </SpotlightCard>
               </motion.div>
             ))}
           </AnimatePresence>
