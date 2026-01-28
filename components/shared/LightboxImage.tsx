@@ -20,6 +20,9 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
             <div
                 className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-border bg-background shadow-2xl transition-all hover:border-secondary/30"
                 onClick={() => setOpen(true)}
+                style={{
+                    viewTransitionName: `project-image-${src.split('/').pop()?.split('.')[0]}`
+                } as any}
             >
                 <div className="relative aspect-video w-full overflow-hidden">
                     <Image

@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { DM_Sans, Sora, JetBrains_Mono } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/shared/PageTransition";
 import CustomCursor from "@/components/shared/CustomCursor";
-import MouseGlow from "@/components/shared/MouseGlow";
+import ConstellationBackground from "@/components/shared/ConstellationBackground";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const sora = Sora({
+const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${dmSans.variable} ${sora.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -73,7 +73,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <MouseGlow />
+          <ConstellationBackground />
           <CustomCursor />
           <Header />
           <PageTransition>{children}</PageTransition>

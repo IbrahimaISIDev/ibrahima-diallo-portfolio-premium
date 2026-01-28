@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import MaskedReveal from "./MaskedReveal";
 
 interface SectionTitleProps {
   subtitle: string;
@@ -20,14 +21,20 @@ export default function SectionTitle({
         align === "center" && "mx-auto text-center"
       )}
     >
-      <span className="inline-block text-sm font-semibold uppercase tracking-widest text-secondary">
-        {subtitle}
-      </span>
-      <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-        {title}
-      </h2>
+      <MaskedReveal>
+        <span className="inline-block text-sm font-semibold uppercase tracking-widest text-secondary">
+          {subtitle}
+        </span>
+      </MaskedReveal>
+      <MaskedReveal delay={0.1}>
+        <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
+          {title}
+        </h2>
+      </MaskedReveal>
       {description && (
-        <p className="text-lg leading-relaxed text-muted">{description}</p>
+        <MaskedReveal delay={0.2}>
+          <p className="text-lg leading-relaxed text-muted">{description}</p>
+        </MaskedReveal>
       )}
     </div>
   );

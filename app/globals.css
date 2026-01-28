@@ -128,3 +128,64 @@ pre {
     scroll-behavior: auto !important;
   }
 }
+
+/* Print Styles */
+@media print {
+  @page {
+    size: auto;
+    margin: 15mm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+
+  /* Hide non-essential UI */
+  nav,
+  footer,
+  .print\:hidden,
+  #custom-cursor,
+  .constellation-bg {
+    display: none !important;
+  }
+
+  /* Fix colors for print */
+  .text-secondary {
+    color: #F59E0B !important;
+  }
+
+  .print\:text-black {
+    color: black !important;
+  }
+
+  .bg-surface,
+  .bg-surface\/50 {
+    background: transparent !important;
+  }
+
+  .border-border {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Optimize layout */
+  .max-w-5xl {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  /* Force headers to be visible and clear */
+  h1,
+  h2,
+  h3,
+  h4 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}

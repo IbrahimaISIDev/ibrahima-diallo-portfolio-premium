@@ -9,11 +9,16 @@ export interface Project {
   description: string;
   longDescription?: string;
   image: string;
+  video?: string;
   tags: string[];
   category: string;
   liveUrl?: string;
   githubUrl?: string;
   impact: string;
+  architecture?: string[];
+  challenges?: string[];
+  codeSnippet?: string;
+  status?: "Live" | "En Développement" | "Concept";
 }
 
 export interface Skill {
@@ -39,4 +44,12 @@ export interface ContactInfo {
   location: string;
   timezone: string;
   availability: string;
+}
+
+export interface WorkflowStep {
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: string;
+  tasks: string[];
 }
