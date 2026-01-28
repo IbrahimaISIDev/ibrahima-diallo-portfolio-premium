@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/shared/PageTransition";
 import CustomCursor from "@/components/shared/CustomCursor";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
 
@@ -65,10 +66,17 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${sora.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <CustomCursor />
-        <Header />
-        <PageTransition>{children}</PageTransition>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <CustomCursor />
+          <Header />
+          <PageTransition>{children}</PageTransition>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

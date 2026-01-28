@@ -96,7 +96,8 @@ export default function Hero() {
               </MagneticButton>
               <MagneticButton>
                 <a
-                  href="/cv.pdf"
+                  href="/cv/Ibrahima-Sory-Diallo-CV_1.pdf"
+                  download="Ibrahima-Sory-Diallo-CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-foreground hover:bg-surface"

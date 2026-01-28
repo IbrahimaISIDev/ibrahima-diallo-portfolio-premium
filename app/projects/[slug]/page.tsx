@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { projects } from "@/data/projects";
+import LightboxImage from "@/components/shared/LightboxImage";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -87,12 +88,14 @@ export default async function ProjectPage({ params }: Props) {
           </div>
         </header>
 
-        {/* Hero Image placeholder */}
-        <div className="mb-16 flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-surface-light">
-          <span className="font-display text-3xl font-bold text-muted/20">
-            {project.title}
-          </span>
-        </div>
+        {/* Project Image */}
+        <section className="mb-16">
+          <LightboxImage
+            src={project.image}
+            alt={project.description}
+            title={project.title}
+          />
+        </section>
 
         {/* Case Study Content */}
         <div className="space-y-12">

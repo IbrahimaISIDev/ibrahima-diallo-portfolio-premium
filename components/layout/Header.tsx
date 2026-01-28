@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { navigationItems } from "@/data/navigation";
 import MobileMenu from "./MobileMenu";
 import ConfettiTrigger from "@/components/shared/ConfettiTrigger";
+import ThemeToggle from "@/components/shared/ThemeToggle";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -61,41 +62,47 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* CTA Button (desktop) */}
-            <motion.a
-              href="#contact"
-              className="hidden rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25 lg:inline-flex"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Me contacter
-            </motion.a>
+            {/* Actions (desktop) */}
+            <div className="hidden items-center gap-4 lg:flex">
+              <ThemeToggle />
+              <motion.a
+                href="#contact"
+                className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Me contacter
+              </motion.a>
+            </div>
 
             {/* Hamburger (mobile) */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
-              aria-label="Toggle menu"
-            >
-              <span
-                className={cn(
-                  "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
-                  mobileMenuOpen && "translate-y-2 rotate-45"
-                )}
-              />
-              <span
-                className={cn(
-                  "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
-                  mobileMenuOpen && "opacity-0"
-                )}
-              />
-              <span
-                className={cn(
-                  "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
-                  mobileMenuOpen && "-translate-y-2 -rotate-45"
-                )}
-              />
-            </button>
+            <div className="flex items-center gap-4 lg:hidden">
+              <ThemeToggle />
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5"
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={cn(
+                    "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
+                    mobileMenuOpen && "translate-y-2 rotate-45"
+                  )}
+                />
+                <span
+                  className={cn(
+                    "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
+                    mobileMenuOpen && "opacity-0"
+                  )}
+                />
+                <span
+                  className={cn(
+                    "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
+                    mobileMenuOpen && "-translate-y-2 -rotate-45"
+                  )}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
