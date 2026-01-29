@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
       "Marketplace B2B connectant les producteurs de Casamance aux transformateurs de Dakar.",
     highlights: [
       "Architecture e-commerce complète",
-      "Intégration Stripe et gestion d'équipe",
+      "Gestion des cycles de pré-commandes",
       "Impact social et économique local",
     ],
     technologies: ["Next.js", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],

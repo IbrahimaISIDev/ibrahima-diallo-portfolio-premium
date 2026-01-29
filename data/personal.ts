@@ -18,9 +18,9 @@ export const personalInfo = {
   },
   stats: {
     clients: "15+",
-    projects: "38",
+    projects: "38+",
     // awards: "30",
-    experience: "03",
+    experience: "03+",
   },
   services: [
     "Développement Web (React, Next.js)",

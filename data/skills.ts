@@ -26,7 +26,8 @@ export const skills: Skill[] = [
   // DevOps
   { name: "Docker", level: 78, category: "devops" },
   { name: "Git / GitHub Actions", level: 90, category: "devops" },
-  { name: "AWS / Vercel", level: 80, category: "devops" },
+  { name: "AWS / Vercel / Render", level: 80, category: "devops" },
+  { name: "Firebase Hosting", level: 70, category: "devops" },
 ];
 
 export const skillCategories = {

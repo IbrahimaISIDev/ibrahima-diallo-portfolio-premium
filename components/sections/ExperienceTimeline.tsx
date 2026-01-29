@@ -10,7 +10,7 @@ export default function ExperienceTimeline() {
         <div className="mt-20 space-y-12">
             <div className="flex flex-col items-center gap-4 text-center">
                 <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
-                    Mon Parcours Professionnel
+                    Mon Parcours Professionnel et Académique
                 </h3>
                 <p className="max-w-xl text-muted">
                     De ISI en passant par la Sonatel Academy &agrave; Saraya Tech Senegal, voici les &eacute;tapes cl&eacute;s de mon &eacute;volution constante.
