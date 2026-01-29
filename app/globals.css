@@ -36,11 +36,11 @@
     --accent: #DC2626;
     --accent-light: #EF4444;
 
-    --background: #0F172A;
-    --surface: #1E293B;
-    --surface-light: #334155;
-    --border: #334155;
-    --border-light: #475569;
+    --background: #111111;
+    --surface: #1A1A1C;
+    --surface-light: #222225;
+    --border: #2A2A2D;
+    --border-light: #353538;
 
     --foreground: #F8FAFC;
     --muted: #94A3B8;
@@ -79,6 +79,21 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 35px,
+      rgba(255, 255, 255, 0.1) 35px,
+      rgba(255, 255, 255, 0.1) 36px);
+  pointer-events: none;
+  z-index: -10;
+  mask-image: radial-gradient(circle at center, black, transparent 90%);
 }
 
 h1,

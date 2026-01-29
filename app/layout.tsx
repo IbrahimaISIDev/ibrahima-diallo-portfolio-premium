@@ -4,7 +4,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/shared/PageTransition";
 import CustomCursor from "@/components/shared/CustomCursor";
-import ConstellationBackground from "@/components/shared/ConstellationBackground";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
@@ -73,7 +72,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ConstellationBackground />
           <CustomCursor />
           <Header />
           <PageTransition>{children}</PageTransition>

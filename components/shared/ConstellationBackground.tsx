@@ -23,8 +23,8 @@ export default function ConstellationBackground() {
 
         let animationFrameId: number;
         let particles: Particle[] = [];
-        const particleCount = 200;
-        const connectionDistance = 150;
+        const particleCount = 150;
+        const connectionDistance = 100;
 
         class Particle {
             x: number;
