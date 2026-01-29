@@ -28,21 +28,7 @@ export default function Hero() {
       id="accueil"
       className="relative flex min-h-[90vh] items-center overflow-hidden pt-20"
     >
-      {/* Background Blobs removed in favor of global ConstellationBackground */}
 
-      {/* Geometric pattern overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 35px,
-            currentColor 35px,
-            currentColor 36px
-          )`,
-        }}
-      />
 
       <motion.div
         style={{ opacity, scale }}

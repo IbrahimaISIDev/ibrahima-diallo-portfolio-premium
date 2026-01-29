@@ -91,7 +91,6 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Featured Image Section */}
         <section className="mb-24 relative group">
-          <div className="absolute inset-0 bg-primary/20 blur-[100px] opacity-20 -z-10 group-hover:opacity-30 transition-opacity" />
           <div className="rounded-[2.5rem] overflow-hidden border border-border/50 shadow-2xl">
             <LightboxImage
               src={project.image}

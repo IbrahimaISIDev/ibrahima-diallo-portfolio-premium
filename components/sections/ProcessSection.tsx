@@ -31,8 +31,6 @@ export default function ProcessSection() {
 
     return (
         <section id="process" className="py-24 relative overflow-hidden">
-            {/* Background Decorative Element */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 blur-[120px] rounded-full -z-10" />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <SectionTitle
