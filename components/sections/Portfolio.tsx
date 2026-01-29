@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import SpotlightCard from "@/components/shared/SpotlightCard";
+import ParallaxImage from "@/components/shared/ParallaxImage";
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Tous");
@@ -78,21 +79,43 @@ export default function Portfolio() {
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 className="group relative h-full"
               >
-                <SpotlightCard className="h-full border-border bg-surface hover:border-secondary/50" spotlightColor="rgba(245, 158, 11, 0.1)">
-                  {/* Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-surface-light to-background">
-                    <motion.div
-                      className="flex h-full items-center justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <span className="font-display text-2xl font-bold text-muted/30">
-                        {project.title}
-                      </span>
-                    </motion.div>
+                <SpotlightCard className="h-full border-border bg-surface hover:border-secondary/50 overflow-hidden" spotlightColor="rgba(245, 158, 11, 0.1)">
+                  {/* Image/Video Container */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <ParallaxImage
+                      src={project.image}
+                      alt={project.title}
+                      title={project.title}
+                    />
 
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/80 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                    {/* Video Hover Overlay */}
+                    {project.video && (
+                      <video
+                        src={project.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                      />
+                    )}
+
+                    {/* Status Badge */}
+                    {project.status && (
+                      <div className="absolute left-4 top-4 z-20">
+                        <span className={cn(
+                          "rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md",
+                          project.status === "Live"
+                            ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                            : "bg-secondary/20 text-secondary border border-secondary/30"
+                        )}>
+                          {project.status === "Live" ? "● Live" : project.status}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Actions Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 z-30">
                       <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         <Link
                           href={`/projects/${project.slug}`}
@@ -116,48 +139,45 @@ export default function Portfolio() {
                           <ExternalLink size={20} />
                         </motion.a>
                       )}
-                      {project.githubUrl && (
-                        <motion.a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-background transition-transform"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          aria-label={`Code source de ${project.title}`}
-                        >
-                          <Github size={20} />
-                        </motion.a>
-                      )}
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 space-y-3">
+                  <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium uppercase tracking-wider text-secondary">
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary">
                         {project.category}
                       </span>
+                      <span className="text-[10px] font-bold text-muted-dark italic">
+                        {project.tags.length}+ Stack Items
+                      </span>
                     </div>
+
                     <Link href={`/projects/${project.slug}`}>
-                      <h3 className="font-display text-lg font-semibold text-foreground hover:text-secondary transition-colors">
+                      <h3 className="font-display text-xl font-bold text-foreground hover:text-secondary transition-colors leading-tight">
                         {project.title}
                       </h3>
                     </Link>
-                    <p className="text-sm leading-relaxed text-muted line-clamp-2">
+
+                    <p className="text-sm leading-relaxed text-muted line-clamp-2 font-medium opacity-80">
                       {project.description}
                     </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tags.map((tag) => (
+                    {/* Tags (Bottom) */}
+                    <div className="flex flex-wrap gap-2 pt-2 border-t border-border/40 mt-auto">
+                      {project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
+                          className="text-[9px] font-black uppercase tracking-wider text-muted-dark hover:text-secondary transition-colors"
                         >
-                          {tag}
+                          #{tag}
                         </span>
                       ))}
+                      {project.tags.length > 3 && (
+                        <span className="text-[9px] font-black text-muted-dark/50 italic">
+                          +{project.tags.length - 3} more
+                        </span>
+                      )}
                     </div>
                   </div>
                 </SpotlightCard>
