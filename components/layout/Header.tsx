@@ -50,7 +50,7 @@ export default function Header() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="relative group text-sm font-medium text-muted transition-colors duration-200 hover:text-secondary"
+                  className="relative group text-base font-medium text-muted transition-colors duration-200 hover:text-secondary"
                 >
                   {item.label}
                   <motion.span
@@ -67,7 +67,7 @@ export default function Header() {
               <ThemeToggle />
               <motion.a
                 href="#contact"
-                className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
+                className="rounded-full bg-primary px-6 py-2.5 text-base font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
