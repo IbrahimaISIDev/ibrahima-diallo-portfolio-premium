@@ -57,34 +57,7 @@ export const projects: Project[] = [
       "Calcul complexe de la consommation de carburant et maintenance"
     ]
   },
-  {
-    title: "Teranga Farm",
-    slug: "teranga-farm",
-    description:
-      "Marketplace B2B connectant les producteurs agricoles de Casamance aux transformateurs de Dakar.",
-    image: "/images/projects/teranga-farm.png",
-    tags: ["Next.js", "Node.js", "MongoDB", "Stripe"],
-    category: "E-commerce",
-    impact: "Connexion producteurs de Casamance et transformateurs de Dakar",
-    status: "Live",
-    architecture: [
-      "Frontend SSR avec Next.js pour un SEO optimal",
-      "Base de données NoSQL MongoDB pour la flexibilité des produits",
-      "Paiements intégrés avec l'API Stripe",
-      "Gestion d'images avec Cloudinary"
-    ],
-    challenges: [
-      "Mise en place d'un système multi-vendeurs complexe",
-      "Optimisation de la logistique entre régions éloignées",
-      "Système de notifications SMS pour les producteurs ruraux"
-    ],
-    codeSnippet: `// Exemple de logique multi-vendeurs
-export const calculateCommission = (amount) => {
-  const platformFee = amount * 0.15; // 15% commission
-  const vendorShare = amount - platformFee;
-  return { platformFee, vendorShare };
-};`
-  },
+
   {
     title: "AEM-UNCHK Connect",
     slug: "aem-unchk",

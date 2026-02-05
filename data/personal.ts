@@ -4,9 +4,8 @@ export const personalInfo = {
   fullName: "Ibrahima Sory Diallo",
   profileImage: "/images/Ibrahima_Sory_Diallo_ISI_L3_GL_G2.jpg",
   title: "Développeur Full-Stack",
-  subtitle: "& Entrepreneur Tech",
   tagline:
-    "Je conçois et développe des solutions web et mobile qui transforment les idées en produits digitaux exceptionnels.",
+    "Je conçois et développe des solutions logicielles robustes qui répondent aux besoins métiers les plus exigeants.",
   location: "Dakar, Sénégal",
   email: "ibrahimadev6@gmail.com",
   phone: "+221 78 561 91 15",

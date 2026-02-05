@@ -53,7 +53,7 @@ export default function Hero() {
                 </span>
               </h1>
               <p className="text-2xl font-medium text-muted sm:text-3xl flex flex-wrap items-center gap-2">
-                Développeur Full-Stack <span className="text-secondary"><Typewriter text="& Entrepreneur Tech" /></span>
+                Développeur Full-Stack
               </p>
             </motion.div>
 

@@ -37,7 +37,7 @@ export default function About() {
         <SectionTitle
           subtitle="À propos"
           title="Travaillons ensemble"
-          description="Développeur passionné par l'innovation technologique et l'entrepreneuriat en Afrique."
+          description="Développeur passionné par l'innovation technologique et la création de valeur par le code."
         />
 
         <div className="mt-16 flex flex-col items-center">
@@ -51,7 +51,7 @@ export default function About() {
           >
             <motion.div variants={fadeInUp} className="space-y-6">
               <h3 className="text-3xl font-display font-bold text-foreground sm:text-4xl">
-                Je combine expertise technique et vision entrepreneuriale pour créer des solutions qui ont un impact réel.
+                Je combine expertise technique et architecture logicielle pour créer des solutions numériques performantes.
               </h3>
               <p className="text-xl leading-relaxed text-muted mx-auto max-w-3xl">
                 {personalInfo.tagline}
@@ -69,7 +69,7 @@ export default function About() {
               {[
                 { icon: Code2, text: "Excellence technique" },
                 { icon: Heart, text: "Innovation sociale" },
-                { icon: Briefcase, text: "Entrepreneuriat" },
+                { icon: Briefcase, text: "Professionnalisme" },
                 { icon: GraduationCap, text: "Apprentissage continu" },
               ].map(({ icon: Icon, text }) => (
                 <motion.div

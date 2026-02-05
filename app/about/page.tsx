@@ -17,7 +17,7 @@ import { skills, skillCategories } from "@/data/skills";
 export const metadata: Metadata = {
   title: "À propos - Ibrahima Sory Diallo",
   description:
-    "Développeur Full-Stack et entrepreneur tech basé à Dakar, Sénégal. Découvrez mon parcours, mes compétences et ma philosophie de travail.",
+    "Développeur Full-Stack basé à Dakar, Sénégal. Découvrez mon parcours, mes compétences et ma philosophie de travail.",
 };
 
 export default function AboutPage() {
@@ -57,20 +57,18 @@ export default function AboutPage() {
               {personalInfo.fullName}
             </h1>
             <p className="text-xl text-muted">
-              {personalInfo.title} {personalInfo.subtitle}
+              {personalInfo.title}
             </p>
             <p className="leading-relaxed text-muted">
               Basé à {personalInfo.location}, je suis un développeur passionné
-              par l&apos;innovation technologique et l&apos;entrepreneuriat en Afrique.
-              Je combine expertise technique et vision entrepreneuriale pour
-              créer des solutions digitales qui ont un impact réel sur les
-              communautés.
+              par l&apos;innovation technologique et le génie logiciel.
+              Je combine expertise technique et rigueur méthodologique pour
+              créer des solutions digitales robustes et scalables.
             </p>
             <p className="leading-relaxed text-muted">
-              Mon parcours, de ISI en passant à la Sonatel Academy à Saraya Tech Senegal en passant par la
-              fondation de Teranga Farm , m&apos;a permis de développer une
-              approche unique alliant rigueur technique, créativité et
-              compréhension des enjeux africains.
+              Mon parcours, de la Sonatel Academy à Saraya Tech Sénégal,
+              m&apos;a permis de développer une approche alliant excellence technique
+              et compréhension approfondie des besoins métiers.
             </p>
 
             {/* Quick info */}
@@ -109,8 +107,8 @@ export default function AboutPage() {
               },
               {
                 icon: Briefcase,
-                title: "Entrepreneuriat",
-                text: "Transformer les idées en produits concrets qui résolvent de vrais problèmes.",
+                title: "Rigueur & Qualité",
+                text: "Engagement total vers la qualité du code et la satisfaction des besoins utilisateurs.",
               },
               {
                 icon: GraduationCap,

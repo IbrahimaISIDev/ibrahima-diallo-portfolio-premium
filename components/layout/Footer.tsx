@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-foreground">ima</span>
             </a>
             <p className="max-w-xs text-muted leading-relaxed">
-              Développeur Full-Stack & Entrepreneur Tech passionné par la création de solutions innovantes.
+              Développeur Full-Stack passionné par la création de solutions logicielles innovantes et performantes.
             </p>
             <div className="flex gap-4">
               {[

@@ -62,7 +62,7 @@ export default function ExperienceTimeline() {
                                     </p>
 
                                     <ul className={`mt-4 flex flex-col gap-2 ${index % 2 === 0 ? "items-start" : "sm:items-end"}`}>
-                                        {exp.highlights.slice(0, 2).map((highlight) => (
+                                        {exp.highlights.map((highlight) => (
                                             <li key={highlight} className={`flex items-start gap-2 text-xs text-muted/80 ${index % 2 === 0 ? "" : "sm:flex-row-reverse"}`}>
                                                 <CheckCircle2 size={12} className="mt-0.5 shrink-0 text-secondary" />
                                                 <span className="max-w-[200px] sm:max-w-none">{highlight}</span>
