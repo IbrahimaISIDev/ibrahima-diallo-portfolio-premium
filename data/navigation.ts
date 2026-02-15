@@ -5,6 +5,6 @@ export const navigationItems = [
   { label: "À propos", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Blog", href: "#blog" },
+  // { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
