@@ -16,8 +16,8 @@ export const personalInfo = {
     calendly: "https://calendly.com/ibrahimadev6", // Placeholder
   },
   stats: {
-    clients: "15+",
-    projects: "38+",
+    clients: "10+",
+    projects: "18+",
     // awards: "30",
     experience: "03+",
   },

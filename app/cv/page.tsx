@@ -234,9 +234,8 @@ export default function ResumePage() {
                                 </h3>
                                 <div className="space-y-5 sm:space-y-6">
                                     {[
-                                        { title: "Sénégal Digital Show", desc: "Speaker & Participant innovant" },
-                                        { title: "Bootcamp Sonatel", desc: "Top 5% des apprenants tech" },
-                                        { title: "ISI Excellence", desc: "Major de promotion GL (L2/L3)" }
+                                        { title: "Certificat d'Excellence", desc: "3ème Meilleur Résultat de l'Établissement - Groupe ISI (Excellence Académique)" },
+                                        { title: "Diplôme Développeur Web Mobile", desc: "Certification Sonatel Academy (Ecole du Code) - Promotion 2024" }
                                     ].map((award, i) => (
                                         <motion.div
                                             key={i}
