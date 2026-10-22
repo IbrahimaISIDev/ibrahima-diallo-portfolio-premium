@@ -129,7 +129,7 @@ export default function ResumeView() {
                     key={i}
                     className="flex items-center md:justify-end gap-3 text-muted print:text-black group"
                   >
-                    <span className="text-foreground font-medium print:text-black break-all">
+                    <span className="text-foreground font-medium print:text-black break-words">
                       {contact.text}
                     </span>
                     <contact.icon
