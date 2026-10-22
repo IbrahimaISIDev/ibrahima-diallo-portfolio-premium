@@ -1,7 +1,10 @@
 export const personalInfo = {
   fullName: "Ibrahima Sory Diallo",
   profileImage: "/images/image.png",
+  // Poste actuel : titre des pages (Google tronque vers 60 caractères) et données structurées
   title: "Développeur Full-Stack",
+  // Titre complet du CV : Hero, CV, page À propos, image de partage
+  headline: "Développeur Full-Stack & Aspirant Ingénieur Cloud / DevOps & IA",
   tagline:
     "Je conçois et développe des solutions logicielles robustes qui répondent aux besoins métiers les plus exigeants.",
   // Accroche du Hero (page d'accueil)

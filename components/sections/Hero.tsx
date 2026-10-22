@@ -50,8 +50,8 @@ export default function Hero() {
                   Sory Diallo
                 </span>
               </h1>
-              <p className="text-2xl font-medium text-muted sm:text-3xl flex flex-wrap items-center gap-2">
-                Développeur Full-Stack
+              <p className="text-2xl font-medium text-muted text-balance sm:text-3xl">
+                {personalInfo.headline}
               </p>
             </motion.div>
 

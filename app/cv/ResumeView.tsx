@@ -103,8 +103,8 @@ export default function ResumeView() {
                   <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-foreground print:text-black tracking-tight leading-tight">
                     {personalInfo.fullName}
                   </h2>
-                  <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-secondary to-primary-light bg-clip-text text-transparent mt-2">
-                    {personalInfo.title}
+                  <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-secondary to-primary-light bg-clip-text text-transparent mt-2 text-balance">
+                    {personalInfo.headline}
                   </p>
                 </motion.div>
                 <motion.p

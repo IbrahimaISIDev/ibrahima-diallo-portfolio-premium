@@ -10,7 +10,7 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return renderOgImage({
     title: personalInfo.fullName,
-    accent: personalInfo.title,
+    accent: personalInfo.headline,
     details: "React · Next.js · NestJS · Flutter · PostgreSQL",
     footer: personalInfo.location,
   });

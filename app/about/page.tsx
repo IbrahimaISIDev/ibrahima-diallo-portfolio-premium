@@ -53,7 +53,7 @@ export default function AboutPage() {
             <h1 className="font-display text-4xl font-bold text-foreground sm:text-5xl">
               {personalInfo.fullName}
             </h1>
-            <p className="text-xl text-muted">{personalInfo.title}</p>
+            <p className="text-xl text-muted">{personalInfo.headline}</p>
             <p className="leading-relaxed text-muted">{personalInfo.summary}</p>
             <p className="leading-relaxed text-muted">
               Basé à {personalInfo.location}, mon parcours, de la Sonatel Academy à Nixacom en
