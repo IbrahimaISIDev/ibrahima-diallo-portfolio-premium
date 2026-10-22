@@ -115,7 +115,7 @@ export default function Portfolio() {
                     )}
 
                     {/* Actions Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 z-30">
+                    <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 z-30">
                       <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         <Link
                           href={`/projects/${project.slug}`}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { type LucideIcon, ArrowRight } from "lucide-react";
 
@@ -18,21 +18,26 @@ export default function FlippableCard({
     Icon,
 }: FlippableCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
-    const [isAnimating, setIsAnimating] = useState(false);
-
-    function handleFlip() {
-        if (!isAnimating) {
-            setIsFlipped(!isFlipped);
-            setIsAnimating(true);
-        }
-    }
+    // Type du dernier pointeur : un tap tactile émule aussi le survol, il ne doit pas compter deux fois
+    const pointerType = useRef("mouse");
 
     return (
+        // Souris : survol. Tactile : tap. Clavier : focus (Tab).
+        // Les lecteurs d'écran lisent les technologies sur la face avant (texte sr-only).
         <div
-            className="group relative h-[320px] w-full cursor-pointer"
+            className="group relative h-[320px] w-full cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             style={{ perspective: "1000px" }}
-            onMouseEnter={() => !isAnimating && setIsFlipped(true)}
-            onMouseLeave={() => !isAnimating && setIsFlipped(false)}
+            tabIndex={0}
+            role="group"
+            aria-label={title}
+            onPointerDown={(e) => {
+                pointerType.current = e.pointerType;
+            }}
+            onPointerEnter={(e) => e.pointerType === "mouse" && setIsFlipped(true)}
+            onPointerLeave={(e) => e.pointerType === "mouse" && setIsFlipped(false)}
+            onClick={() => pointerType.current !== "mouse" && setIsFlipped((flipped) => !flipped)}
+            onFocus={() => setIsFlipped(true)}
+            onBlur={() => setIsFlipped(false)}
         >
             <motion.div
                 className="relative h-full w-full transition-all duration-500"
@@ -40,7 +45,6 @@ export default function FlippableCard({
                 initial={false}
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6 }}
-                onAnimationComplete={() => setIsAnimating(false)}
             >
                 {/* Front Face */}
                 <div
@@ -60,18 +64,20 @@ export default function FlippableCard({
                             </p>
                         </div>
 
-                        <div className="flex items-center gap-2 text-sm font-medium text-secondary">
+                        <div aria-hidden="true" className="flex items-center gap-2 text-sm font-medium text-secondary">
                             Voir les technologies
                             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                         </div>
+                        <p className="sr-only">Technologies : {technologies.join(", ")}</p>
 
                         {/* Bottom Accent */}
                         <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-secondary to-accent transition-all duration-500 group-hover:w-full" />
                     </div>
                 </div>
 
-                {/* Back Face */}
+                {/* Back Face (doublon visuel de la liste sr-only de la face avant) */}
                 <div
+                    aria-hidden="true"
                     className="absolute inset-0"
                     style={{
                         backfaceVisibility: "hidden",
