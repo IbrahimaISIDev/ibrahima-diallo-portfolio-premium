@@ -41,14 +41,7 @@ export const metadata: Metadata = {
     siteName: `${siteConfig.name} - Portfolio`,
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.title,
-      },
-    ],
+    // L'image est fournie par app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",

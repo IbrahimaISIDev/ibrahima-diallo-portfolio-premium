@@ -4,7 +4,6 @@ export const siteConfig = {
   description:
     "Portfolio de Ibrahima Sory Diallo, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à Dakar, Sénégal.",
   url: "https://ibrahimadev.com",
-  ogImage: "/og-image.jpg",
   keywords: [
     "développeur full-stack",
     "react",
