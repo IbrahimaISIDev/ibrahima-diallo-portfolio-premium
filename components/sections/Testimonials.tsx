@@ -104,7 +104,19 @@ export default function Testimonials() {
                       </motion.div>
                       <div>
                         <p className="font-display font-semibold text-foreground">
-                          {testimonial.name}
+                          {testimonial.linkedin ? (
+                            <a
+                              href={testimonial.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline-offset-4 transition-colors hover:text-secondary hover:underline"
+                            >
+                              {testimonial.name}
+                              <span className="sr-only"> (profil LinkedIn, nouvel onglet)</span>
+                            </a>
+                          ) : (
+                            testimonial.name
+                          )}
                         </p>
                         <p className="text-sm text-muted">
                           {testimonial.role}, {testimonial.company}

@@ -4,6 +4,8 @@ export interface Testimonial {
   company: string;
   content: string;
   avatarColor?: string;
+  // Profil LinkedIn de l'auteur : rend le témoignage vérifiable
+  linkedin?: string;
 }
 
 export const testimonials: Testimonial[] = [
