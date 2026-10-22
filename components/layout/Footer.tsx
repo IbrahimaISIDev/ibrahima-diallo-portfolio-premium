@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin } from "@/components/shared/BrandIcons";
 import { personalInfo } from "@/data/personal";
 import { navigationItems } from "@/data/navigation";
 

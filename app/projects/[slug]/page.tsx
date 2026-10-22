@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Github, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
+import { ArrowLeft, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
+import { Github } from "@/components/shared/BrandIcons";
 import { projects, projectStatusLabels } from "@/data/projects";
 import LightboxImage from "@/components/shared/LightboxImage";
 import { pageMetadata } from "@/lib/metadata";
