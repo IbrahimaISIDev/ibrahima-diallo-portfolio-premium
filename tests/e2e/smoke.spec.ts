@@ -71,3 +71,25 @@ test("le filtre du portfolio n'affiche que les projets de la catégorie", async 
   const cards = page.locator("#portfolio h3");
   await expect(cards).toHaveText(["Fily Mode Royale"]);
 });
+
+test("le header indique la section active, au défilement et sur les pages dédiées", async ({
+  page,
+}) => {
+  const nav = page.getByRole("navigation", { name: "Navigation principale" });
+
+  await page.goto("/");
+  await page.locator("section#portfolio").scrollIntoViewIfNeeded();
+  await page.evaluate(() =>
+    document.getElementById("portfolio")?.scrollIntoView({ block: "start", behavior: "instant" }),
+  );
+  await expect(nav.getByRole("link", { name: "Portfolio" })).toHaveAttribute(
+    "aria-current",
+    "location",
+  );
+
+  await page.goto("/about");
+  await expect(nav.getByRole("link", { name: "À propos" })).toHaveAttribute(
+    "aria-current",
+    "location",
+  );
+});

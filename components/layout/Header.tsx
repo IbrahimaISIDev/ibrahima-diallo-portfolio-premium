@@ -9,6 +9,7 @@ import MobileMenu from "./MobileMenu";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import Logo from "@/components/shared/Logo";
 import { fireConfetti } from "@/lib/confetti";
+import { useActiveSection } from "@/lib/useActiveSection";
 
 const MotionLink = motion.create(Link);
 
@@ -18,6 +19,8 @@ export default function Header() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   // Référence stable : le menu l'utilise comme dépendance d'effet
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
+  const activeSection = useActiveSection();
+  const isActive = (href: string) => activeSection !== null && href === `/#${activeSection}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,13 +52,19 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative group text-base font-medium text-muted transition-colors duration-200 hover:text-secondary"
+                  aria-current={isActive(item.href) ? "location" : undefined}
+                  className={cn(
+                    "relative group text-base font-medium transition-colors duration-200 hover:text-secondary",
+                    isActive(item.href) ? "text-secondary" : "text-muted",
+                  )}
                 >
                   {item.label}
-                  <motion.span
-                    className="absolute -bottom-1 left-0 h-0.5 w-0 bg-secondary"
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
+                  {/* Soulignement : section active, ou survol du lien */}
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 h-0.5 bg-secondary transition-all duration-300",
+                      isActive(item.href) ? "w-full" : "w-0 group-hover:w-full",
+                    )}
                   />
                 </Link>
               ))}
@@ -109,7 +118,12 @@ export default function Header() {
         </div>
       </header>
 
-      <MobileMenu isOpen={mobileMenuOpen} onClose={closeMobileMenu} toggleRef={menuButtonRef} />
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={closeMobileMenu}
+        toggleRef={menuButtonRef}
+        activeHref={activeSection ? `/#${activeSection}` : null}
+      />
     </>
   );
 }

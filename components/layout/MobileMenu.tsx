@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { navigationItems } from "@/data/navigation";
 import { mobileMenuVariants, mobileMenuItem } from "@/lib/animations";
+import { cn } from "@/lib/utils";
 
 const MotionLink = motion.create(Link);
 
@@ -13,9 +14,11 @@ interface MobileMenuProps {
   onClose: () => void;
   // Bouton d'ouverture : il reste dans le cycle du focus et le récupère à la fermeture
   toggleRef: RefObject<HTMLButtonElement | null>;
+  // Lien de la section active, mis en évidence
+  activeHref: string | null;
 }
 
-export default function MobileMenu({ isOpen, onClose, toggleRef }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, toggleRef, activeHref }: MobileMenuProps) {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -83,7 +86,11 @@ export default function MobileMenu({ isOpen, onClose, toggleRef }: MobileMenuPro
                 href={item.href}
                 variants={mobileMenuItem}
                 onClick={onClose}
-                className="text-3xl font-bold font-display text-foreground transition-all duration-300 hover:text-secondary"
+                aria-current={item.href === activeHref ? "location" : undefined}
+                className={cn(
+                  "text-3xl font-bold font-display transition-all duration-300 hover:text-secondary",
+                  item.href === activeHref ? "text-secondary" : "text-foreground",
+                )}
                 whileHover={{ scale: 1.1, x: 10 }}
                 whileTap={{ scale: 0.9 }}
               >
