@@ -15,11 +15,11 @@ export const personalInfo = {
     github: "https://github.com/IbrahimaISIDev",
     calendly: "https://calendly.com/ibrahimadev6", // Placeholder
   },
+  // Valeurs numériques : le suffixe « + » est ajouté à l'affichage
   stats: {
-    clients: "10+",
-    projects: "18+",
-    // awards: "30",
-    experience: "03+",
+    clients: 10,
+    projects: 18,
+    experience: 3,
   },
   services: [
     "Développement Web (React, Next.js)",

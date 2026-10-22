@@ -145,7 +145,7 @@ export default function Hero() {
               >
                 <p className="text-xs text-muted">Expérience</p>
                 <p className="font-display text-xl font-bold text-secondary">
-                  {personalInfo.stats.experience}
+                  {personalInfo.stats.experience}+
                   <span className="text-sm text-muted"> ans</span>
                 </p>
               </motion.div>
