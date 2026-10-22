@@ -73,7 +73,7 @@ export const projects: Project[] = [
     title: "Portfolio Personnel",
     slug: "portfolio",
     description:
-      "Ce portfolio — conçu et développé avec Next.js 15, Tailwind CSS v4 et TypeScript.",
+      "Ce portfolio — conçu et développé avec Next.js 16, Tailwind CSS v4 et TypeScript.",
     image: "/images/projects/portfolio.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     category: "Web",
