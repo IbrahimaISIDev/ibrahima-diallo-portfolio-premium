@@ -199,8 +199,31 @@ html:not(.js) [style*="scale(0)"] {
   transform: none !important;
 }
 
+/* Transition de l'image d'un projet entre la carte et l'étude de cas (<ViewTransition share="morph">) */
+::view-transition-group(.morph) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  /* Les pseudo-éléments des view transitions ne sont pas couverts par * */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
