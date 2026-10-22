@@ -684,3 +684,16 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 - **Visuels génériques** : remplacés par de vraies captures pour MIMAP, AEM-UNCHK et Portfolio. Gestion de Flotte et Dashboard Analytics, sans site public, gardent leurs maquettes.
 - **Environ 50 éléments animés au scroll** restent à `opacity:0` dans le HTML serveur, tous sous la ligne de flottaison (sans effet sur le LCP).
 - **Contenu en attente** : voir la liste « Encore en attente » de la phase 2.
+
+### Passe finale : 22 octobre 2026
+
+| Point | Action | Vérification |
+|---|---|---|
+| D-05 | Citation identique des 12 études de cas remplacée par un appel à l'action « Un projet similaire ? » | — |
+| D-03 / D-04 | Accueil allégé : la timeline part sur `/about` (composant unique, avec les technologies), un lien « Découvrir mon parcours complet » la remplace ; titre « Qui suis-je ? » au lieu du doublon « Travaillons ensemble » | Accueil 23 % plus court ; plan de titres de `/about` correct |
+| P-06 | Animations en boucle en pause hors écran (`useInView` + `data-paused`) ; bandeau et motif passés en CSS, donc coupés aussi par « réduire les animations » | Chrome : seule la section visible anime |
+| P-02 | Contenu révélé au scroll visible sans JavaScript (classe `js` posée par un script inline, CSS de repli) | Chrome sans JavaScript : titres, statistiques, compétences et parcours visibles |
+| Q-05 | Logo partagé (`components/shared/Logo.tsx`) entre header et footer, avec un nom accessible dans les deux | — |
+| Dépendances | PR Dependabot #1 fusionnée (React 19.3, Tailwind 4.3…) ; Vitest 5 et `@types/node` 22 ; lucide-react 1.59 avec icônes GitHub et LinkedIn conservées localement ; TypeScript 7 bloqué par typescript-eslint et `@types/node` > 22 exclus via Dependabot | CI locale complète au vert |
+
+**Restent ouverts** : uniquement les éléments qui dépendent d'Ibrahima (CV PDF, domaine, Calendly, témoignages, détails des petits projets, visuels de Gestion de Flotte et Dashboard Analytics, domaine Resend vérifié, stockage partagé pour une limite anti-spam globale, analytics), ainsi que `LazyMotion`, écarté volontairement.
