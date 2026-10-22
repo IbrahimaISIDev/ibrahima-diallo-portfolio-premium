@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # Dépendances npm : une PR groupée par semaine pour les mises à jour mineures et correctives
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  # Actions GitHub du workflow CI
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
