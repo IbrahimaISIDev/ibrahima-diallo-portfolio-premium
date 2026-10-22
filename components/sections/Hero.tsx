@@ -175,10 +175,10 @@ export default function Hero() {
         <a
           href="#about"
           className="flex flex-col items-center gap-2 text-muted transition-colors duration-300 hover:text-secondary"
-          aria-label="Scroll down"
+          aria-label="Défiler vers la suite"
         >
           <span className="text-xs font-medium uppercase tracking-widest">
-            Scroll
+            Défiler
           </span>
           <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-muted/30 p-1">
             <div className="h-2 w-1 animate-bounce rounded-full bg-secondary" />

@@ -2,7 +2,7 @@ import { WorkflowStep } from "@/types";
 
 export const workflowSteps: WorkflowStep[] = [
     {
-        title: "Discovery",
+        title: "Découverte",
         subtitle: "Analyse du besoin",
         description:
             "La première étape consiste à comprendre vos objectifs, vos utilisateurs et les défis techniques. C'est ici que nous définissons le périmètre du projet.",
@@ -28,7 +28,7 @@ export const workflowSteps: WorkflowStep[] = [
         ]
     },
     {
-        title: "Development",
+        title: "Développement",
         subtitle: "Sprint agile",
         description:
             "Le code prend vie. J'utilise des méthodes agiles pour livrer des fonctionnalités incrémentales tout en maintenant une qualité de code irréprochable.",
@@ -41,7 +41,7 @@ export const workflowSteps: WorkflowStep[] = [
         ]
     },
     {
-        title: "QA & Launch",
+        title: "Tests & Lancement",
         subtitle: "Optimisation & Mise en ligne",
         description:
             "Après des tests rigoureux, le projet est déployé. Je m'assure que tout est optimisé pour la vitesse et prêt à scale dès le premier jour.",

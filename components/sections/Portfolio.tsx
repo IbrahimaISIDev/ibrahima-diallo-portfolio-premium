@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ExternalLink, Info } from "lucide-react";
-import { projects, projectCategories } from "@/data/projects";
+import { projects, projectCategories, projectStatusLabels } from "@/data/projects";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -109,7 +109,8 @@ export default function Portfolio() {
                             ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
                             : "bg-secondary/20 text-secondary border border-secondary/30"
                         )}>
-                          {project.status === "Live" ? "● Live" : project.status}
+                          {project.status === "Live" && "● "}
+                          {projectStatusLabels[project.status]}
                         </span>
                       </div>
                     )}
@@ -149,7 +150,7 @@ export default function Portfolio() {
                         {project.category}
                       </span>
                       <span className="text-[10px] font-bold text-muted-dark italic">
-                        {project.tags.length}+ Stack Items
+                        {project.tags.length} technologies
                       </span>
                     </div>
 
@@ -175,7 +176,7 @@ export default function Portfolio() {
                       ))}
                       {project.tags.length > 3 && (
                         <span className="text-[9px] font-black text-muted-dark italic">
-                          +{project.tags.length - 3} more
+                          +{project.tags.length - 3} autres
                         </span>
                       )}
                     </div>

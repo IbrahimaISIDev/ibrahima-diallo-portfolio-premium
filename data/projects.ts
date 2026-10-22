@@ -1,4 +1,11 @@
-import type { Project } from "@/types";
+import type { Project, ProjectStatus } from "@/types";
+
+// Libellés affichés pour chaque statut (la valeur "Live" reste interne)
+export const projectStatusLabels: Record<ProjectStatus, string> = {
+  Live: "En ligne",
+  "En Développement": "En développement",
+  Concept: "Concept",
+};
 
 export const projects: Project[] = [
   {

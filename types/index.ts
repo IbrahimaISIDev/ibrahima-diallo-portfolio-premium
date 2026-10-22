@@ -17,8 +17,10 @@ export interface Project {
   architecture?: string[];
   challenges?: string[];
   codeSnippet?: string;
-  status?: "Live" | "En Développement" | "Concept";
+  status?: ProjectStatus;
 }
+
+export type ProjectStatus = "Live" | "En Développement" | "Concept";
 
 // Icônes disponibles pour les services (voir components/sections/Services.tsx)
 export type ServiceIcon =

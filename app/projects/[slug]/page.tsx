@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Github, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
-import { projects } from "@/data/projects";
+import { projects, projectStatusLabels } from "@/data/projects";
 import LightboxImage from "@/components/shared/LightboxImage";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -77,7 +77,7 @@ export default async function ProjectPage({ params }: Props) {
                 className="flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-black text-white shadow-xl shadow-primary/30 hover:bg-primary-light transition-all text-sm"
               >
                 <Rocket size={18} />
-                Lancer le Live
+                Voir le site
               </a>
             )}
             {project.githubUrl && (
@@ -88,7 +88,7 @@ export default async function ProjectPage({ params }: Props) {
                 className="flex items-center gap-3 rounded-full border border-border bg-surface px-8 py-4 font-black text-foreground hover:border-secondary transition-all text-sm"
               >
                 <Github size={18} />
-                Source Code
+                Code source
               </a>
             )}
           </div>
@@ -118,7 +118,7 @@ export default async function ProjectPage({ params }: Props) {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary/10 text-secondary border border-secondary/20">
                     <Cpu size={24} />
                   </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Architecture System</h2>
+                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Architecture</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {project.architecture.map((item, i) => (
@@ -160,7 +160,7 @@ export default async function ProjectPage({ params }: Props) {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground/5 text-foreground border border-border/50">
                     <Code2 size={24} />
                   </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Technical Spotlight</h2>
+                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Extrait de code</h2>
                 </div>
                 <div className="rounded-3xl border border-border bg-[#0d1117] p-1 shadow-2xl relative overflow-hidden group">
                   <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
@@ -190,7 +190,7 @@ export default async function ProjectPage({ params }: Props) {
                 <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Statut Projet</h2>
                 <div className="flex items-center gap-3">
                   <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="font-black text-foreground">{project.status || "Live"}</span>
+                  <span className="font-black text-foreground">{projectStatusLabels[project.status ?? "Live"]}</span>
                 </div>
               </div>
 
@@ -200,7 +200,7 @@ export default async function ProjectPage({ params }: Props) {
               </div>
 
               <div className="space-y-4 pt-4 border-t border-border/40">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Core Stack</h2>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Stack technique</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
