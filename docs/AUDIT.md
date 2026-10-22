@@ -681,6 +681,6 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 | 24 | Interface entièrement en français (statuts « En ligne », titres des études de cas, étapes du processus, boutons) | ✅ | — |
 
 **Points ouverts après la phase 3 :**
-- **Visuels génériques** : les images de MIMAP, Gestion de Flotte, AEM-UNCHK, Portfolio et Dashboard Analytics sont des maquettes sans rapport avec les vrais projets (« StudentHub », code Rust, « Global Fintech »). Pour MIMAP, AEM-UNCHK et Portfolio, des captures des sites en ligne seraient plus crédibles.
+- **Visuels génériques** : remplacés par de vraies captures pour MIMAP, AEM-UNCHK et Portfolio. Gestion de Flotte et Dashboard Analytics, sans site public, gardent leurs maquettes.
 - **Environ 50 éléments animés au scroll** restent à `opacity:0` dans le HTML serveur, tous sous la ligne de flottaison (sans effet sur le LCP).
 - **Contenu en attente** : voir la liste « Encore en attente » de la phase 2.
