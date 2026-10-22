@@ -165,28 +165,32 @@ export default function AboutPage() {
                     {exp.description}
                   </p>
 
-                  <ul className="mb-6 space-y-2">
-                    {exp.highlights.map((highlight, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-sm text-muted"
-                      >
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
+                  {exp.highlights.length > 0 && (
+                    <ul className="mb-6 space-y-2">
+                      {exp.highlights.map((highlight, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-sm text-muted"
+                        >
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  {exp.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

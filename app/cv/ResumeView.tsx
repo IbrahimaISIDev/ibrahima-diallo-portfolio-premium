@@ -237,12 +237,9 @@ export default function ResumeView() {
                                     <Award size={20} className="shrink-0" /> Accomplissements
                                 </h3>
                                 <div className="space-y-5 sm:space-y-6">
-                                    {[
-                                        { title: "Certificat d'Excellence", desc: "3ème Meilleur Résultat de l'Établissement - Groupe ISI (Excellence Académique)" },
-                                        { title: "Diplôme Développeur Web Mobile", desc: "Certification Sonatel Academy (Ecole du Code) - Promotion 2024" }
-                                    ].map((award, i) => (
+                                    {personalInfo.achievements.map((award) => (
                                         <motion.div
-                                            key={i}
+                                            key={award.title}
                                             className="group flex gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:bg-surface/50 transition-all cursor-default print:border-black/10 print:bg-transparent"
                                             whileHover={{ x: 10 }}
                                         >

@@ -13,7 +13,7 @@ export default function ExperienceTimeline() {
                     Mon Parcours Professionnel et Académique
                 </h3>
                 <p className="max-w-xl text-muted">
-                    De ISI en passant par la Sonatel Academy &agrave; Saraya Tech Senegal, voici les &eacute;tapes cl&eacute;s de mon &eacute;volution constante.
+                    De la Sonatel Academy &agrave; Nixacom, en passant par Saraya Tech, AgriPont et Tekkil : les &eacute;tapes cl&eacute;s de mon parcours.
                 </p>
             </div>
 
@@ -61,14 +61,16 @@ export default function ExperienceTimeline() {
                                         {exp.description}
                                     </p>
 
-                                    <ul className={`mt-4 flex flex-col gap-2 ${index % 2 === 0 ? "items-start" : "sm:items-end"}`}>
-                                        {exp.highlights.map((highlight) => (
-                                            <li key={highlight} className={`flex items-start gap-2 text-xs text-muted ${index % 2 === 0 ? "" : "sm:flex-row-reverse"}`}>
-                                                <CheckCircle2 size={12} className="mt-0.5 shrink-0 text-secondary" />
-                                                <span className="max-w-[200px] sm:max-w-none">{highlight}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {exp.highlights.length > 0 && (
+                                        <ul className={`mt-4 flex flex-col gap-2 ${index % 2 === 0 ? "items-start" : "sm:items-end"}`}>
+                                            {exp.highlights.map((highlight) => (
+                                                <li key={highlight} className={`flex items-start gap-2 text-xs text-muted ${index % 2 === 0 ? "" : "sm:flex-row-reverse"}`}>
+                                                    <CheckCircle2 size={12} className="mt-0.5 shrink-0 text-secondary" />
+                                                    <span className="max-w-[200px] sm:max-w-none">{highlight}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

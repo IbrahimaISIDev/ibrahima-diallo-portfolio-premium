@@ -21,6 +21,25 @@ export const personalInfo = {
     projects: 18,
     experience: 3,
   },
+  // Distinctions affichées dans la section « Accomplissements » du CV
+  achievements: [
+    {
+      title: "Prix d'Excellence — Groupe ISI",
+      desc: "3ᵉ de tout le campus en Licence 2, avec 17,37/20 de moyenne",
+    },
+    {
+      title: "Licence en Génie Logiciel — Mention Bien",
+      desc: "Institut Supérieur d'Informatique (ISI)",
+    },
+    {
+      title: "Certification Développeur Web/Mobile — 20/20",
+      desc: "Mention Excellent — École du Code, Orange Digital Center (Sonatel Academy)",
+    },
+    {
+      title: "Co-fondateur d'AgriPont",
+      desc: "Plateforme AgriTech conçue, développée et déployée en production",
+    },
+  ],
   services: [
     "Développement Web (React, Next.js)",
     "Développement Mobile (Flutter)",
