@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Mail, ArrowUp } from "lucide-react";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
+import Logo from "@/components/shared/Logo";
 import { personalInfo } from "@/data/personal";
 import { navigationItems } from "@/data/navigation";
 
@@ -17,14 +18,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2 space-y-6">
-            <Link
-              href="/#accueil"
-              className="flex items-center gap-1 text-2xl font-bold font-display"
-            >
-              <span className="text-foreground">Ibra</span>
-              <span className="text-secondary">h</span>
-              <span className="text-foreground">ima</span>
-            </Link>
+            <Logo />
             <p className="max-w-xs text-muted leading-relaxed">
               Développeur Full-Stack passionné par la création de solutions logicielles innovantes
               et performantes.

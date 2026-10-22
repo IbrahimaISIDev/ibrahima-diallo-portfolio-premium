@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { navigationItems } from "@/data/navigation";
 import MobileMenu from "./MobileMenu";
 import ThemeToggle from "@/components/shared/ThemeToggle";
+import Logo from "@/components/shared/Logo";
 import { fireConfetti } from "@/lib/confetti";
 
 const MotionLink = motion.create(Link);
@@ -40,16 +41,7 @@ export default function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link
-              href="/#accueil"
-              onClick={fireConfetti}
-              aria-label="Ibrahima Sory Diallo, retour à l'accueil"
-              className="flex items-center gap-1 text-2xl font-bold font-display"
-            >
-              <span className="text-foreground">Ibra</span>
-              <span className="text-secondary">h</span>
-              <span className="text-foreground">ima</span>
-            </Link>
+            <Logo onClick={fireConfetti} />
 
             {/* Desktop Navigation */}
             <nav aria-label="Navigation principale" className="hidden items-center gap-8 lg:flex">
