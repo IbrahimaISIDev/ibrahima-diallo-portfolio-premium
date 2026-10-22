@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { personalInfo } from "@/data/personal";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { fadeInLeft, fadeInRight } from "@/lib/animations";
@@ -11,6 +11,12 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  // Heure d'affichage du formulaire, vérifiée côté serveur (anti-spam)
+  const startedAt = useRef(0);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +28,8 @@ export default function Contact() {
       email: formData.get("email"),
       subject: formData.get("subject"),
       message: formData.get("message"),
+      website: formData.get("website"),
+      startedAt: startedAt.current,
     };
 
     try {
@@ -128,8 +136,14 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
-              className="space-y-6 rounded-2xl border border-border bg-background p-8 shadow-xl"
+              className="relative space-y-6 rounded-2xl border border-border bg-background p-8 shadow-xl"
             >
+              {/* Champ piège pour les robots : invisible et ignoré par les humains */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <label htmlFor="website">Ne pas remplir ce champ</label>
+                <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+              </div>
+
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-muted">
