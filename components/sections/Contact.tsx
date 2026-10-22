@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { personalInfo } from "@/data/personal";
 import SectionTitle from "@/components/shared/SectionTitle";
@@ -153,6 +153,12 @@ export default function Contact() {
                   href: `tel:${personalInfo.phone.replace(/\s/g, "")}`,
                 },
                 {
+                  icon: MessageCircle,
+                  label: "WhatsApp",
+                  value: "Écrire sur WhatsApp",
+                  href: personalInfo.social.whatsapp,
+                },
+                {
                   icon: MapPin,
                   label: "Localisation",
                   value: personalInfo.location,
@@ -167,6 +173,10 @@ export default function Contact() {
                     {item.href ? (
                       <a
                         href={item.href}
+                        // Les liens externes (WhatsApp) s'ouvrent dans un nouvel onglet
+                        {...(item.href.startsWith("http")
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
                         className="text-lg font-semibold text-foreground transition-colors hover:text-secondary"
                       >
                         {item.value}

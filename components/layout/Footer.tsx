@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp, MessageCircle } from "lucide-react";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
 import Logo from "@/components/shared/Logo";
 import { personalInfo } from "@/data/personal";
@@ -27,6 +27,7 @@ export default function Footer() {
               {[
                 { icon: Github, href: personalInfo.social.github, label: "GitHub" },
                 { icon: Linkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
+                { icon: MessageCircle, href: personalInfo.social.whatsapp, label: "WhatsApp" },
                 { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
               ].map((social) => (
                 <a
