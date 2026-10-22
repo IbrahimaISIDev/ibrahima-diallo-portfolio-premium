@@ -19,11 +19,14 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
   return (
     <>
       <ViewTransition name={projectImageTransitionName(src)} share="morph" default="none">
-        <div
-          className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-border bg-background shadow-2xl transition-all hover:border-secondary/30"
+        {/* Vrai bouton : agrandissement accessible au clavier et annoncé aux lecteurs d'écran */}
+        <button
+          type="button"
+          aria-label={`Agrandir l'image : ${title}`}
+          className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border bg-background shadow-2xl transition-all hover:border-secondary/30 outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
           onClick={() => setOpen(true)}
         >
-          <div className="relative aspect-video w-full overflow-hidden">
+          <span className="relative block aspect-video w-full overflow-hidden">
             <Image
               src={src}
               alt={alt}
@@ -33,14 +36,14 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
               sizes="(max-width: 1024px) 100vw, 960px"
               priority
             />
-            <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity group-hover:opacity-100" />
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-              <div className="rounded-full bg-secondary/80 p-3 text-background shadow-lg backdrop-blur-sm">
+            <span className="absolute inset-0 bg-black/20 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" />
+            <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+              <span className="rounded-full bg-secondary/80 p-3 text-background shadow-lg backdrop-blur-sm">
                 <span className="text-sm font-bold uppercase tracking-wider">Agrandir</span>
-              </div>
-            </div>
-          </div>
-        </div>
+              </span>
+            </span>
+          </span>
+        </button>
       </ViewTransition>
 
       <Lightbox
