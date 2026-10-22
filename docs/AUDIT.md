@@ -697,3 +697,17 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 | Dépendances | PR Dependabot #1 fusionnée (React 19.3, Tailwind 4.3…) ; Vitest 5 et `@types/node` 22 ; lucide-react 1.59 avec icônes GitHub et LinkedIn conservées localement ; TypeScript 7 bloqué par typescript-eslint et `@types/node` > 22 exclus via Dependabot | CI locale complète au vert |
 
 **Restent ouverts** : uniquement les éléments qui dépendent d'Ibrahima (CV PDF, domaine, Calendly, témoignages, détails des petits projets, visuels de Gestion de Flotte et Dashboard Analytics, domaine Resend vérifié, stockage partagé pour une limite anti-spam globale, analytics), ainsi que `LazyMotion`, écarté volontairement.
+
+### Améliorations d'expérience : 23 octobre 2026
+
+**Mesure de départ (Lighthouse, site en ligne)** : accueil mobile 95 / 100 / 100 / 100 (performance, accessibilité, bonnes pratiques, SEO), desktop 100 partout ; étude de cas mobile 91 / 96 ; CV mobile 94 / 100.
+
+| Amélioration | Vérification |
+|---|---|
+| Correctifs Lighthouse : contraste des numéros décoratifs, `sizes` de la couverture des études de cas, identité du CV visible dès le HTML | Accessibilité 96 → 100 ; LCP du CV 3,6 → 3,3 s (mesures locales comparées) |
+| Transition animée de l'image d'un projet, de la carte vers l'étude de cas (`<ViewTransition>` de React 19.3) | Animation `project-image-*` constatée dans Chrome |
+| Agrandissement de la couverture accessible au clavier (vrai bouton) | — |
+| Section active indiquée dans le header (au défilement et sur les pages dédiées) ; soulignement au survol réparé | Test de bout en bout ajouté |
+| Formulaire : message sous chaque champ, vrai message du serveur, confirmation explicite, compteur de caractères | 13 tests unitaires ; scénarios vérifiés dans Chrome |
+| Contact WhatsApp (bloc contact, footer, CV) | — |
+| Photo de profil visible sur mobile, en version compacte | Performance mobile stable ou meilleure (90-93 contre 88-91) |
