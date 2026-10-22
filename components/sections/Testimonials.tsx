@@ -94,8 +94,10 @@ export default function Testimonials() {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
                         <span className="font-display text-lg font-bold text-white">
+                          {/* Deux initiales au plus (prénom et nom), pour tenir dans l'avatar */}
                           {testimonial.name
                             .split(" ")
+                            .filter((_, i, parts) => i === 0 || i === parts.length - 1)
                             .map((n) => n[0])
                             .join("")}
                         </span>
