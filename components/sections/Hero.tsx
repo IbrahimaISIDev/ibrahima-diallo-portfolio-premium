@@ -32,7 +32,7 @@ export default function Hero() {
         style={{ opacity, scale }}
         className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
       >
-        <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
+        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-16">
           {/* Text Content */}
           <motion.div
             className="flex-1 space-y-8 text-center lg:text-left"
@@ -103,20 +103,20 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Photo */}
+          {/* Photo : compacte au-dessus du nom sur mobile, grande à droite sur écran large */}
           <motion.div
-            className="relative hidden lg:flex lg:justify-center"
+            className="relative order-first flex justify-center lg:order-none"
             initial={{ scale: 0.92 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative">
               {/* Decorative borders */}
-              <div className="absolute -inset-4 rounded-full border-2 border-dashed border-secondary/20 animate-[spin_40s_linear_infinite]" />
-              <div className="absolute -inset-8 rounded-full border border-primary/10 animate-[spin_60s_linear_infinite_reverse]" />
+              <div className="absolute -inset-4 hidden rounded-full border-2 border-dashed border-secondary/20 animate-[spin_40s_linear_infinite] lg:block" />
+              <div className="absolute -inset-8 hidden rounded-full border border-primary/10 animate-[spin_60s_linear_infinite_reverse] lg:block" />
 
               {/* Photo container */}
-              <div className="relative h-[400px] w-[400px] overflow-hidden rounded-full bg-gradient-to-br from-surface to-surface-light xl:h-[450px] xl:w-[450px] border-4 border-surface shadow-2xl">
+              <div className="relative h-32 w-32 overflow-hidden rounded-full bg-gradient-to-br from-surface to-surface-light border-4 border-surface shadow-2xl sm:h-44 sm:w-44 lg:h-[400px] lg:w-[400px] xl:h-[450px] xl:w-[450px]">
                 <div className="flex h-full w-full items-center justify-center">
                   <motion.div
                     className="relative h-full w-full"
@@ -130,7 +130,7 @@ export default function Hero() {
                       fill
                       priority
                       className="object-cover"
-                      sizes="450px"
+                      sizes="(max-width: 639px) 128px, (max-width: 1023px) 176px, 450px"
                     />
                   </motion.div>
                 </div>
@@ -138,7 +138,7 @@ export default function Hero() {
 
               {/* Floating badges */}
               <motion.div
-                className="absolute -left-4 top-1/4 rounded-xl bg-surface/90 px-4 py-3 shadow-xl backdrop-blur-sm border border-border"
+                className="absolute -left-4 top-1/4 hidden rounded-xl lg:block bg-surface/90 px-4 py-3 shadow-xl backdrop-blur-sm border border-border"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
@@ -152,7 +152,7 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                className="absolute -right-4 bottom-1/4 rounded-xl bg-surface/90 px-4 py-3 shadow-xl backdrop-blur-sm border border-border"
+                className="absolute -right-4 bottom-1/4 hidden rounded-xl lg:block bg-surface/90 px-4 py-3 shadow-xl backdrop-blur-sm border border-border"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
