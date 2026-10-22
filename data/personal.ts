@@ -2,7 +2,7 @@ export const personalInfo = {
   firstName: "Ibrahima",
   lastName: "Sory Diallo",
   fullName: "Ibrahima Sory Diallo",
-  profileImage: "/images/Ibrahima_Sory_Diallo_ISI_L3_GL_G2.jpg",
+  profileImage: "/images/image.png",
   title: "Développeur Full-Stack",
   tagline:
     "Je conçois et développe des solutions logicielles robustes qui répondent aux besoins métiers les plus exigeants.",
