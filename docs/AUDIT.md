@@ -664,3 +664,23 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 - **1 avertissement ESLint** : `yOffset` dans `ConstellationBackground`, composant mort prévu pour la phase 3.
 - **La limitation de débit est en mémoire**, donc propre à chaque instance serverless. Une limite globale demanderait un stockage partagé (Upstash, Vercel KV).
 
+
+### Phase 3 : terminée le 22 octobre 2026
+
+| # | Action | Statut | Vérification |
+|---|---|:-:|---|
+| 17 | CI GitHub Actions : lint, formatage, types, tests unitaires, build, tests de bout en bout, audit des dépendances de production ; Dependabot hebdomadaire (npm) et mensuel (actions) | ✅ | Toutes les étapes rejouées localement depuis un `npm ci` propre |
+| 18 | 12 tests Vitest sur la route de contact (validation, erreur Resend, anti-spam, limitation de débit) ; 12 tests Playwright sur le build de production | ✅ | 24 tests au vert |
+| 19 | `MagneticButton` en valeurs de mouvement (plus de re-rendu à chaque mouvement de souris) ; confettis chargés à la demande (phase 2) | ✅ | — |
+| 19 bis | `LazyMotion` (P-01) | ⏸️ | **Écarté** : sur 258 Ko gzip, environ 150 Ko viennent de React DOM et du runtime Next. Le portfolio utilise des animations de layout qui imposent le paquet complet `domMax`, donc le gain serait de quelques Ko pour une refonte de tous les composants animés |
+| 20 | Images : 5 anciens visuels convertis en WebP 16:10 (2,9 Mo → 248 Ko), AVIF activé dans `next/image` | ✅ | — |
+| 21 | Code mort supprimé (5 composants, 5 variantes d'animation, types et champs inutilisés, SVG par défaut, image Teranga Farm) ; identité centralisée dans `data/personal.ts` ; icônes typées ; Prettier appliqué dans un commit isolé, ignoré par `git blame` | ✅ | ESLint : 0 erreur, 0 avertissement |
+| 22 | En-têtes de sécurité et CSP ; monogramme « Ih » (favicon, icônes 192/512, icône iOS) et manifest | ✅ | Aucune violation CSP dans Chrome sur 8 routes (la CSP bloquait initialement le worker des confettis, corrigé) |
+| 22 bis | Analytics (O-06) | ⏸️ | **Non ajouté** : outil tiers et traitement de données des visiteurs, à décider par Ibrahima (Vercel Analytics s'active en une ligne) |
+| 23 | README réécrit (aperçu réel, stack, variables d'environnement, scripts, « Modifier le contenu », CI, déploiement) ; brief déplacé dans `docs/brief-initial.md` ; paquet renommé, `engines` déclaré | ✅ | — |
+| 24 | Interface entièrement en français (statuts « En ligne », titres des études de cas, étapes du processus, boutons) | ✅ | — |
+
+**Points ouverts après la phase 3 :**
+- **Visuels génériques** : les images de MIMAP, Gestion de Flotte, AEM-UNCHK, Portfolio et Dashboard Analytics sont des maquettes sans rapport avec les vrais projets (« StudentHub », code Rust, « Global Fintech »). Pour MIMAP, AEM-UNCHK et Portfolio, des captures des sites en ligne seraient plus crédibles.
+- **Environ 50 éléments animés au scroll** restent à `opacity:0` dans le HTML serveur, tous sous la ligne de flottaison (sans effet sur le LCP).
+- **Contenu en attente** : voir la liste « Encore en attente » de la phase 2.
