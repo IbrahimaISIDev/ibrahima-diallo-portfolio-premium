@@ -186,6 +186,19 @@ pre {
   animation-play-state: paused !important;
 }
 
+/* Sans JavaScript, les animations au scroll ne se déclenchent jamais : Framer Motion
+   laisse en style inline l'état initial (opacity:0, titres décalés de 100 %…).
+   La classe .js est posée sur <html> par un script inline du layout ; en son absence,
+   ces éléments sont affichés directement. Sélecteurs stricts pour ne pas toucher
+   aux opacités partielles (opacity:0.5…). */
+html:not(.js) [style*="opacity:0;"],
+html:not(.js) [style$="opacity:0"],
+html:not(.js) [style*="translateY(100%)"],
+html:not(.js) [style*="scale(0)"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {

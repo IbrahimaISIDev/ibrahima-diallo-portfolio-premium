@@ -95,6 +95,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="antialiased">
+        {/* Signale que JavaScript s'exécute : sans cette classe, globals.css affiche
+            directement les éléments que les animations au scroll masquent au départ */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <script
           type="application/ld+json"
           // Contenu statique ; "<" échappé pour ne jamais pouvoir fermer la balise script
