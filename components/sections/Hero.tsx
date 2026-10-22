@@ -105,8 +105,8 @@ export default function Hero() {
           {/* Right side - Photo */}
           <motion.div
             className="relative hidden lg:flex lg:justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ scale: 0.92 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative">
@@ -119,8 +119,8 @@ export default function Hero() {
                 <div className="flex h-full w-full items-center justify-center">
                   <motion.div
                     className="relative h-full w-full"
-                    initial={{ scale: 1.2, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   >
                     <Image

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import PageTransition from "@/components/shared/PageTransition";
 import CustomCursor from "@/components/shared/CustomCursor";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { siteConfig } from "@/lib/constants";
@@ -74,7 +73,7 @@ export default function RootLayout({
         >
           <CustomCursor />
           <Header />
-          <PageTransition>{children}</PageTransition>
+          {children}
           <Footer />
         </ThemeProvider>
       </body>

@@ -2,7 +2,6 @@ import type { Variants } from "framer-motion";
 
 // Helper for type-safe ease strings
 const easeOut = "easeOut" as const;
-const easeIn = "easeIn" as const;
 const easeInOut = "easeInOut" as const;
 
 // Fade in from bottom
@@ -70,10 +69,10 @@ export const staggerContainerFast: Variants = {
 };
 
 // Hero-specific stagger (slower, more dramatic)
+// Pas d'opacity:0 initiale : le texte du Hero (élément LCP) reste visible dans le HTML serveur
 export const heroStagger: Variants = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
       staggerChildren: 0.15,
       delayChildren: 0.2,
@@ -83,9 +82,8 @@ export const heroStagger: Variants = {
 
 // Hero child element
 export const heroChild: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { y: 20 },
   visible: {
-    opacity: 1,
     y: 0,
     transition: { duration: 0.5, ease: easeOut },
   },
@@ -118,13 +116,6 @@ export const counterUp: Variants = {
     scale: 1,
     transition: { duration: 0.5, ease: easeOut, type: "spring", stiffness: 100 },
   },
-};
-
-// Page transitions
-export const pageTransition: Variants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: easeIn } },
 };
 
 // Mobile menu variants
