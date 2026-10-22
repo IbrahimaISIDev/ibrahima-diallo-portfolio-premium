@@ -19,7 +19,6 @@ export default function Home() {
       <Portfolio />
       <Testimonials />
       <Freelancing />
-      {/* Blog désactivé : réimporter BlogPreview pour le réactiver */}
       <Contact />
     </main>
   );

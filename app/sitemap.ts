@@ -2,7 +2,6 @@ import { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/constants";
 import { projects } from "@/data/projects";
 
-// Les articles de blog n'y figurent pas tant que la section Blog est désactivée.
 // lastModified est volontairement omis : une date de build fausse est pire qu'aucune date.
 export default function sitemap(): MetadataRoute.Sitemap {
     const routes = ["", "/about", "/projects", "/cv", "/contact"].map(
