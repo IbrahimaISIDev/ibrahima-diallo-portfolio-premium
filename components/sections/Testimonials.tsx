@@ -62,7 +62,8 @@ export default function Testimonials() {
             </motion.div>
 
             {/* Content Area */}
-            <div className="relative min-h-[250px] sm:min-h-[200px]">
+            {/* aria-live : le changement de témoignage est annoncé par les lecteurs d'écran */}
+            <div className="relative min-h-[250px] sm:min-h-[200px]" aria-live="polite">
               <AnimatePresence initial={false} custom={direction} mode="wait">
                 <motion.div
                   key={current}
@@ -137,7 +138,7 @@ export default function Testimonials() {
           </div>
 
           {/* Dots */}
-          <div className="mt-8 flex justify-center gap-2">
+          <div className="mt-8 flex justify-center gap-1">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -145,17 +146,18 @@ export default function Testimonials() {
                   setDirection(index > current ? 1 : -1);
                   setCurrent(index);
                 }}
-                className="relative h-2 cursor-pointer focus:outline-none"
-                aria-label={`Témoignage ${index + 1}`}
+                // Zone cliquable de 24 px minimum (WCAG 2.5.8) autour d'une pastille de 8 px
+                className="flex h-6 min-w-6 cursor-pointer items-center justify-center rounded-full px-1 outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                aria-label={`Témoignage ${index + 1} sur ${testimonials.length}`}
+                aria-current={current === index}
               >
-                <div className="h-full w-2 rounded-full bg-border" />
-                {current === index && (
-                  <motion.div
-                    layoutId="testimonialDot"
-                    className="absolute inset-0 w-8 bg-secondary rounded-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
+                {/* La pastille active s'allonge : le bouton s'élargit avec elle, sans déborder */}
+                <span
+                  className={cn(
+                    "block h-2 rounded-full transition-all duration-300",
+                    current === index ? "w-8 bg-secondary" : "w-2 bg-border"
+                  )}
+                />
               </button>
             ))}
           </div>
