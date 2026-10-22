@@ -13,6 +13,7 @@ export default function ConfettiTrigger({ children }: ConfettiTriggerProps) {
         const defaults = {
             origin: { y: 0.7 },
             zIndex: 100,
+            disableForReducedMotion: true,
         };
 
         function fire(particleRatio: number, opts: confetti.Options) {

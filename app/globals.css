@@ -68,10 +68,15 @@ html {
   scroll-behavior: smooth;
 }
 
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
+/* Curseur natif masqué uniquement quand CustomCursor est monté (classe posée par le composant) */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Les champs de saisie gardent le curseur texte natif */
+html.has-custom-cursor :is(input, textarea, [contenteditable="true"]) {
+  cursor: text !important;
 }
 
 body {

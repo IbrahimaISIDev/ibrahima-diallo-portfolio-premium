@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CustomCursor from "@/components/shared/CustomCursor";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import MotionProvider from "@/components/shared/MotionProvider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
 
@@ -74,10 +75,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CustomCursor />
-          <Header />
-          {children}
-          <Footer />
+          <MotionProvider>
+            <CustomCursor />
+            <Header />
+            {children}
+            <Footer />
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>
