@@ -7,8 +7,21 @@ import { personalInfo } from "@/data/personal";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { fadeInLeft, fadeInRight } from "@/lib/animations";
 
+// Limites identiques à celles de la route /api/contact
+const limits = { name: 100, subject: 150, message: 5000 } as const;
+
+type Field = "name" | "email" | "subject" | "message";
+type Status = "idle" | "sending" | "sent" | "error";
+
+const inputClass =
+  "w-full rounded-xl border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none";
+
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<Status>("idle");
+  // Message global (succès ou erreur), annoncé par la zone aria-live
+  const [feedback, setFeedback] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<Field, string>>>({});
+  const [messageLength, setMessageLength] = useState(0);
   // Heure d'affichage du formulaire, vérifiée côté serveur (anti-spam)
   const startedAt = useRef(0);
 
@@ -16,11 +29,31 @@ export default function Contact() {
     startedAt.current = Date.now();
   }, []);
 
+  // Dès que l'utilisateur modifie le formulaire, le message précédent n'a plus lieu d'être,
+  // et l'erreur du champ en cours de correction disparaît
+  const handleInput = (e: FormEvent<HTMLFormElement>) => {
+    const field = (e.target as HTMLInputElement).name as Field;
+    if (fieldErrors[field]) {
+      setFieldErrors((errors) => {
+        const rest = { ...errors };
+        delete rest[field];
+        return rest;
+      });
+    }
+    if (status === "sent" || status === "error") {
+      setStatus("idle");
+      setFeedback("");
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("sending");
+    setFeedback("");
+    setFieldErrors({});
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -41,18 +74,41 @@ export default function Contact() {
 
       if (response.ok) {
         setStatus("sent");
-        (e.target as HTMLFormElement).reset();
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        setStatus("error");
-        setTimeout(() => setStatus("idle"), 3000);
+        setFeedback(
+          "Merci, votre message est bien parti. Je vous réponds dès que possible par email.",
+        );
+        form.reset();
+        setMessageLength(0);
+        return;
       }
+
+      // Message du serveur (champs à corriger, trop d'envois, service indisponible…)
+      const body = await response.json().catch(() => ({}));
+      setFieldErrors(body.fields ?? {});
+      setFeedback(body.error ?? "Le message n'a pas pu être envoyé. Réessayez dans un instant.");
+      setStatus("error");
     } catch (error) {
       console.error(error);
+      setFeedback(
+        `Connexion impossible. Vérifiez votre réseau ou écrivez-moi directement à ${personalInfo.email}.`,
+      );
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
     }
   };
+
+  // Attributs d'accessibilité et bordure d'un champ selon son erreur éventuelle
+  const fieldProps = (field: Field) => ({
+    "aria-invalid": fieldErrors[field] ? true : undefined,
+    "aria-describedby": fieldErrors[field] ? `${field}-error` : undefined,
+    className: `${inputClass} ${fieldErrors[field] ? "border-accent" : "border-border"}`,
+  });
+
+  const fieldError = (field: Field) =>
+    fieldErrors[field] ? (
+      <p id={`${field}-error`} className="text-sm text-red-700 dark:text-red-400">
+        {fieldErrors[field]}
+      </p>
+    ) : null;
 
   return (
     <section id="contact" className="py-24 bg-surface/30">
@@ -133,6 +189,7 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
+              onInput={handleInput}
               className="relative space-y-6 rounded-2xl border border-border bg-background p-8 shadow-xl"
             >
               {/* Champ piège pour les robots : invisible et ignoré par les humains */}
@@ -151,9 +208,12 @@ export default function Contact() {
                     id="name"
                     name="name"
                     required
+                    maxLength={limits.name}
+                    autoComplete="name"
                     placeholder="Votre nom"
-                    className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
+                    {...fieldProps("name")}
                   />
+                  {fieldError("name")}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-muted">
@@ -164,9 +224,11 @@ export default function Contact() {
                     id="email"
                     name="email"
                     required
+                    autoComplete="email"
                     placeholder="votre@email.com"
-                    className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
+                    {...fieldProps("email")}
                   />
+                  {fieldError("email")}
                 </div>
               </div>
 
@@ -179,28 +241,65 @@ export default function Contact() {
                   id="subject"
                   name="subject"
                   required
+                  maxLength={limits.subject}
                   placeholder="Sujet de votre message"
-                  className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
+                  {...fieldProps("subject")}
                 />
+                {fieldError("subject")}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-muted">
-                  Message
-                </label>
+                <div className="flex items-baseline justify-between gap-4">
+                  <label htmlFor="message" className="text-sm font-medium text-muted">
+                    Message
+                  </label>
+                  <span id="message-count" className="text-xs text-muted">
+                    {messageLength.toLocaleString("fr-FR")} /{" "}
+                    {limits.message.toLocaleString("fr-FR")}
+                  </span>
+                </div>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  rows={4}
+                  rows={5}
+                  maxLength={limits.message}
                   placeholder="Décrivez votre projet..."
-                  className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition-colors focus:border-secondary focus:outline-none"
+                  onChange={(e) => setMessageLength(e.target.value.length)}
+                  {...fieldProps("message")}
+                  aria-describedby={
+                    fieldErrors.message ? "message-error message-count" : "message-count"
+                  }
                 />
+                {fieldError("message")}
+              </div>
+
+              {/* Retour après envoi, annoncé par les lecteurs d'écran */}
+              <div role="status" aria-live="polite">
+                {feedback && (
+                  <div
+                    className={`flex items-start gap-3 rounded-xl border p-4 text-sm ${
+                      status === "sent"
+                        ? "border-primary-text/40 bg-primary/10 text-foreground"
+                        : "border-accent/40 bg-accent/10 text-foreground"
+                    }`}
+                  >
+                    {status === "sent" ? (
+                      <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-primary-text" />
+                    ) : (
+                      <AlertCircle
+                        size={20}
+                        className="mt-0.5 shrink-0 text-red-700 dark:text-red-400"
+                      />
+                    )}
+                    <p>{feedback}</p>
+                  </div>
+                )}
               </div>
 
               <button
                 type="submit"
-                disabled={status !== "idle"}
+                disabled={status === "sending" || status === "sent"}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 font-bold text-white transition-all hover:bg-primary-light disabled:opacity-70"
               >
                 {status === "sending" ? (
@@ -216,12 +315,12 @@ export default function Contact() {
                 ) : status === "sent" ? (
                   <>
                     <CheckCircle2 size={20} />
-                    Message envoyé !
+                    Message envoyé
                   </>
                 ) : status === "error" ? (
                   <>
-                    <AlertCircle size={20} />
-                    Erreur, réessayez
+                    <Send size={20} />
+                    Réessayer
                   </>
                 ) : (
                   <>

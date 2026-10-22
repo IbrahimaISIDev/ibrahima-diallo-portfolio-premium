@@ -27,6 +27,16 @@ const contactSchema = z.object({
   startedAt: z.number().optional(),
 });
 
+// Message affiché sous chaque champ refusé par la validation
+const fieldMessages = {
+  name: "Indiquez votre nom (100 caractères au plus).",
+  email: "Indiquez une adresse email valide.",
+  subject: "Indiquez un sujet (150 caractères au plus).",
+  message: "Écrivez votre message (5 000 caractères au plus).",
+} as const;
+
+type ContactField = keyof typeof fieldMessages;
+
 // Un humain met plus de 3 secondes à remplir le formulaire
 const MIN_FILL_TIME_MS = 3_000;
 
@@ -62,8 +72,16 @@ export async function POST(req: Request) {
 
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
+    // Un message par champ refusé, affiché sous le champ correspondant
+    const fields: Partial<Record<ContactField, string>> = {};
+    for (const issue of parsed.error.issues) {
+      const field = issue.path[0];
+      if (typeof field === "string" && field in fieldMessages) {
+        fields[field as ContactField] = fieldMessages[field as ContactField];
+      }
+    }
     return NextResponse.json(
-      { error: "Merci de remplir correctement tous les champs" },
+      { error: "Certains champs sont à corriger.", fields },
       { status: 400 },
     );
   }

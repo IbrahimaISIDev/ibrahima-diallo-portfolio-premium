@@ -63,6 +63,15 @@ describe("POST /api/contact", () => {
     expect(send).not.toHaveBeenCalled();
   });
 
+  it("indique quels champs corriger, avec un message par champ", async () => {
+    const { POST } = await loadRoute("re_test");
+    const res = await POST(request({ ...validBody, email: "pas-un-email", subject: "" }));
+    const json = await res.json();
+    expect(res.status).toBe(400);
+    expect(Object.keys(json.fields).sort()).toEqual(["email", "subject"]);
+    expect(json.fields.email).toMatch(/email valide/);
+  });
+
   it("répond 500 si la clé Resend n'est pas configurée", async () => {
     const { POST } = await loadRoute(undefined);
     const res = await POST(request(validBody));
