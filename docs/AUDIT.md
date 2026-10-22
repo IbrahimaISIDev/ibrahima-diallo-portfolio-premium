@@ -647,10 +647,16 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 - L'avatar « CABN » débordait du cercle : on n'affiche plus que deux initiales.
 - Les confettis du logo sont chargés à la demande (gain sur le JavaScript initial, P-01 partiel).
 
-**En attente d'informations :**
-- **C-01** : chiffres à jour (clients, projets, années d'expérience).
-- **C-02** : nouveaux témoignages, idéalement avec un lien LinkedIn.
-- **C-03 / C-04** : liens démo ou dépôt, et contenu des études de cas incomplètes.
+**Contenu mis à jour à partir du profil fourni (22 octobre 2026) :**
+- **C-01 ✅** : statistiques vérifiables (9 projets en production, 2+ ans de pratique, 4 entreprises et startups).
+- **C-03 ✅** : 9 projets ont un lien en ligne ; 7 nouveaux projets ont été ajoutés, avec des captures WebP de leurs sites.
+- **C-04 (partiel)** : études de cas détaillées pour Tekkil et AgriPont ; les autres projets n'ont qu'une description courte.
+- Parcours à jour : Nixacom, Tekkil, AgriPont, Saraya Tech ; Licence ISI terminée avec Mention Bien ; résultats ajoutés (20/20, 17,37/20, 15,67/20).
+
+**Encore en attente :**
+- **C-02** : nouveaux témoignages (le champ `linkedin` est prêt).
+- **C-04** : détails (stack, rôle, défis) pour Abu Maryam TV, ADSS, SN Immo, Fily Mode Royale et Workspace L&N Entreprise.
+- **CV PDF** : `public/cv/Ibrahima-Sory-Diallo-CV_1.pdf` est l'ancienne version, alors que le bouton « Télécharger PDF Original » le propose.
 - **SEO-06** : domaine réel de production (`ibrahimadev.com` ?).
 - **F-10** : URL Calendly réelle, ou retrait du bouton.
 
