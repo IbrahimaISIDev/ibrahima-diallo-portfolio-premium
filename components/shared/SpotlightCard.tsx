@@ -17,23 +17,30 @@ export default function SpotlightCard({
     spotlightColor = "rgba(59, 130, 246, 0.15)",
     enableTilt = true,
 }: SpotlightCardProps) {
+    // Position du curseur en pixels, pour le halo lumineux
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+    // Position relative dans la carte (0 à 1) pour l'inclinaison : 0.5 = centre = carte à plat.
+    // Indépendant de la taille réelle de la carte, contrairement à des bornes fixes en pixels.
+    const tiltX = useMotionValue(0.5);
+    const tiltY = useMotionValue(0.5);
 
-    // Tilt values with smooth springs (increased intensity to 15 degrees)
-    const rotateX = useSpring(useTransform(mouseY, [0, 400], [15, -15]), { damping: 20, stiffness: 200 });
-    const rotateY = useSpring(useTransform(mouseX, [0, 600], [-15, 15]), { damping: 20, stiffness: 200 });
+    // Tilt values with smooth springs (up to 15 degrees at the edges)
+    const rotateX = useSpring(useTransform(tiltY, [0, 1], [15, -15]), { damping: 20, stiffness: 200 });
+    const rotateY = useSpring(useTransform(tiltX, [0, 1], [-15, 15]), { damping: 20, stiffness: 200 });
 
     function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-        const { left, top } = currentTarget.getBoundingClientRect();
+        const { left, top, width, height } = currentTarget.getBoundingClientRect();
         mouseX.set(clientX - left);
         mouseY.set(clientY - top);
+        tiltX.set((clientX - left) / width);
+        tiltY.set((clientY - top) / height);
     }
 
     function handleMouseLeave() {
-        // Reset tilt on leave
-        mouseX.set(300);
-        mouseY.set(200);
+        // Retour à plat
+        tiltX.set(0.5);
+        tiltY.set(0.5);
     }
 
     return (
