@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { services } from "@/data/services";
+import type { ServiceIcon } from "@/types";
 import SectionTitle from "@/components/shared/SectionTitle";
 import FlippableCard from "./FlippableCard";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -19,7 +20,8 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 
-const iconMap: Record<string, LucideIcon> = {
+// Record exhaustif : une icône ajoutée au type sans entrée ici ne compile pas
+const iconMap: Record<ServiceIcon, LucideIcon> = {
   Monitor,
   Smartphone,
   Server,

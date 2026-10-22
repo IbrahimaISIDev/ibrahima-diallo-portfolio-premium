@@ -4,6 +4,9 @@ export const personalInfo = {
   title: "Développeur Full-Stack",
   tagline:
     "Je conçois et développe des solutions logicielles robustes qui répondent aux besoins métiers les plus exigeants.",
+  // Accroche du Hero (page d'accueil)
+  heroTagline:
+    "Je conçois et développe des solutions web et mobile qui transforment les idées en produits digitaux exceptionnels.",
   // Résumé de profil (CV, page À propos)
   summary:
     "Développeur Full-Stack polyvalent, titulaire d'une Licence en Génie Logiciel de l'Institut Supérieur d'Informatique (ISI), obtenue avec la Mention Bien après un Prix d'Excellence et une 3ᵉ place de campus (17,37/20) en Licence 2, et étudiant en Licence 3 Informatique (Développement d'Applications) à l'Université Numérique Cheikh Hamidou Kane (UNCHK). Expertise confirmée dans le développement de systèmes complexes nécessitant une architecture robuste, une sécurité renforcée (chiffrement AES-256, JWT, conformité RGPD/HDS), une architecture offline-first, une synchronisation temps réel (WebSockets) et une optimisation des performances. Co-fondateur d'AgriPont, plateforme AgriTech déployée en production. Autonome sur tout le cycle de développement : analyse des besoins, architecture, développement backend, frontend et mobile, tests, CI/CD et mise en production.",

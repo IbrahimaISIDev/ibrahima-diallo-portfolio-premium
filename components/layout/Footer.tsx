@@ -69,7 +69,7 @@ export default function Footer() {
               Contact
             </h2>
             <ul className="space-y-4 text-muted text-sm">
-              <li>Dakar, Sénégal 🇸🇳</li>
+              <li>{personalInfo.location} 🇸🇳</li>
               <li>{personalInfo.email}</li>
               <li>{personalInfo.phone}</li>
             </ul>

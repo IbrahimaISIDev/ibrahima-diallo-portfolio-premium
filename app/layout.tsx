@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  authors: [{ name: siteConfig.author.name }],
-  creator: siteConfig.author.name,
+  authors: [{ name: personalInfo.fullName }],
+  creator: personalInfo.fullName,
   openGraph: {
     type: "website",
     locale: "fr_FR",

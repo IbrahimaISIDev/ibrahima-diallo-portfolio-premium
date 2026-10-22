@@ -1,8 +1,12 @@
+import { personalInfo } from "@/data/personal";
+
+// Configuration du site. L'identité (nom, contact, réseaux) vient de
+// data/personal.ts, seule source de vérité.
 export const siteConfig = {
-  name: "Ibrahima Sory Diallo",
-  title: "Ibrahima Sory Diallo - Développeur Full-Stack | Dakar, Sénégal",
+  name: personalInfo.fullName,
+  title: `${personalInfo.fullName} - ${personalInfo.title} | ${personalInfo.location}`,
   description:
-    "Portfolio de Ibrahima Sory Diallo, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à Dakar, Sénégal.",
+    `Portfolio de ${personalInfo.fullName}, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à ${personalInfo.location}.`,
   url: "https://ibrahimadev.com",
   keywords: [
     "développeur full-stack",
@@ -19,15 +23,4 @@ export const siteConfig = {
     "freelance",
     "portfolio",
   ] as string[],
-  author: {
-    name: "Ibrahima Sory Diallo",
-    email: "ibrahimadev6@gmail.com",
-    phone: "+221 78 561 91 15",
-    location: "Dakar, Sénégal",
-    timezone: "GMT+0",
-  },
-  links: {
-    linkedin: "https://www.linkedin.com/in/ibrahima-sory-diallo-363069249",
-    github: "https://github.com/IbrahimaISIDev",
-  },
 } as const;

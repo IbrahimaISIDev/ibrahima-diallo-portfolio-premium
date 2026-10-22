@@ -2,12 +2,14 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Search, Layers, Code2, Rocket, CheckCircle2 } from "lucide-react";
+import { Search, Layers, Code2, Rocket, CheckCircle2, type LucideIcon } from "lucide-react";
 import { workflowSteps } from "@/data/workflow";
+import type { WorkflowIcon } from "@/types";
 import SectionTitle from "@/components/shared/SectionTitle";
 import SpotlightCard from "@/components/shared/SpotlightCard";
 
-const iconMap = {
+// Record exhaustif : une icône ajoutée au type sans entrée ici ne compile pas
+const iconMap: Record<WorkflowIcon, LucideIcon> = {
     Search,
     Layers,
     Code2,
@@ -50,7 +52,7 @@ export default function ProcessSection() {
 
                     <div className="space-y-24 relative">
                         {workflowSteps.map((step, index) => {
-                            const Icon = iconMap[step.icon as keyof typeof iconMap] || Search;
+                            const Icon = iconMap[step.icon];
                             const isEven = index % 2 === 0;
 
                             return (

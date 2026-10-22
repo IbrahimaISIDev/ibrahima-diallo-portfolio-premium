@@ -59,7 +59,7 @@ export default function Hero() {
               variants={heroChild}
               className="mx-auto max-w-xl text-lg leading-relaxed text-muted lg:mx-0"
             >
-              Je conçois et développe des solutions web et mobile qui transforment les idées en produits digitaux exceptionnels.
+              {personalInfo.heroTagline}
             </motion.p>
 
             {/* CTA Buttons */}

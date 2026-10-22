@@ -20,6 +20,32 @@ export interface Project {
   status?: "Live" | "En Développement" | "Concept";
 }
 
+// Icônes disponibles pour les services (voir components/sections/Services.tsx)
+export type ServiceIcon =
+  | "Monitor"
+  | "Smartphone"
+  | "Server"
+  | "ShoppingCart"
+  | "Palette"
+  | "Cloud";
+
+export interface Service {
+  title: string;
+  description: string;
+  icon: ServiceIcon;
+  technologies: string[];
+}
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  avatarColor?: string;
+  // Profil LinkedIn de l'auteur : rend le témoignage vérifiable
+  linkedin?: string;
+}
+
 // Compétences groupées par domaine, sans niveau chiffré
 export interface SkillGroup {
   id:
@@ -47,10 +73,13 @@ export interface Experience {
   technologies: string[];
 }
 
+// Icônes disponibles pour les étapes du processus (voir ProcessSection.tsx)
+export type WorkflowIcon = "Search" | "Layers" | "Code2" | "Rocket";
+
 export interface WorkflowStep {
   title: string;
   subtitle: string;
   description: string;
-  icon: string;
+  icon: WorkflowIcon;
   tasks: string[];
 }

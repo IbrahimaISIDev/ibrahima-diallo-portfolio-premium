@@ -1,12 +1,4 @@
-export interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  content: string;
-  avatarColor?: string;
-  // Profil LinkedIn de l'auteur : rend le témoignage vérifiable
-  linkedin?: string;
-}
+import type { Testimonial } from "@/types";
 
 export const testimonials: Testimonial[] = [
   {
