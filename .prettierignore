@@ -1,0 +1,10 @@
+# Généré ou externe
+.next
+node_modules
+package-lock.json
+public
+playwright-report
+test-results
+
+# Documents rédigés à la main (rapport d'audit, brief, README)
+*.md
