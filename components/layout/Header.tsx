@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navigationItems } from "@/data/navigation";
 import MobileMenu from "./MobileMenu";
 import ConfettiTrigger from "@/components/shared/ConfettiTrigger";
 import ThemeToggle from "@/components/shared/ThemeToggle";
+
+const MotionLink = motion.create(Link);
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,17 +40,17 @@ export default function Header() {
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
             <ConfettiTrigger>
-              <a href="#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
+              <Link href="/#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
                 <span className="text-foreground">Ibra</span>
                 <span className="text-secondary">h</span>
                 <span className="text-foreground">ima</span>
-              </a>
+              </Link>
             </ConfettiTrigger>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center gap-8 lg:flex">
               {navigationItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   className="relative group text-base font-medium text-muted transition-colors duration-200 hover:text-secondary"
@@ -58,21 +61,21 @@ export default function Header() {
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
                   />
-                </a>
+                </Link>
               ))}
             </nav>
 
             {/* Actions (desktop) */}
             <div className="hidden items-center gap-4 lg:flex">
               <ThemeToggle />
-              <motion.a
-                href="#contact"
+              <MotionLink
+                href="/#contact"
                 className="rounded-full bg-primary px-6 py-2.5 text-base font-semibold text-white transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Me contacter
-              </motion.a>
+              </MotionLink>
             </div>
 
             {/* Hamburger (mobile) */}
@@ -81,7 +84,9 @@ export default function Header() {
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5"
-                aria-label="Toggle menu"
+                aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
               >
                 <span
                   className={cn(

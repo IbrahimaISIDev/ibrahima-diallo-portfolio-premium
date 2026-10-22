@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { navigationItems } from "@/data/navigation";
@@ -15,11 +16,11 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2 space-y-6">
-            <a href="#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
+            <Link href="/#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
               <span className="text-foreground">Ibra</span>
               <span className="text-secondary">h</span>
               <span className="text-foreground">ima</span>
-            </a>
+            </Link>
             <p className="max-w-xs text-muted leading-relaxed">
               Développeur Full-Stack passionné par la création de solutions logicielles innovantes et performantes.
             </p>
@@ -51,12 +52,12 @@ export default function Footer() {
             <ul className="space-y-4">
               {navigationItems.map((item) => (
                 <li key={item.label}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-muted transition-colors hover:text-secondary"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -86,7 +87,7 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-muted transition-all hover:bg-secondary hover:text-background"
-              aria-label="Back to top"
+              aria-label="Retour en haut de page"
             >
               <ArrowUp size={18} />
             </button>
