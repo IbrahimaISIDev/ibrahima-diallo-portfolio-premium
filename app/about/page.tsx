@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { personalInfo } from "@/data/personal";
-import { experiences } from "@/data/experience";
+import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
 import { skillGroups } from "@/data/skills";
 
 export const metadata: Metadata = pageMetadata({
@@ -121,62 +121,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Experience Timeline */}
+        {/* Parcours (composant partagé, plus de liste dupliquée) */}
         <section className="mb-24">
-          <h2 className="mb-12 text-center font-display text-3xl font-bold text-foreground">
-            Mon Parcours
-          </h2>
-          <div className="relative space-y-8">
-            {/* Timeline line */}
-            <div className="absolute left-8 top-0 hidden h-full w-0.5 bg-border md:block" />
-
-            {experiences.map((exp) => (
-              <div key={exp.id} className="relative md:pl-24">
-                {/* Timeline dot */}
-                <div className="absolute left-[26px] top-8 hidden h-4 w-4 rounded-full border-4 border-secondary bg-background md:block" />
-
-                <div className="rounded-2xl border border-border bg-surface p-8 transition-all duration-300 hover:border-secondary/50">
-                  <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-display text-xl font-bold text-foreground">
-                        {exp.title}
-                      </h3>
-                      <p className="text-secondary">{exp.company}</p>
-                    </div>
-                    <span className="shrink-0 rounded-full bg-secondary/10 px-4 py-1 text-sm font-medium text-secondary">
-                      {exp.period}
-                    </span>
-                  </div>
-
-                  <p className="mb-4 text-sm leading-relaxed text-muted">{exp.description}</p>
-
-                  {exp.highlights.length > 0 && (
-                    <ul className="mb-6 space-y-2">
-                      {exp.highlights.map((highlight, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted">
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {exp.technologies.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+          <ExperienceTimeline />
         </section>
 
         {/* Skills */}

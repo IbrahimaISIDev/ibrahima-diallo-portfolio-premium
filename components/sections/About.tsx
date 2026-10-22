@@ -1,10 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Code2, GraduationCap, Heart, Briefcase } from "lucide-react";
+import { Code2, GraduationCap, Heart, Briefcase, ArrowRight } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import SectionTitle from "@/components/shared/SectionTitle";
-import ExperienceTimeline from "./ExperienceTimeline";
 import SkillsWall from "./SkillsWall";
 import MagneticButton from "@/components/shared/MagneticButton";
 import InfiniteMarquee from "@/components/shared/InfiniteMarquee";
@@ -17,7 +17,7 @@ export default function About() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="À propos"
-          title="Travaillons ensemble"
+          title="Qui suis-je ?"
           description="Développeur passionné par l'innovation technologique et la création de valeur par le code."
         />
 
@@ -102,9 +102,9 @@ export default function About() {
               </span>
             </MaskedReveal>
             <MaskedReveal delay={0.1}>
-              <h4 className="text-3xl font-display font-bold text-foreground">
+              <h3 className="text-3xl font-display font-bold text-foreground">
                 Écosystème Technique
-              </h4>
+              </h3>
             </MaskedReveal>
           </div>
 
@@ -129,8 +129,16 @@ export default function About() {
           <SkillsWall />
         </div>
 
-        {/* Path Timeline */}
-        <ExperienceTimeline />
+        {/* Le parcours détaillé est sur /about : l'accueil reste une vue d'ensemble */}
+        <div className="mt-20 flex justify-center">
+          <Link
+            href="/about"
+            className="group inline-flex items-center gap-2 rounded-full border-2 border-border px-8 py-4 font-bold text-foreground transition-all hover:border-secondary hover:text-secondary"
+          >
+            Découvrir mon parcours complet
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </section>
   );

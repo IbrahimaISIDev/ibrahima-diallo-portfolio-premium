@@ -7,11 +7,11 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function ExperienceTimeline() {
   return (
-    <div className="mt-20 space-y-12">
+    <div className="space-y-12">
       <div className="flex flex-col items-center gap-4 text-center">
-        <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        <h2 className="font-display text-3xl font-bold text-foreground">
           Mon Parcours Professionnel et Académique
-        </h3>
+        </h2>
         <p className="max-w-xl text-muted">
           De la Sonatel Academy &agrave; Nixacom, en passant par Saraya Tech, AgriPont et Tekkil :
           les &eacute;tapes cl&eacute;s de mon parcours.
@@ -56,7 +56,7 @@ export default function ExperienceTimeline() {
                       <Calendar size={14} />
                       {exp.period}
                     </span>
-                    <h4 className="font-display text-xl font-bold text-foreground">{exp.title}</h4>
+                    <h3 className="font-display text-xl font-bold text-foreground">{exp.title}</h3>
                     <p className="font-medium text-primary-text">{exp.company}</p>
                   </div>
 
@@ -73,6 +73,21 @@ export default function ExperienceTimeline() {
                         >
                           <CheckCircle2 size={12} className="mt-0.5 shrink-0 text-secondary" />
                           <span className="max-w-[200px] sm:max-w-none">{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {exp.technologies.length > 0 && (
+                    <ul
+                      className={`mt-5 flex flex-wrap gap-2 ${index % 2 === 0 ? "" : "sm:justify-end"}`}
+                    >
+                      {exp.technologies.map((tech) => (
+                        <li
+                          key={tech}
+                          className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
+                        >
+                          {tech}
                         </li>
                       ))}
                     </ul>
