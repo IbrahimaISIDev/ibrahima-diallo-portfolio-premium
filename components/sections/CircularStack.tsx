@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { skills } from "@/data/skills";
 import { Code2, Server, Database, Smartphone, Cloud } from "lucide-react";
 
@@ -130,7 +130,7 @@ export default function CircularStack() {
 
             {/* Hint */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9px] md:text-[10px] uppercase font-bold tracking-[0.4em] text-muted-dark opacity-50">
-                Explorer l'orbite
+                Explorer l&apos;orbite
             </div>
         </div>
     );

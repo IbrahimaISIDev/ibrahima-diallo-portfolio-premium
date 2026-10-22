@@ -2,7 +2,6 @@ import type { Variants } from "framer-motion";
 
 // Helper for type-safe ease strings
 const easeOut = "easeOut" as const;
-const easeInOut = "easeInOut" as const;
 
 // Fade in from bottom
 export const fadeInUp: Variants = {

@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Search, Layers, Code2, Rocket, CheckCircle2 } from "lucide-react";
 import { workflowSteps } from "@/data/workflow";
 import SectionTitle from "@/components/shared/SectionTitle";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
 import SpotlightCard from "@/components/shared/SpotlightCard";
 
 const iconMap = {

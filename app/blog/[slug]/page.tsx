@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
@@ -65,7 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </h1>
 
                     <p className="text-xl leading-relaxed text-muted border-l-4 border-secondary/30 pl-6 italic">
-                        "{post.excerpt}"
+                        &ldquo;{post.excerpt}&rdquo;
                     </p>
                 </header>
 

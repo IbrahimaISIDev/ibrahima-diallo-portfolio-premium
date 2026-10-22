@@ -3,11 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import { ArrowRight, Download, Briefcase, Calendar } from "lucide-react";
+import { ArrowRight, Download, Calendar } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { heroStagger, heroChild } from "@/lib/animations";
 import MagneticButton from "@/components/shared/MagneticButton";
-import Typewriter from "@/components/shared/Typewriter";
 import Link from "next/link";
 
 export default function Hero() {
@@ -17,8 +16,6 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
 

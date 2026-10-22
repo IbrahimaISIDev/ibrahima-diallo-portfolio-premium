@@ -26,7 +26,7 @@ export default function ParallaxImage({ src, alt, className = "", title }: Paral
             className={`relative h-full w-full overflow-hidden ${className}`}
             style={{
                 viewTransitionName: `project-image-${src.split('/').pop()?.split('.')[0]}`
-            } as any}
+            }}
         >
             <motion.div style={{ y }} className="relative h-[120%] w-full -top-[10%]">
                 <Image

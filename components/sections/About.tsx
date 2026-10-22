@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Code2, Target, Zap, GraduationCap, Heart, Briefcase } from "lucide-react";
+import { Code2, GraduationCap, Heart, Briefcase } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import SectionTitle from "@/components/shared/SectionTitle";
 import ExperienceTimeline from "./ExperienceTimeline";
@@ -10,27 +9,9 @@ import SkillsWall from "./SkillsWall";
 import MagneticButton from "@/components/shared/MagneticButton";
 import InfiniteMarquee from "@/components/shared/InfiniteMarquee";
 import MaskedReveal from "@/components/shared/MaskedReveal";
-import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer } from "@/lib/animations";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function About() {
-  const highlights = [
-    {
-      icon: Code2,
-      title: "Expérience",
-      text: personalInfo.stats.experience + " ans d'expertise",
-    },
-    {
-      icon: Target,
-      title: "Projets",
-      text: personalInfo.stats.projects + "+ réalisations",
-    },
-    {
-      icon: Zap,
-      title: "Clients",
-      text: personalInfo.stats.clients + " collaborateurs",
-    },
-  ];
-
   return (
     <section id="about" className="py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

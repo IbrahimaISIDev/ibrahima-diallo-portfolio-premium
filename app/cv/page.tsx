@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Printer, Download, MapPin, Mail, Phone, ExternalLink, GraduationCap, Briefcase, Award } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { Download, MapPin, Mail, Phone, ExternalLink, GraduationCap, Briefcase, Award } from "lucide-react";
 import { personalInfo } from "@/data/personal";
 import { skills } from "@/data/skills";
 import { experiences } from "@/data/experience";
@@ -22,10 +22,6 @@ export default function ResumePage() {
         damping: 30,
         restDelta: 0.001
     });
-
-    const handlePrint = () => {
-        window.print();
-    };
 
     return (
         <main className="min-h-screen bg-background pt-32 pb-20 overflow-x-hidden" ref={containerRef}>
@@ -49,7 +45,7 @@ export default function ResumePage() {
                             ← Retour au Portfolio
                         </Link>
                         <h1 className="text-4xl font-display font-bold text-foreground">Expérience Digitale</h1>
-                        <p className="text-muted italic">Conçu pour l'écran, optimisé pour l'impression</p>
+                        <p className="text-muted italic">Conçu pour l&apos;écran, optimisé pour l&apos;impression</p>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4">

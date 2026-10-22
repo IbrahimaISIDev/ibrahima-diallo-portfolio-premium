@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
+import { ArrowLeft, Github, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
 import { projects } from "@/data/projects";
 import LightboxImage from "@/components/shared/LightboxImage";
 
@@ -215,7 +215,7 @@ export default async function ProjectPage({ params }: Props) {
                 <LayoutPanelLeft size={20} />
               </div>
               <p className="text-sm font-medium italic text-muted leading-relaxed">
-                "Ce projet démontre ma capacité à transformer des problématiques métiers complexes en solutions scalables tout en garantissant une expérience utilisateur fluide."
+                &ldquo;Ce projet démontre ma capacité à transformer des problématiques métiers complexes en solutions scalables tout en garantissant une expérience utilisateur fluide.&rdquo;
               </p>
             </div>
           </aside>

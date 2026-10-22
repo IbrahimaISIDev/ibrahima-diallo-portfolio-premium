@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ExternalLink, Github, Info } from "lucide-react";
+import { ExternalLink, Info } from "lucide-react";
 import { projects, projectCategories } from "@/data/projects";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { cn } from "@/lib/utils";

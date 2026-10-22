@@ -22,7 +22,7 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
                 onClick={() => setOpen(true)}
                 style={{
                     viewTransitionName: `project-image-${src.split('/').pop()?.split('.')[0]}`
-                } as any}
+                }}
             >
                 <div className="relative aspect-video w-full overflow-hidden">
                     <Image

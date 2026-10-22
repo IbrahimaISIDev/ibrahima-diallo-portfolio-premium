@@ -6,7 +6,6 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import Portfolio from "@/components/sections/Portfolio";
 import Testimonials from "@/components/sections/Testimonials";
 import Freelancing from "@/components/sections/Freelancing";
-import BlogPreview from "@/components/sections/BlogPreview";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -20,7 +19,7 @@ export default function Home() {
       <Portfolio />
       <Testimonials />
       <Freelancing />
-      {/* <BlogPreview /> */}
+      {/* Blog désactivé : réimporter BlogPreview pour le réactiver */}
       <Contact />
     </main>
   );

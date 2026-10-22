@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { type LucideIcon, ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface FlippableCardProps {
     title: string;

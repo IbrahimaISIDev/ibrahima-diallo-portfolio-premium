@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-rea
 import { useState, type FormEvent } from "react";
 import { personalInfo } from "@/data/personal";
 import SectionTitle from "@/components/shared/SectionTitle";
-import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
+import { fadeInLeft, fadeInRight } from "@/lib/animations";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(

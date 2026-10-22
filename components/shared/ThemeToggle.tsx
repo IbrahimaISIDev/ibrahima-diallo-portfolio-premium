@@ -3,16 +3,12 @@
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useHydrated } from "@/lib/useHydrated";
 
 export default function ThemeToggle() {
     const { theme, setTheme, resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    // Avoid hydration mismatch
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    // Le thème n'est connu que côté client : évite un écart d'hydratation
+    const mounted = useHydrated();
 
     if (!mounted) return (
         <div className="h-10 w-10 rounded-full border border-border bg-surface/50" />

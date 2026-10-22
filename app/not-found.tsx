@@ -21,7 +21,7 @@ export default function NotFound() {
         className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
       >
         <ArrowLeft size={20} />
-        Retour à l'accueil
+        Retour à l&apos;accueil
       </Link>
     </div>
   );
