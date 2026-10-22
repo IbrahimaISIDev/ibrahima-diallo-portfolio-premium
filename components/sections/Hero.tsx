@@ -140,9 +140,9 @@ export default function Hero() {
                 transition={{ delay: 1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-xs text-muted">Expérience</p>
+                <p className="text-xs text-muted">Pratique</p>
                 <p className="font-display text-xl font-bold text-secondary">
-                  {personalInfo.stats.experience}+
+                  {personalInfo.stats.yearsOfPractice}+
                   <span className="text-sm text-muted"> ans</span>
                 </p>
               </motion.div>
@@ -154,10 +154,10 @@ export default function Hero() {
                 transition={{ delay: 1.2, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-xs text-muted">Projets</p>
+                <p className="text-xs text-muted">En production</p>
                 <p className="font-display text-xl font-bold text-primary-text">
-                  {personalInfo.stats.projects}
-                  <span className="text-sm text-muted">+</span>
+                  {personalInfo.stats.projectsInProduction}
+                  <span className="text-sm text-muted"> projets</span>
                 </p>
               </motion.div>
             </div>

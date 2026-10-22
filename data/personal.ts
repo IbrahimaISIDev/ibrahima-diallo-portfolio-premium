@@ -6,6 +6,9 @@ export const personalInfo = {
   title: "Développeur Full-Stack",
   tagline:
     "Je conçois et développe des solutions logicielles robustes qui répondent aux besoins métiers les plus exigeants.",
+  // Résumé de profil (CV, page À propos)
+  summary:
+    "Développeur Full-Stack polyvalent, titulaire d'une Licence en Génie Logiciel de l'Institut Supérieur d'Informatique (ISI), obtenue avec la Mention Bien après un Prix d'Excellence et une 3ᵉ place de campus (17,37/20) en Licence 2, et étudiant en Licence 3 Informatique (Développement d'Applications) à l'Université Numérique Cheikh Hamidou Kane (UNCHK). Expertise confirmée dans le développement de systèmes complexes nécessitant une architecture robuste, une sécurité renforcée (chiffrement AES-256, JWT, conformité RGPD/HDS), une architecture offline-first, une synchronisation temps réel (WebSockets) et une optimisation des performances. Co-fondateur d'AgriPont, plateforme AgriTech déployée en production. Autonome sur tout le cycle de développement : analyse des besoins, architecture, développement backend, frontend et mobile, tests, CI/CD et mise en production.",
   location: "Dakar, Sénégal",
   email: "ibrahimadev6@gmail.com",
   phone: "+221 78 561 91 15",
@@ -15,11 +18,14 @@ export const personalInfo = {
     github: "https://github.com/IbrahimaISIDev",
     calendly: "https://calendly.com/ibrahimadev6", // Placeholder
   },
-  // Valeurs numériques : le suffixe « + » est ajouté à l'affichage
+  // Chiffres vérifiables, en nombres : le formatage se fait à l'affichage
   stats: {
-    clients: 10,
-    projects: 18,
-    experience: 3,
+    // Projets en ligne listés dans data/projects.ts (liveUrl)
+    projectsInProduction: 9,
+    // Depuis la formation Sonatel Academy (février 2024)
+    yearsOfPractice: 2,
+    // Saraya Tech, Nixacom, Tekkil, AgriPont
+    companies: 4,
   },
   // Distinctions affichées dans la section « Accomplissements » du CV
   achievements: [

@@ -62,15 +62,13 @@ export default function AboutPage() {
               {personalInfo.title}
             </p>
             <p className="leading-relaxed text-muted">
-              Basé à {personalInfo.location}, je suis un développeur passionné
-              par l&apos;innovation technologique et le génie logiciel.
-              Je combine expertise technique et rigueur méthodologique pour
-              créer des solutions digitales robustes et scalables.
+              {personalInfo.summary}
             </p>
             <p className="leading-relaxed text-muted">
-              Mon parcours, de la Sonatel Academy à Saraya Tech Sénégal,
-              m&apos;a permis de développer une approche alliant excellence technique
-              et compréhension approfondie des besoins métiers.
+              Basé à {personalInfo.location}, mon parcours, de la Sonatel Academy
+              à Nixacom en passant par Saraya Tech, Tekkil et AgriPont, m&apos;a permis
+              de développer une approche alliant excellence technique et
+              compréhension approfondie des besoins métiers.
             </p>
 
             {/* Quick info */}

@@ -66,6 +66,11 @@ const personJsonLd = {
     addressCountry: "SN",
   },
   sameAs: [personalInfo.social.linkedin, personalInfo.social.github],
+  worksFor: { "@type": "Organization", name: "Nixacom" },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Institut Supérieur d'Informatique (ISI)" },
+    { "@type": "EducationalOrganization", name: "Sonatel Academy — Orange Digital Center" },
+  ],
   knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "Flutter", "PostgreSQL"],
 };
 

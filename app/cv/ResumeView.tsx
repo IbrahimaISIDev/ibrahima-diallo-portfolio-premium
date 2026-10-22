@@ -89,7 +89,7 @@ export default function ResumeView() {
                                     </p>
                                 </motion.div>
                                 <motion.p variants={fadeInUp} className="text-muted text-base sm:text-lg max-w-2xl print:text-black/80 font-medium">
-                                    {personalInfo.tagline}
+                                    {personalInfo.summary}
                                 </motion.p>
                             </div>
 
