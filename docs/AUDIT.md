@@ -390,7 +390,7 @@ Pour un portfolio, la crédibilité du contenu compte autant que le code.
 #### C-05 🟡 Données obsolètes ou divergentes
 - **Constat** :
   - « Next.js 15 » dans [data/projects.ts:76](../data/projects.ts#L76) et le README, alors que le projet utilise Next.js 16 ;
-  - **Teranga Farm** est cité dans le README et le brief, et son image existe, mais il manque dans les données ;
+  - **Teranga Farm** est cité dans le README et le brief, et son image existe, mais il manque dans les données. *Correction (phase 2) : son retrait était volontaire (commit `1da7135`, recentrage sur le profil de développeur). Il faut donc retirer l'image inutilisée et la mention du README, pas l'ajouter.* ;
   - « © 2026 » est codé en dur dans le CV ([cv/page.tsx:269](../app/cv/page.tsx#L269)) ;
   - les dates des articles de blog sont antérieures à certaines expériences qu'ils décrivent.
 
@@ -487,7 +487,7 @@ Pour un portfolio, la crédibilité du contenu compte autant que le code.
 | 10 | Ajouter `id` et `type` aux expériences ; corriger le CV (clés, tri, impression, métadonnées) | F-08, F-09, F-12, SEO-04 |
 | 11 | Ajouter les métadonnées OG et canonical par projet, ainsi que le JSON-LD `Person` | SEO-03, SEO-05 |
 | 12 | Trancher sur le blog : le retirer proprement ou le réactiver en MDX | F-06, F-07, S-06 |
-| 13 | Revoir les chiffres, les témoignages et les liens des projets ; compléter les études de cas ; ajouter Teranga Farm | C-01 à C-05 |
+| 13 | Revoir les chiffres, les témoignages et les liens des projets ; compléter les études de cas | C-01 à C-05 |
 | 14 | Corriger les contrastes et le thème clair (ou retirer le thème clair) | A-03, D-01 |
 | 15 | Rendre les cartes, le menu mobile et le carrousel accessibles au clavier ; ajouter le lien d'évitement | A-04 à A-07 |
 | 16 | Ajouter un honeypot et une limitation de débit ; configurer un expéditeur Resend sur domaine vérifié et les variables d'environnement | S-03, S-04, O-04 |
@@ -629,3 +629,32 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 - **2 avertissements ESLint** : `handleFlip` sera branché en phase 2 (A-04) ; `yOffset` est dans `ConstellationBackground`, composant mort qui sera supprimé en phase 3 (Q-02).
 - **Environ 50 éléments animés au scroll** restent à `opacity:0` dans le HTML serveur. Ils sont tous sous la ligne de flottaison, donc sans effet sur le LCP. Leur sort sera réglé avec la refonte des animations (P-01).
 - **Le README référence encore `/public/og-image.jpg`**. Il sera mis à jour en phase 3 (O-03).
+
+### Phase 2 : partie technique terminée le 22 octobre 2026
+
+| # | Action | Statut | Vérification |
+|---|---|:-:|---|
+| 10 | Expériences avec `id` et `type` (clés uniques, tri formation / expérience) ; CV : métadonnées via un composant serveur, impression fiable, domaine tiré de `siteConfig`, année dynamique, `rel` sur les liens | ✅ | Plus de clé dupliquée ; `/cv` a son propre titre et son canonical |
+| 11 | Helper `pageMetadata()` (titre, description, canonical, OG, Twitter) sur toutes les pages ; image de partage par étude de cas ; JSON-LD `Person` | ✅ | Chaque page expose ses propres balises, et son `og:image` répond en 200 |
+| 12 | **Blog retiré proprement** (routes, section, données, composants dédiés) | ✅ | `/blog/*` → 404 ; plus aucun `dangerouslySetInnerHTML` dans le contenu |
+| 13 | Contenu (chiffres, nouveaux témoignages, liens et études de cas) | ⏳ | **En attente des informations à jour d'Ibrahima** ; champ `linkedin` ajouté aux témoignages ; « Next.js 15 » corrigé en 16 |
+| 14 | Thème clair corrigé : variant `dark:` lié à la classe, ambre `#B45309`, token `primary-text`, `muted-dark` éclairci, couleurs codées en dur adaptées, textes sans opacité réductrice | ✅ | Captures pleine page des deux thèmes à 1440 px et 390 px |
+| 15 | Menu mobile en dialogue accessible (Échap, piège de focus, scroll bloqué, retour du focus) ; cartes de services utilisables au clavier et au tactile ; actions des projets visibles au focus ; lien d'évitement ; `h1` sur chaque page ; carrousel annoncé, avec des pastilles de 24 px | ✅ | Un `h1` et un `main#main` par page ; 0 erreur ESLint |
+| 16 | Honeypot, délai minimal de 3 s, limitation de débit par IP (5 envois / 10 min) | ✅ | Robot → 200 sans envoi ; 6ᵉ envoi depuis la même IP → 429 |
+
+**Corrections hors plan, découvertes pendant la vérification visuelle :**
+- `SpotlightCard` était incliné à 15° au repos : la position initiale (0, 0) correspondait à l'inclinaison maximale. Les cartes sont maintenant à plat.
+- L'avatar « CABN » débordait du cercle : on n'affiche plus que deux initiales.
+- Les confettis du logo sont chargés à la demande (gain sur le JavaScript initial, P-01 partiel).
+
+**En attente d'informations :**
+- **C-01** : chiffres à jour (clients, projets, années d'expérience).
+- **C-02** : nouveaux témoignages, idéalement avec un lien LinkedIn.
+- **C-03 / C-04** : liens démo ou dépôt, et contenu des études de cas incomplètes.
+- **SEO-06** : domaine réel de production (`ibrahimadev.com` ?).
+- **F-10** : URL Calendly réelle, ou retrait du bouton.
+
+**Restes connus :**
+- **1 avertissement ESLint** : `yOffset` dans `ConstellationBackground`, composant mort prévu pour la phase 3.
+- **La limitation de débit est en mémoire**, donc propre à chaque instance serverless. Une limite globale demanderait un stockage partagé (Upstash, Vercel KV).
+
