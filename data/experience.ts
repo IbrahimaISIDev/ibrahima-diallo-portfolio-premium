@@ -2,6 +2,8 @@ import type { Experience } from "@/types";
 
 export const experiences: Experience[] = [
   {
+    id: "saraya-tech-cdd",
+    type: "work",
     title: "Développeur Full-Stack (CDD)",
     company: "Saraya Tech Sénégal",
     period: "Décembre 2025 - Présent",
@@ -16,6 +18,8 @@ export const experiences: Experience[] = [
     technologies: ["NestJS", "PostgreSQL", "React", "Docker", "GitHub Actions"],
   },
   {
+    id: "saraya-tech-stage",
+    type: "work",
     title: "Stage Développeur Full-Stack",
     company: "Saraya Tech Sénégal",
     period: "Mars 2025 - Novembre 2025",
@@ -30,6 +34,8 @@ export const experiences: Experience[] = [
     technologies: ["React", "NestJS", "PostgreSQL", "Flutter"],
   },
   {
+    id: "isi-licence-gl",
+    type: "education",
     title: "Licence 3 - Génie Logiciel",
     company: "ISI (Institut Supérieur d'Informatique)",
     period: "2025 - Présent (En cours)",
@@ -43,6 +49,8 @@ export const experiences: Experience[] = [
     technologies: ["Java", "UML", "SQL", "Architecture Logicielle"],
   },
   {
+    id: "unchk-licence-info",
+    type: "education",
     title: "Licence 3 - Informatique & Dév. d'Applis",
     company: "UNCHK (Univ. Numérique Cheikh Hamidou Kane)",
     period: "2025 - Présent (En cours)",
@@ -56,6 +64,8 @@ export const experiences: Experience[] = [
     technologies: ["React", "PHP/Laravel", "Mobile", "Algorithmie"],
   },
   {
+    id: "sonatel-academy",
+    type: "education",
     title: "Apprenant Développeur Web et Mobile",
     company: "Sonatel Academy",
     period: "2024",

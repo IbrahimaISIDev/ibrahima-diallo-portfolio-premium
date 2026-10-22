@@ -30,7 +30,7 @@ export default function ExperienceTimeline() {
                 <div className="space-y-12">
                     {experiences.map((exp, index) => (
                         <motion.div
-                            key={exp.company + exp.period}
+                            key={exp.id}
                             variants={fadeInUp}
                             className={`relative flex flex-col gap-8 sm:flex-row ${index % 2 === 0 ? "sm:flex-row-reverse" : ""
                                 }`}

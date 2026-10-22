@@ -141,8 +141,8 @@ export default function AboutPage() {
             {/* Timeline line */}
             <div className="absolute left-8 top-0 hidden h-full w-0.5 bg-border md:block" />
 
-            {experiences.map((exp, index) => (
-              <div key={index} className="relative md:pl-24">
+            {experiences.map((exp) => (
+              <div key={exp.id} className="relative md:pl-24">
                 {/* Timeline dot */}
                 <div className="absolute left-[26px] top-8 hidden h-4 w-4 rounded-full border-4 border-secondary bg-background md:block" />
 

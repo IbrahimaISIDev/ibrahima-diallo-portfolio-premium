@@ -29,6 +29,10 @@ export interface Skill {
 }
 
 export interface Experience {
+  // Identifiant stable, utilisé comme clé React
+  id: string;
+  // Sépare le parcours professionnel de la formation (CV, timeline)
+  type: "work" | "education";
   title: string;
   company: string;
   period: string;

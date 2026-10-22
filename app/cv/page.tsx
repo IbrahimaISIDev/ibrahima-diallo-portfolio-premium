@@ -10,6 +10,9 @@ import MagneticButton from "@/components/shared/MagneticButton";
 import Link from "next/link";
 import { useRef } from "react";
 
+const workExperiences = experiences.filter((e) => e.type === "work");
+const education = experiences.filter((e) => e.type === "education");
+
 export default function ResumePage() {
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -123,9 +126,9 @@ export default function ResumePage() {
                                     {/* Vertical Line for timeline */}
                                     <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-px bg-gradient-to-b from-secondary/50 via-border to-border/20 print:bg-black/10" />
 
-                                    {experiences.filter(e => !e.title.includes("Licence") && !e.title.includes("Apprenant")).map((exp, i) => (
+                                    {workExperiences.map((exp, i) => (
                                         <motion.div
-                                            key={exp.company}
+                                            key={exp.id}
                                             className="relative pl-10 sm:pl-14 group"
                                             variants={fadeInUp}
                                             transition={{ delay: i * 0.1 }}
@@ -171,9 +174,9 @@ export default function ResumePage() {
                                 </div>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                                    {experiences.filter(e => e.title.includes("Licence") || e.title.includes("Apprenant")).map((edu) => (
+                                    {education.map((edu) => (
                                         <motion.div
-                                            key={edu.company}
+                                            key={edu.id}
                                             className="p-5 sm:p-6 rounded-2xl border border-border/50 bg-surface/20 print:border-black/10 print:p-0 print:bg-transparent transition-colors hover:border-primary/30"
                                             variants={fadeInUp}
                                         >
