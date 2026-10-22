@@ -73,4 +73,4 @@ Ce portfolio allie la modernité technologique internationale (Stripe-like clari
 
 ---
 
-Developed with ❤️ by [Ibrahima Diallo](https://github.com/IbrahimaISIDev)
+Developed with ❤️ by [Ibrahima Sory Diallo](https://github.com/IbrahimaISIDev)
