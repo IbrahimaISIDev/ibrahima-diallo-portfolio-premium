@@ -106,7 +106,7 @@ export default function About() {
           </div>
 
           <InfiniteMarquee
-            items={["Next.js", "Flutter", "NestJS", "TypeScript", "Node.js", "Firebase", "PostgreSQL", "Laravel", "React Native", "Docker"]}
+            items={["Next.js", "Angular", "Flutter", "NestJS", "Spring Boot", "TypeScript", "Node.js", "PostgreSQL", "Laravel", "React Native", "Docker", "Redis"]}
             speed={40}
           />
 

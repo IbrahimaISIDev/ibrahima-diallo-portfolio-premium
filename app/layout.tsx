@@ -71,7 +71,20 @@ const personJsonLd = {
     { "@type": "CollegeOrUniversity", name: "Institut Supérieur d'Informatique (ISI)" },
     { "@type": "EducationalOrganization", name: "Sonatel Academy — Orange Digital Center" },
   ],
-  knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "Flutter", "PostgreSQL"],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "Angular",
+    "TypeScript",
+    "Node.js",
+    "NestJS",
+    "Java",
+    "Spring Boot",
+    "Laravel",
+    "Flutter",
+    "React Native",
+    "PostgreSQL",
+  ],
 };
 
 export default function RootLayout({

@@ -23,9 +23,9 @@ export const services: Service[] = [
   {
     title: "Backend & API",
     description:
-      "APIs robustes et scalables avec Node.js, NestJS, Express, PHP, Laravel et PostgreSQL.",
+      "APIs robustes et scalables avec Node.js, NestJS, Spring Boot, Laravel et PostgreSQL.",
     icon: "Server",
-    technologies: ["NestJS", "Node.js", "PostgreSQL", "Laravel", "PHP"],
+    technologies: ["NestJS", "Node.js", "Spring Boot", "Laravel", "PostgreSQL", "GraphQL"],
   },
   {
     title: "E-commerce",
