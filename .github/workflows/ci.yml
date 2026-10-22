@@ -34,6 +34,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Formatage
+        run: npm run format:check
+
       - name: Vérification des types
         run: npm run typecheck
 
