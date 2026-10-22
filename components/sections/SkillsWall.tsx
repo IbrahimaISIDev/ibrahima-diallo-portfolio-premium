@@ -20,11 +20,11 @@ export default function SkillsWall() {
                 <SpotlightCard className="h-full border-border bg-surface/40 p-10" spotlightColor="rgba(59, 130, 246, 0.15)">
                     <div className="flex flex-col h-full justify-between gap-10">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-700 dark:text-blue-400">
                                 <Code2 size={24} />
                             </div>
                             <div>
-                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400/70">Expertise Principale</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-700 dark:text-blue-400">Expertise Principale</span>
                                 <h4 className="text-3xl font-display font-bold text-foreground">Ingénierie Frontend</h4>
                             </div>
                         </div>
@@ -45,11 +45,11 @@ export default function SkillsWall() {
                 <SpotlightCard className="h-full border-border bg-surface/40 p-10" spotlightColor="rgba(244, 63, 94, 0.15)">
                     <div className="flex flex-col h-full justify-between gap-10">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-400">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-700 dark:text-rose-400">
                                 <Smartphone size={24} />
                             </div>
                             <div>
-                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-rose-400/70">Applications</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-rose-700 dark:text-rose-400">Applications</span>
                                 <h4 className="text-2xl font-display font-bold text-foreground">Mobile</h4>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ export default function SkillsWall() {
                 <SpotlightCard className="h-full border-border bg-surface/40 p-10" spotlightColor="rgba(245, 158, 11, 0.15)">
                     <div className="space-y-8">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 dark:text-amber-400">
                                 <Server size={24} />
                             </div>
                             <h4 className="text-2xl font-display font-bold text-foreground">Backend</h4>
@@ -91,7 +91,7 @@ export default function SkillsWall() {
                 <SpotlightCard className="h-full border-border bg-surface/40 p-10" spotlightColor="rgba(34, 197, 94, 0.15)">
                     <div className="space-y-8">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
                                 <Database size={24} />
                             </div>
                             <h4 className="text-2xl font-display font-bold text-foreground">Data</h4>
@@ -113,7 +113,7 @@ export default function SkillsWall() {
                 <SpotlightCard className="h-full border-border bg-surface/40 p-10" spotlightColor="rgba(168, 85, 247, 0.15)">
                     <div className="space-y-8">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-400">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-700 dark:text-purple-400">
                                 <Cloud size={24} />
                             </div>
                             <h4 className="text-2xl font-display font-bold text-foreground">DevOps & Cloud</h4>

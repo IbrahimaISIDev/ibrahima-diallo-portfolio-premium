@@ -135,7 +135,7 @@ export default async function ProjectPage({ params }: Props) {
             {project.challenges && (
               <section className="space-y-12">
                 <div className="flex items-center gap-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary-light border border-primary/20">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary-text border border-primary/20">
                     <ShieldCheck size={24} />
                   </div>
                   <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Défis Techniques</h2>
@@ -163,13 +163,13 @@ export default async function ProjectPage({ params }: Props) {
                   <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Technical Spotlight</h2>
                 </div>
                 <div className="rounded-3xl border border-border bg-[#0d1117] p-1 shadow-2xl relative overflow-hidden group">
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-border/50 bg-background/50">
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
                     <div className="flex gap-2">
                       <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
                       <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
                       <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-dark">logic_core.ts</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">logic_core.ts</span>
                   </div>
                   <pre className="p-8 text-sm sm:text-base font-mono leading-relaxed overflow-x-auto text-blue-200/90 [scrollbar-width:none] [-ms-overflow-style:none]">
                     <code>{project.codeSnippet}</code>

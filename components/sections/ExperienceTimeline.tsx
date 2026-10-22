@@ -52,7 +52,7 @@ export default function ExperienceTimeline() {
                                         <h4 className="font-display text-xl font-bold text-foreground">
                                             {exp.title}
                                         </h4>
-                                        <p className="font-medium text-primary-light">
+                                        <p className="font-medium text-primary-text">
                                             {exp.company}
                                         </p>
                                     </div>
@@ -63,7 +63,7 @@ export default function ExperienceTimeline() {
 
                                     <ul className={`mt-4 flex flex-col gap-2 ${index % 2 === 0 ? "items-start" : "sm:items-end"}`}>
                                         {exp.highlights.map((highlight) => (
-                                            <li key={highlight} className={`flex items-start gap-2 text-xs text-muted/80 ${index % 2 === 0 ? "" : "sm:flex-row-reverse"}`}>
+                                            <li key={highlight} className={`flex items-start gap-2 text-xs text-muted ${index % 2 === 0 ? "" : "sm:flex-row-reverse"}`}>
                                                 <CheckCircle2 size={12} className="mt-0.5 shrink-0 text-secondary" />
                                                 <span className="max-w-[200px] sm:max-w-none">{highlight}</span>
                                             </li>

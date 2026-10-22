@@ -37,7 +37,7 @@ export default function Stats() {
                 {stat.value}
               </span>
               <span
-                className={`mt-2 text-sm font-medium ${stat.highlight ? "text-white/80" : "text-muted"
+                className={`mt-2 text-sm font-medium ${stat.highlight ? "text-white" : "text-muted"
                   }`}
               >
                 {stat.label}

@@ -122,7 +122,7 @@ export default function AboutPage() {
                 key={title}
                 className="rounded-2xl border border-border bg-surface p-6 space-y-4"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-light">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
                   <Icon size={24} />
                 </div>
                 <h3 className="font-display text-lg font-semibold text-foreground">

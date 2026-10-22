@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
+/* next-themes pose la classe .dark/.light sur <html> : le variant dark: doit suivre
+   cette classe, pas prefers-color-scheme (comportement par défaut de Tailwind v4) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
+  /* Vert lisible en texte (primary-light sert aussi de fond derrière du texte blanc) */
+  --color-primary-text: var(--primary-text);
   --color-secondary: var(--secondary);
   --color-secondary-light: var(--secondary-light);
   --color-secondary-dark: var(--secondary-dark);
@@ -31,6 +37,7 @@
     --primary: #1B5E20;
     --primary-light: #2E7D32;
     --primary-dark: #145218;
+    --primary-text: #66BB6A;
     --secondary: #F59E0B;
     --secondary-light: #FBBF24;
     --secondary-dark: #D97706;
@@ -45,7 +52,10 @@
 
     --foreground: #F8FAFC;
     --muted: #94A3B8;
-    --muted-dark: #64748B;
+    /* ≥ 4.5:1 sur background, surface et surface-light (#64748B était à 3.65-3.97) */
+    --muted-dark: #8391A7;
+
+    --pattern-line: rgba(255, 255, 255, 0.1);
   }
 
   .light {
@@ -59,7 +69,14 @@
     --muted: #475569;
     --muted-dark: #1E293B;
 
-    /* Slightly soften primary for light mode if desired, or keep same */
+    /* L'ambre #F59E0B tombait à 2.05:1 sur fond clair : amber-700 (≥ 4.58:1)
+       pour le texte et les boutons, plus foncé encore au survol */
+    --secondary: #B45309;
+    --secondary-light: #92400E;
+    --secondary-dark: #92400E;
+    --primary-text: #2E7D32;
+
+    --pattern-line: rgba(15, 23, 42, 0.06);
   }
 }
 
@@ -95,8 +112,8 @@ body::before {
   background-image: repeating-linear-gradient(45deg,
       transparent,
       transparent 35px,
-      rgba(255, 255, 255, 0.1) 35px,
-      rgba(255, 255, 255, 0.1) 36px);
+      var(--pattern-line) 35px,
+      var(--pattern-line) 36px);
   pointer-events: none;
   z-index: -10;
   mask-image: radial-gradient(circle at center, black, transparent 90%);
@@ -137,7 +154,8 @@ pre {
 /* Selection */
 ::selection {
   background-color: var(--color-primary);
-  color: var(--color-foreground);
+  /* Blanc fixe : 7.9:1 sur le vert primaire dans les deux thèmes */
+  color: #FFFFFF;
 }
 
 /* Reduced motion */
@@ -175,7 +193,7 @@ pre {
 
   /* Fix colors for print */
   .text-secondary {
-    color: #F59E0B !important;
+    color: #B45309 !important;
   }
 
   .print\:text-black {

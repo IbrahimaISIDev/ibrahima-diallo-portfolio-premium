@@ -91,7 +91,7 @@ export default function ProcessSection() {
                                                         <h3 className="text-3xl font-display font-black text-foreground tracking-tight">
                                                             {step.title}
                                                         </h3>
-                                                        <p className="text-sm font-black uppercase tracking-[0.2em] text-secondary/80 italic">
+                                                        <p className="text-sm font-black uppercase tracking-[0.2em] text-secondary italic">
                                                             {step.subtitle}
                                                         </p>
                                                     </div>

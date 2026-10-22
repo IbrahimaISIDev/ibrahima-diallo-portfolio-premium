@@ -58,7 +58,7 @@ export default function About() {
                   variants={fadeInUp}
                   className="flex items-center gap-3 rounded-full bg-surface-light/50 px-6 py-3 border border-border/50"
                 >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-light">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
                     <Icon size={16} />
                   </div>
                   <span className="text-sm font-bold text-foreground">

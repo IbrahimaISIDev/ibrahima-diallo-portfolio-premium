@@ -40,13 +40,13 @@ export default function Freelancing() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-white/70">
+            <p className="text-sm font-semibold uppercase tracking-widest text-white">
               Vous avez un projet ?
             </p>
             <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               Je suis disponible pour du Freelancing
             </h2>
-            <p className="mx-auto max-w-lg text-lg text-white/80">
+            <p className="mx-auto max-w-lg text-lg text-white">
               Du développement web au mobile, je vous accompagne dans la
               réalisation de vos projets digitaux.
             </p>

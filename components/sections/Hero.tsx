@@ -155,7 +155,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
               >
                 <p className="text-xs text-muted">Projets</p>
-                <p className="font-display text-xl font-bold text-primary-light">
+                <p className="font-display text-xl font-bold text-primary-text">
                   {personalInfo.stats.projects}
                   <span className="text-sm text-muted">+</span>
                 </p>

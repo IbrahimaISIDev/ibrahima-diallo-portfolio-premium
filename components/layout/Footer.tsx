@@ -81,7 +81,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {personalInfo.fullName}. Tous droits réservés.
           </p>
           <div className="flex items-center gap-6">
-            <p className="text-xs text-muted/50 italic">
+            <p className="text-xs text-muted italic">
               Fait avec passion à Dakar.
             </p>
             <button

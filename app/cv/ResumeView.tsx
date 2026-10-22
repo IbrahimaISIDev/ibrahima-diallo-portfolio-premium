@@ -142,7 +142,7 @@ export default function ResumeView() {
                                                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                                                     <span className="text-[10px] sm:text-xs font-black text-secondary uppercase tracking-[0.2em]">{exp.period}</span>
                                                     <div className="h-1 w-1 rounded-full bg-muted-dark hidden sm:block" />
-                                                    <p className="text-primary-light font-bold uppercase text-[10px] sm:text-xs tracking-widest">{exp.company}</p>
+                                                    <p className="text-primary-text font-bold uppercase text-[10px] sm:text-xs tracking-widest">{exp.company}</p>
                                                 </div>
 
                                                 <h4 className="text-xl sm:text-2xl font-display font-bold text-foreground print:text-black group-hover:text-secondary transition-colors leading-tight">
@@ -169,7 +169,7 @@ export default function ResumeView() {
                             {/* Education */}
                             <section>
                                 <div className="flex items-center gap-6 mb-8 sm:mb-12">
-                                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-primary/10 text-primary-light">
+                                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-primary/10 text-primary-text">
                                         <GraduationCap size={20} className="sm:w-6 sm:h-6" />
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-display font-black uppercase tracking-[0.2em] text-foreground print:text-black">Académique</h3>
@@ -184,7 +184,7 @@ export default function ResumeView() {
                                         >
                                             <span className="text-[10px] font-black text-secondary tracking-widest uppercase">{edu.period}</span>
                                             <h4 className="text-base sm:text-lg font-bold text-foreground print:text-black mt-2 leading-snug">{edu.title}</h4>
-                                            <p className="text-sm font-bold text-primary-light mt-1">{edu.company}</p>
+                                            <p className="text-sm font-bold text-primary-text mt-1">{edu.company}</p>
                                         </motion.div>
                                     ))}
                                 </div>

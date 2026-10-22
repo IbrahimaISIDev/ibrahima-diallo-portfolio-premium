@@ -106,7 +106,7 @@ export default function Portfolio() {
                         <span className={cn(
                           "rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md",
                           project.status === "Live"
-                            ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                            ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
                             : "bg-secondary/20 text-secondary border border-secondary/30"
                         )}>
                           {project.status === "Live" ? "● Live" : project.status}
@@ -174,7 +174,7 @@ export default function Portfolio() {
                         </span>
                       ))}
                       {project.tags.length > 3 && (
-                        <span className="text-[9px] font-black text-muted-dark/50 italic">
+                        <span className="text-[9px] font-black text-muted-dark italic">
                           +{project.tags.length - 3} more
                         </span>
                       )}
