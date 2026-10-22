@@ -93,11 +93,8 @@ export const projects: Project[] = [
   },
 ];
 
+// Filtres du portfolio, déduits des projets : pas de catégorie vide, pas d'oubli
 export const projectCategories = [
   "Tous",
-  "Web",
-  "Santé",
-  "B2B",
-  "E-commerce",
-  "Communauté",
+  ...new Set(projects.map((project) => project.category)),
 ];
