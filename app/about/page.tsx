@@ -29,7 +29,7 @@ export default function AboutPage() {
   }));
 
   return (
-    <main className="pt-20">
+    <main id="main" className="pt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Hero */}
         <section className="mb-24 grid gap-12 lg:grid-cols-2 lg:gap-16">

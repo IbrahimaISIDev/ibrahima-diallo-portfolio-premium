@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }: Props) {
     projects[(projectIndex - 1 + projects.length) % projects.length];
 
   return (
-    <main className="pt-20 bg-background min-h-screen">
+    <main id="main" className="pt-20 bg-background min-h-screen">
       <article className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Navigation & Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -187,7 +187,7 @@ export default async function ProjectPage({ params }: Props) {
             {/* Project Status & Meta */}
             <div className="p-8 rounded-[2rem] border border-border/50 bg-surface/30 space-y-8">
               <div className="space-y-3">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Statut Projet</h4>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Statut Projet</h2>
                 <div className="flex items-center gap-3">
                   <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
                   <span className="font-black text-foreground">{project.status || "Live"}</span>
@@ -195,12 +195,12 @@ export default async function ProjectPage({ params }: Props) {
               </div>
 
               <div className="space-y-3">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Impact Majeur</h4>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Impact Majeur</h2>
                 <p className="font-bold text-foreground leading-tight">{project.impact}</p>
               </div>
 
               <div className="space-y-4 pt-4 border-t border-border/40">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Core Stack</h4>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Core Stack</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span

@@ -46,9 +46,9 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-foreground">
+            <h2 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-foreground">
               Navigation
-            </h4>
+            </h2>
             <ul className="space-y-4">
               {navigationItems.map((item) => (
                 <li key={item.label}>
@@ -65,9 +65,9 @@ export default function Footer() {
 
           {/* Contact Details */}
           <div>
-            <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-foreground">
+            <h2 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-foreground">
               Contact
-            </h4>
+            </h2>
             <ul className="space-y-4 text-muted text-sm">
               <li>Dakar, Sénégal 🇸🇳</li>
               <li>{personalInfo.email}</li>

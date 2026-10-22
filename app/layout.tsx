@@ -95,6 +95,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <MotionProvider>
+            <a
+              href="#main"
+              className="sr-only rounded-full bg-secondary px-5 py-2.5 font-semibold text-background focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[10000]"
+            >
+              Aller au contenu
+            </a>
             <CustomCursor />
             <Header />
             {children}

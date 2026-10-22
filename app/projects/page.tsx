@@ -11,7 +11,9 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <main className="pt-20">
+    <main id="main" className="pt-20">
+      {/* La section Portfolio porte un h2 : la page a besoin de son propre h1 */}
+      <h1 className="sr-only">Projets d&apos;Ibrahima Sory Diallo</h1>
       <Portfolio />
     </main>
   );

@@ -29,7 +29,7 @@ export default function ResumeView() {
     });
 
     return (
-        <main className="min-h-screen bg-background pt-32 pb-20 overflow-x-hidden" ref={containerRef}>
+        <main id="main" className="min-h-screen bg-background pt-32 pb-20 overflow-x-hidden" ref={containerRef}>
             {/* Scroll Progress Indicator for Timeline */}
             <motion.div
                 className="fixed left-4 top-1/2 -translate-y-1/2 w-1 bg-secondary origin-top rounded-full hidden lg:block z-50 print:hidden"
@@ -248,7 +248,7 @@ export default function ResumeView() {
                                         >
                                             <div className="h-2 w-2 mt-2 rounded-full bg-secondary shrink-0" />
                                             <div className="space-y-0.5">
-                                                <h5 className="text-sm sm:text-base font-bold text-foreground print:text-black">{award.title}</h5>
+                                                <h4 className="text-sm sm:text-base font-bold text-foreground print:text-black">{award.title}</h4>
                                                 <p className="text-[11px] sm:text-xs text-muted print:text-black/60 font-medium leading-relaxed">{award.desc}</p>
                                             </div>
                                         </motion.div>
