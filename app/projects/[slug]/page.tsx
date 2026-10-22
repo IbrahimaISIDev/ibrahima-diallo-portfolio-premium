@@ -152,9 +152,7 @@ export default async function ProjectPage({ params }: Props) {
                 <div className="space-y-8">
                   {project.challenges.map((challenge, i) => (
                     <div key={i} className="flex gap-6 items-start">
-                      <span className="text-secondary font-black text-2xl opacity-20">
-                        0{i + 1}
-                      </span>
+                      <span className="text-muted-dark font-black text-2xl">0{i + 1}</span>
                       <p className="text-lg text-muted font-medium leading-relaxed pt-1 border-b border-border/20 pb-4 w-full">
                         {challenge}
                       </p>

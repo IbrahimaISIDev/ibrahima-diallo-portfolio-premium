@@ -30,6 +30,8 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
             alt={alt}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
+            // Largeur réelle : pleine largeur sur mobile, conteneur max-w-5xl (~960 px) au-delà
+            sizes="(max-width: 1024px) 100vw, 960px"
             priority
           />
           <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity group-hover:opacity-100" />

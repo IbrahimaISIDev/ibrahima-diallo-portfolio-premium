@@ -14,7 +14,8 @@ import {
 import { personalInfo } from "@/data/personal";
 import { skillGroups } from "@/data/skills";
 import { experiences } from "@/data/experience";
-import { fadeInUp, staggerContainer, fadeInLeft, fadeInRight } from "@/lib/animations";
+import { fadeInUp, heroChild } from "@/lib/animations";
+import type { Variants } from "framer-motion";
 import { siteConfig } from "@/lib/constants";
 import MagneticButton from "@/components/shared/MagneticButton";
 import Link from "next/link";
@@ -23,6 +24,13 @@ import { useRef } from "react";
 const workExperiences = experiences.filter((e) => e.type === "work");
 const education = experiences.filter((e) => e.type === "education");
 const siteHost = new URL(siteConfig.url).host;
+
+// Conteneur sans opacity:0 initiale : la carte du CV (et son identité, élément LCP)
+// est visible dès le HTML ; seuls les blocs plus bas apparaissent en cascade.
+const cvContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+};
 
 export default function ResumeView() {
   const containerRef = useRef(null);
@@ -53,7 +61,7 @@ export default function ResumeView() {
         {/* Resume Header / Action Bar */}
         <motion.div
           className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-16 print:hidden"
-          variants={fadeInUp}
+          variants={heroChild}
           initial="hidden"
           animate="visible"
         >
@@ -87,7 +95,7 @@ export default function ResumeView() {
         {/* CV Content - Premium Paper Style */}
         <motion.div
           className="relative bg-surface/30 border border-border/50 rounded-[1.5rem] md:rounded-[2.5rem] p-6 sm:p-10 md:p-20 shadow-2xl backdrop-blur-sm print:bg-white print:border-none print:p-0 print:text-black print:shadow-none print:backdrop-none"
-          variants={staggerContainer}
+          variants={cvContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -99,26 +107,20 @@ export default function ResumeView() {
 
             <div className="flex flex-col md:flex-row justify-between gap-8 sm:gap-12 relative z-10">
               <div className="space-y-4">
-                <motion.div variants={fadeInLeft}>
+                <div>
                   <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-foreground print:text-black tracking-tight leading-tight">
                     {personalInfo.fullName}
                   </h2>
                   <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-secondary to-primary-light bg-clip-text text-transparent mt-2 text-balance">
                     {personalInfo.headline}
                   </p>
-                </motion.div>
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-muted text-base sm:text-lg max-w-2xl print:text-black/80 font-medium"
-                >
+                </div>
+                <p className="text-muted text-base sm:text-lg max-w-2xl print:text-black/80 font-medium">
                   {personalInfo.summary}
-                </motion.p>
+                </p>
               </div>
 
-              <motion.div
-                variants={fadeInRight}
-                className="space-y-3 sm:space-y-4 text-sm md:text-right print:text-black min-w-[200px]"
-              >
+              <div className="space-y-3 sm:space-y-4 text-sm md:text-right print:text-black min-w-[200px]">
                 {[
                   { icon: MapPin, text: personalInfo.location },
                   { icon: Mail, text: personalInfo.email },
@@ -138,7 +140,7 @@ export default function ResumeView() {
                     />
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </div>
 
