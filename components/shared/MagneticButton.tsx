@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { useRef, type ReactNode } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 interface MagneticButtonProps {
     children: ReactNode;
@@ -9,26 +9,28 @@ interface MagneticButtonProps {
     strength?: number;
 }
 
+const spring = { stiffness: 150, damping: 15, mass: 0.1 };
+
 export default function MagneticButton({
     children,
     className = "",
     strength = 40,
 }: MagneticButtonProps) {
     const mouseRef = useRef<HTMLDivElement>(null);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    // Valeurs de mouvement : le déplacement suit la souris sans re-rendu React
+    const x = useSpring(useMotionValue(0), spring);
+    const y = useSpring(useMotionValue(0), spring);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const { clientX, clientY } = e;
         const { left, top, width, height } = mouseRef.current!.getBoundingClientRect();
 
-        const x = (clientX - (left + width / 2)) * (strength / 100);
-        const y = (clientY - (top + height / 2)) * (strength / 100);
-
-        setPosition({ x, y });
+        x.set((e.clientX - (left + width / 2)) * (strength / 100));
+        y.set((e.clientY - (top + height / 2)) * (strength / 100));
     };
 
     const resetPosition = () => {
-        setPosition({ x: 0, y: 0 });
+        x.set(0);
+        y.set(0);
     };
 
     return (
@@ -37,8 +39,7 @@ export default function MagneticButton({
             className={className}
             onMouseMove={handleMouseMove}
             onMouseLeave={resetPosition}
-            animate={{ x: position.x, y: position.y }}
-            transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+            style={{ x, y }}
         >
             {children}
         </motion.div>
