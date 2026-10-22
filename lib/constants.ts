@@ -6,7 +6,8 @@ export const siteConfig = {
   name: personalInfo.fullName,
   title: `${personalInfo.fullName} - ${personalInfo.title} | ${personalInfo.location}`,
   description: `Portfolio de ${personalInfo.fullName}, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à ${personalInfo.location}.`,
-  url: "https://ibrahimadev.com",
+  // Adresse de production (Vercel). À remplacer si un domaine personnalisé est branché.
+  url: "https://ibrahima-devs-portfolio.vercel.app",
   keywords: [
     "développeur full-stack",
     "react",

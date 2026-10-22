@@ -657,7 +657,7 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 - **C-02** : nouveaux témoignages (le champ `linkedin` est prêt).
 - **C-04** : détails (stack, rôle, défis) pour Abu Maryam TV, ADSS, SN Immo, Fily Mode Royale et Workspace L&N Entreprise.
 - **CV PDF** : `public/cv/Ibrahima-Sory-Diallo-CV_1.pdf` est l'ancienne version, alors que le bouton « Télécharger PDF Original » le propose.
-- **SEO-06** : domaine réel de production (`ibrahimadev.com` ?).
+- **SEO-06 ✅** : `ibrahimadev.com` ne résolvait pas ; le site utilise désormais son adresse réelle, `ibrahima-devs-portfolio.vercel.app` (celle du CV).
 - **F-10** : URL Calendly réelle, ou retrait du bouton.
 
 **Restes connus :**

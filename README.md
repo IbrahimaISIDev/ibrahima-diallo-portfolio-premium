@@ -2,6 +2,8 @@
 
 Portfolio de développeur Full-Stack basé à Dakar : parcours, compétences, projets en production, CV interactif et formulaire de contact. Identité visuelle « Premium Sénégal » : vert profond, or et rouge sur fond obsidienne, en thème sombre et clair.
 
+**Site en ligne : [ibrahima-devs-portfolio.vercel.app](https://ibrahima-devs-portfolio.vercel.app)**
+
 ![Aperçu de la page d'accueil](docs/apercu.webp)
 
 ---
