@@ -89,7 +89,7 @@ export default function Testimonials() {
                       <motion.div
                         className={cn(
                           "flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br shadow-lg",
-                          testimonial.avatarColor || "from-primary to-secondary"
+                          testimonial.avatarColor || "from-primary to-secondary",
                         )}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
@@ -169,7 +169,7 @@ export default function Testimonials() {
                 <span
                   className={cn(
                     "block h-2 rounded-full transition-all duration-300",
-                    current === index ? "w-8 bg-secondary" : "w-2 bg-border"
+                    current === index ? "w-8 bg-secondary" : "w-2 bg-border",
                   )}
                 />
               </button>

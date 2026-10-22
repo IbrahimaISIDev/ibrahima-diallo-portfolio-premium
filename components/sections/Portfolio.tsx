@@ -15,9 +15,7 @@ export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Tous");
 
   const filteredProjects =
-    activeCategory === "Tous"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+    activeCategory === "Tous" ? projects : projects.filter((p) => p.category === activeCategory);
 
   return (
     <section id="portfolio" className="py-24">
@@ -44,7 +42,7 @@ export default function Portfolio() {
                 "relative rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer overflow-hidden",
                 activeCategory === category
                   ? "text-background"
-                  : "bg-surface text-muted hover:bg-surface-light hover:text-foreground"
+                  : "bg-surface text-muted hover:bg-surface-light hover:text-foreground",
               )}
             >
               <span className="relative z-10">{category}</span>
@@ -79,14 +77,13 @@ export default function Portfolio() {
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 className="group relative h-full"
               >
-                <SpotlightCard className="h-full border-border bg-surface hover:border-secondary/50 overflow-hidden" spotlightColor="rgba(245, 158, 11, 0.1)">
+                <SpotlightCard
+                  className="h-full border-border bg-surface hover:border-secondary/50 overflow-hidden"
+                  spotlightColor="rgba(245, 158, 11, 0.1)"
+                >
                   {/* Image/Video Container */}
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <ParallaxImage
-                      src={project.image}
-                      alt={project.title}
-                      title={project.title}
-                    />
+                    <ParallaxImage src={project.image} alt={project.title} title={project.title} />
 
                     {/* Video Hover Overlay */}
                     {project.video && (
@@ -103,12 +100,14 @@ export default function Portfolio() {
                     {/* Status Badge */}
                     {project.status && (
                       <div className="absolute left-4 top-4 z-20">
-                        <span className={cn(
-                          "rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md",
-                          project.status === "Live"
-                            ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
-                            : "bg-secondary/20 text-secondary border border-secondary/30"
-                        )}>
+                        <span
+                          className={cn(
+                            "rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md",
+                            project.status === "Live"
+                              ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
+                              : "bg-secondary/20 text-secondary border border-secondary/30",
+                          )}
+                        >
                           {project.status === "Live" && "● "}
                           {projectStatusLabels[project.status]}
                         </span>

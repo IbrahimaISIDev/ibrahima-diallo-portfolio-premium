@@ -3,7 +3,10 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main id="main" className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
+    <main
+      id="main"
+      className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center"
+    >
       <div className="relative mb-8 text-9xl font-bold tracking-tighter text-secondary/10 sm:text-[12rem]">
         404
         <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-secondary sm:text-6xl">
@@ -14,7 +17,8 @@ export default function NotFound() {
         Cette page a disparu dans le cloud
       </h1>
       <p className="mb-8 max-w-md text-muted">
-        Le lien que vous avez suivi est peut-être rompu ou la page a été déplacée. Pas de panique, le retour est facile.
+        Le lien que vous avez suivi est peut-être rompu ou la page a été déplacée. Pas de panique,
+        le retour est facile.
       </p>
       <Link
         href="/"

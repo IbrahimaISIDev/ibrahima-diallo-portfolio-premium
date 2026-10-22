@@ -5,8 +5,7 @@ import { personalInfo } from "@/data/personal";
 export const siteConfig = {
   name: personalInfo.fullName,
   title: `${personalInfo.fullName} - ${personalInfo.title} | ${personalInfo.location}`,
-  description:
-    `Portfolio de ${personalInfo.fullName}, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à ${personalInfo.location}.`,
+  description: `Portfolio de ${personalInfo.fullName}, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à ${personalInfo.location}.`,
   url: "https://ibrahimadev.com",
   keywords: [
     "développeur full-stack",

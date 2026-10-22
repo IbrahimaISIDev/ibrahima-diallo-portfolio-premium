@@ -25,8 +25,6 @@ export default function Hero() {
       id="accueil"
       className="relative flex min-h-[90vh] items-center overflow-hidden pt-20"
     >
-
-
       <motion.div
         style={{ opacity, scale }}
         className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
@@ -73,7 +71,10 @@ export default function Hero() {
                   className="group flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20"
                 >
                   Me contacter
-                  <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
+                  <ArrowRight
+                    className="transition-transform group-hover:translate-x-1"
+                    size={20}
+                  />
                 </a>
               </MagneticButton>
               <MagneticButton>
@@ -177,9 +178,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-2 text-muted transition-colors duration-300 hover:text-secondary"
           aria-label="Défiler vers la suite"
         >
-          <span className="text-xs font-medium uppercase tracking-widest">
-            Défiler
-          </span>
+          <span className="text-xs font-medium uppercase tracking-widest">Défiler</span>
           <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-muted/30 p-1">
             <div className="h-2 w-1 animate-bounce rounded-full bg-secondary" />
           </div>

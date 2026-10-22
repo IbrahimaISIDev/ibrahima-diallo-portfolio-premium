@@ -32,7 +32,8 @@ export default function About() {
           >
             <motion.div variants={fadeInUp} className="space-y-6">
               <h3 className="text-3xl font-display font-bold text-foreground sm:text-4xl">
-                Je combine expertise technique et architecture logicielle pour créer des solutions numériques performantes.
+                Je combine expertise technique et architecture logicielle pour créer des solutions
+                numériques performantes.
               </h3>
               <p className="text-xl leading-relaxed text-muted mx-auto max-w-3xl">
                 {personalInfo.tagline}
@@ -61,9 +62,7 @@ export default function About() {
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
                     <Icon size={16} />
                   </div>
-                  <span className="text-sm font-bold text-foreground">
-                    {text}
-                  </span>
+                  <span className="text-sm font-bold text-foreground">{text}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -98,15 +97,32 @@ export default function About() {
         <div className="mt-32 space-y-12">
           <div className="text-center space-y-4">
             <MaskedReveal>
-              <span className="text-xs font-black uppercase tracking-[0.3em] text-secondary">Expertise</span>
+              <span className="text-xs font-black uppercase tracking-[0.3em] text-secondary">
+                Expertise
+              </span>
             </MaskedReveal>
             <MaskedReveal delay={0.1}>
-              <h4 className="text-3xl font-display font-bold text-foreground">Écosystème Technique</h4>
+              <h4 className="text-3xl font-display font-bold text-foreground">
+                Écosystème Technique
+              </h4>
             </MaskedReveal>
           </div>
 
           <InfiniteMarquee
-            items={["Next.js", "Angular", "Flutter", "NestJS", "Spring Boot", "TypeScript", "Node.js", "PostgreSQL", "Laravel", "React Native", "Docker", "Redis"]}
+            items={[
+              "Next.js",
+              "Angular",
+              "Flutter",
+              "NestJS",
+              "Spring Boot",
+              "TypeScript",
+              "Node.js",
+              "PostgreSQL",
+              "Laravel",
+              "React Native",
+              "Docker",
+              "Redis",
+            ]}
             speed={40}
           />
 

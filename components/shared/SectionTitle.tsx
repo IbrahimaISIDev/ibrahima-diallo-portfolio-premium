@@ -15,12 +15,7 @@ export default function SectionTitle({
   align = "center",
 }: SectionTitleProps) {
   return (
-    <div
-      className={cn(
-        "mb-16 max-w-2xl space-y-4",
-        align === "center" && "mx-auto text-center"
-      )}
-    >
+    <div className={cn("mb-16 max-w-2xl space-y-4", align === "center" && "mx-auto text-center")}>
       <MaskedReveal>
         <span className="inline-block text-sm font-semibold uppercase tracking-widest text-secondary">
           {subtitle}

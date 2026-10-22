@@ -21,9 +21,14 @@ test("une route inconnue affiche la page 404", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("disparu");
 });
 
-test("la navigation du header ramène vers les sections de l'accueil depuis une autre page", async ({ page }) => {
+test("la navigation du header ramène vers les sections de l'accueil depuis une autre page", async ({
+  page,
+}) => {
   await page.goto("/cv");
-  await page.getByRole("navigation", { name: "Navigation principale" }).getByRole("link", { name: "Contact" }).click();
+  await page
+    .getByRole("navigation", { name: "Navigation principale" })
+    .getByRole("link", { name: "Contact" })
+    .click();
   await expect(page).toHaveURL(/\/#contact$/);
   await expect(page.locator("section#contact")).toBeInViewport();
 });

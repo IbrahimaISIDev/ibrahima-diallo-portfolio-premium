@@ -7,7 +7,11 @@ import { staggerContainer, counterUp } from "@/lib/animations";
 export default function Stats() {
   const stats = [
     { value: `${personalInfo.stats.companies}`, label: "Entreprises & startups" },
-    { value: `${personalInfo.stats.projectsInProduction}`, label: "Projets en production", highlight: true },
+    {
+      value: `${personalInfo.stats.projectsInProduction}`,
+      label: "Projets en production",
+      highlight: true,
+    },
     { value: `${personalInfo.stats.yearsOfPractice}+`, label: "Années de pratique" },
   ];
   return (
@@ -25,20 +29,23 @@ export default function Stats() {
               key={stat.label}
               variants={counterUp}
               whileHover={{ y: -4, transition: { duration: 0.3 } }}
-              className={`group flex flex-col items-center rounded-2xl border p-8 text-center transition-colors duration-300 ${stat.highlight
-                ? "border-accent/50 bg-accent shadow-lg shadow-accent/10"
-                : "border-border bg-surface hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/5"
-                }`}
+              className={`group flex flex-col items-center rounded-2xl border p-8 text-center transition-colors duration-300 ${
+                stat.highlight
+                  ? "border-accent/50 bg-accent shadow-lg shadow-accent/10"
+                  : "border-border bg-surface hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/5"
+              }`}
             >
               <span
-                className={`font-display text-4xl font-bold sm:text-5xl ${stat.highlight ? "text-white" : "text-foreground"
-                  }`}
+                className={`font-display text-4xl font-bold sm:text-5xl ${
+                  stat.highlight ? "text-white" : "text-foreground"
+                }`}
               >
                 {stat.value}
               </span>
               <span
-                className={`mt-2 text-sm font-medium ${stat.highlight ? "text-white" : "text-muted"
-                  }`}
+                className={`mt-2 text-sm font-medium ${
+                  stat.highlight ? "text-white" : "text-muted"
+                }`}
               >
                 {stat.label}
               </span>

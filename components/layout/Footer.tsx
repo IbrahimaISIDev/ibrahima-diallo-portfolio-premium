@@ -16,13 +16,17 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/#accueil" className="flex items-center gap-1 text-2xl font-bold font-display">
+            <Link
+              href="/#accueil"
+              className="flex items-center gap-1 text-2xl font-bold font-display"
+            >
               <span className="text-foreground">Ibra</span>
               <span className="text-secondary">h</span>
               <span className="text-foreground">ima</span>
             </Link>
             <p className="max-w-xs text-muted leading-relaxed">
-              Développeur Full-Stack passionné par la création de solutions logicielles innovantes et performantes.
+              Développeur Full-Stack passionné par la création de solutions logicielles innovantes
+              et performantes.
             </p>
             <div className="flex gap-4">
               {[
@@ -81,9 +85,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {personalInfo.fullName}. Tous droits réservés.
           </p>
           <div className="flex items-center gap-6">
-            <p className="text-xs text-muted italic">
-              Fait avec passion à Dakar.
-            </p>
+            <p className="text-xs text-muted italic">Fait avec passion à Dakar.</p>
             <button
               onClick={scrollToTop}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-muted transition-all hover:bg-secondary hover:text-background"

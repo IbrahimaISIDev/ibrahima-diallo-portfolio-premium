@@ -1,47 +1,47 @@
 // Salve de confettis du logo. canvas-confetti est chargé au premier clic
 // seulement, pour ne pas alourdir le JavaScript initial de chaque page.
 export async function fireConfetti() {
-    const { default: confetti } = await import("canvas-confetti");
+  const { default: confetti } = await import("canvas-confetti");
 
-    const count = 200;
-    const defaults = {
-        origin: { y: 0.7 },
-        zIndex: 100,
-        disableForReducedMotion: true,
-    };
+  const count = 200;
+  const defaults = {
+    origin: { y: 0.7 },
+    zIndex: 100,
+    disableForReducedMotion: true,
+  };
 
-    function fire(particleRatio: number, opts: confetti.Options) {
-        confetti({
-            ...defaults,
-            ...opts,
-            particleCount: Math.floor(count * particleRatio),
-        });
-    }
-
-    fire(0.25, {
-        spread: 26,
-        startVelocity: 55,
+  function fire(particleRatio: number, opts: confetti.Options) {
+    confetti({
+      ...defaults,
+      ...opts,
+      particleCount: Math.floor(count * particleRatio),
     });
+  }
 
-    fire(0.2, {
-        spread: 60,
-    });
+  fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+  });
 
-    fire(0.35, {
-        spread: 100,
-        decay: 0.91,
-        scalar: 0.8,
-    });
+  fire(0.2, {
+    spread: 60,
+  });
 
-    fire(0.1, {
-        spread: 120,
-        startVelocity: 25,
-        decay: 0.92,
-        scalar: 1.2,
-    });
+  fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8,
+  });
 
-    fire(0.1, {
-        spread: 120,
-        startVelocity: 45,
-    });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2,
+  });
+
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+  });
 }

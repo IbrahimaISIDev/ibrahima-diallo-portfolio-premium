@@ -5,100 +5,96 @@ import { motion } from "framer-motion";
 import { type LucideIcon, ArrowRight } from "lucide-react";
 
 interface FlippableCardProps {
-    title: string;
-    description: string;
-    technologies: string[];
-    Icon: LucideIcon;
+  title: string;
+  description: string;
+  technologies: string[];
+  Icon: LucideIcon;
 }
 
 export default function FlippableCard({
-    title,
-    description,
-    technologies,
-    Icon,
+  title,
+  description,
+  technologies,
+  Icon,
 }: FlippableCardProps) {
-    const [isFlipped, setIsFlipped] = useState(false);
-    // Type du dernier pointeur : un tap tactile émule aussi le survol, il ne doit pas compter deux fois
-    const pointerType = useRef("mouse");
+  const [isFlipped, setIsFlipped] = useState(false);
+  // Type du dernier pointeur : un tap tactile émule aussi le survol, il ne doit pas compter deux fois
+  const pointerType = useRef("mouse");
 
-    return (
-        // Souris : survol. Tactile : tap. Clavier : focus (Tab).
-        // Les lecteurs d'écran lisent les technologies sur la face avant (texte sr-only).
-        <div
-            className="group relative h-[320px] w-full cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
-            style={{ perspective: "1000px" }}
-            tabIndex={0}
-            role="group"
-            aria-label={title}
-            onPointerDown={(e) => {
-                pointerType.current = e.pointerType;
-            }}
-            onPointerEnter={(e) => e.pointerType === "mouse" && setIsFlipped(true)}
-            onPointerLeave={(e) => e.pointerType === "mouse" && setIsFlipped(false)}
-            onClick={() => pointerType.current !== "mouse" && setIsFlipped((flipped) => !flipped)}
-            onFocus={() => setIsFlipped(true)}
-            onBlur={() => setIsFlipped(false)}
-        >
-            <motion.div
-                className="relative h-full w-full transition-all duration-500"
-                style={{ transformStyle: "preserve-3d" }}
-                initial={false}
-                animate={{ rotateY: isFlipped ? 180 : 0 }}
-                transition={{ duration: 0.6 }}
+  return (
+    // Souris : survol. Tactile : tap. Clavier : focus (Tab).
+    // Les lecteurs d'écran lisent les technologies sur la face avant (texte sr-only).
+    <div
+      className="group relative h-[320px] w-full cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+      style={{ perspective: "1000px" }}
+      tabIndex={0}
+      role="group"
+      aria-label={title}
+      onPointerDown={(e) => {
+        pointerType.current = e.pointerType;
+      }}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setIsFlipped(true)}
+      onPointerLeave={(e) => e.pointerType === "mouse" && setIsFlipped(false)}
+      onClick={() => pointerType.current !== "mouse" && setIsFlipped((flipped) => !flipped)}
+      onFocus={() => setIsFlipped(true)}
+      onBlur={() => setIsFlipped(false)}
+    >
+      <motion.div
+        className="relative h-full w-full transition-all duration-500"
+        style={{ transformStyle: "preserve-3d" }}
+        initial={false}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Front Face */}
+        <div className="absolute inset-0" style={{ backfaceVisibility: "hidden" }}>
+          <div className="h-full rounded-2xl border border-border bg-surface p-8 shadow-lg transition-colors duration-300 group-hover:border-secondary/50 group-hover:shadow-secondary/5 flex flex-col justify-between">
+            <div>
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
+                {Icon && <Icon size={28} />}
+              </div>
+              <h3 className="mb-3 font-display text-xl font-semibold text-foreground">{title}</h3>
+              <p className="text-sm leading-relaxed text-muted">{description}</p>
+            </div>
+
+            <div
+              aria-hidden="true"
+              className="flex items-center gap-2 text-sm font-medium text-secondary"
             >
-                {/* Front Face */}
-                <div
-                    className="absolute inset-0"
-                    style={{ backfaceVisibility: "hidden" }}
-                >
-                    <div className="h-full rounded-2xl border border-border bg-surface p-8 shadow-lg transition-colors duration-300 group-hover:border-secondary/50 group-hover:shadow-secondary/5 flex flex-col justify-between">
-                        <div>
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
-                                {Icon && <Icon size={28} />}
-                            </div>
-                            <h3 className="mb-3 font-display text-xl font-semibold text-foreground">
-                                {title}
-                            </h3>
-                            <p className="text-sm leading-relaxed text-muted">
-                                {description}
-                            </p>
-                        </div>
+              Voir les technologies
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </div>
+            <p className="sr-only">Technologies : {technologies.join(", ")}</p>
 
-                        <div aria-hidden="true" className="flex items-center gap-2 text-sm font-medium text-secondary">
-                            Voir les technologies
-                            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                        </div>
-                        <p className="sr-only">Technologies : {technologies.join(", ")}</p>
-
-                        {/* Bottom Accent */}
-                        <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-secondary to-accent transition-all duration-500 group-hover:w-full" />
-                    </div>
-                </div>
-
-                {/* Back Face (doublon visuel de la liste sr-only de la face avant) */}
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-0"
-                    style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)"
-                    }}
-                >
-                    <div className="h-full flex flex-col justify-center items-center rounded-2xl border border-secondary bg-surface p-8 shadow-xl text-center bg-gradient-to-br from-surface to-surface-light">
-                        <h4 className="mb-6 font-display text-lg font-bold text-foreground">Technologies</h4>
-                        <div className="flex flex-wrap justify-center gap-2">
-                            {technologies.map((tech) => (
-                                <span
-                                    key={tech}
-                                    className="rounded-full bg-secondary/10 px-3 py-1.5 text-xs font-semibold text-secondary"
-                                >
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
+            {/* Bottom Accent */}
+            <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-secondary to-accent transition-all duration-500 group-hover:w-full" />
+          </div>
         </div>
-    );
+
+        {/* Back Face (doublon visuel de la liste sr-only de la face avant) */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          <div className="h-full flex flex-col justify-center items-center rounded-2xl border border-secondary bg-surface p-8 shadow-xl text-center bg-gradient-to-br from-surface to-surface-light">
+            <h4 className="mb-6 font-display text-lg font-bold text-foreground">Technologies</h4>
+            <div className="flex flex-wrap justify-center gap-2">
+              {technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full bg-secondary/10 px-3 py-1.5 text-xs font-semibold text-secondary"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
 }

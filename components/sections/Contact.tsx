@@ -8,9 +8,7 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import { fadeInLeft, fadeInRight } from "@/lib/animations";
 
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   // Heure d'affichage du formulaire, vérifiée côté serveur (anti-spam)
   const startedAt = useRef(0);
 
@@ -79,7 +77,8 @@ export default function Contact() {
                 Parlons de votre prochain projet
               </h3>
               <p className="text-lg text-muted">
-                Que ce soit pour une nouvelle idée, une collaboration ou simplement pour dire bonjour, je suis toujours ouvert à de nouvelles opportunités.
+                Que ce soit pour une nouvelle idée, une collaboration ou simplement pour dire
+                bonjour, je suis toujours ouvert à de nouvelles opportunités.
               </p>
             </div>
 
@@ -117,9 +116,7 @@ export default function Contact() {
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-lg font-semibold text-foreground">
-                        {item.value}
-                      </p>
+                      <p className="text-lg font-semibold text-foreground">{item.value}</p>
                     )}
                   </div>
                 </div>

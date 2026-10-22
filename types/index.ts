@@ -24,12 +24,7 @@ export type ProjectStatus = "Live" | "En Développement" | "Concept";
 
 // Icônes disponibles pour les services (voir components/sections/Services.tsx)
 export type ServiceIcon =
-  | "Monitor"
-  | "Smartphone"
-  | "Server"
-  | "ShoppingCart"
-  | "Palette"
-  | "Cloud";
+  "Monitor" | "Smartphone" | "Server" | "ShoppingCart" | "Palette" | "Cloud";
 
 export interface Service {
   title: string;

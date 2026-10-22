@@ -34,7 +34,7 @@ export default function Header() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
             ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-lg shadow-background/50"
-            : "bg-transparent"
+            : "bg-transparent",
         )}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -96,19 +96,19 @@ export default function Header() {
                 <span
                   className={cn(
                     "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
-                    mobileMenuOpen && "translate-y-2 rotate-45"
+                    mobileMenuOpen && "translate-y-2 rotate-45",
                   )}
                 />
                 <span
                   className={cn(
                     "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
-                    mobileMenuOpen && "opacity-0"
+                    mobileMenuOpen && "opacity-0",
                   )}
                 />
                 <span
                   className={cn(
                     "h-0.5 w-6 rounded-full bg-foreground transition-all duration-300",
-                    mobileMenuOpen && "-translate-y-2 -rotate-45"
+                    mobileMenuOpen && "-translate-y-2 -rotate-45",
                   )}
                 />
               </button>
@@ -117,11 +117,7 @@ export default function Header() {
         </div>
       </header>
 
-      <MobileMenu
-        isOpen={mobileMenuOpen}
-        onClose={closeMobileMenu}
-        toggleRef={menuButtonRef}
-      />
+      <MobileMenu isOpen={mobileMenuOpen} onClose={closeMobileMenu} toggleRef={menuButtonRef} />
     </>
   );
 }

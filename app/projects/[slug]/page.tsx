@@ -39,8 +39,7 @@ export default async function ProjectPage({ params }: Props) {
 
   const projectIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(projectIndex + 1) % projects.length];
-  const prevProject =
-    projects[(projectIndex - 1 + projects.length) % projects.length];
+  const prevProject = projects[(projectIndex - 1 + projects.length) % projects.length];
 
   return (
     <main id="main" className="pt-20 bg-background min-h-screen">
@@ -97,20 +96,14 @@ export default async function ProjectPage({ params }: Props) {
         {/* Featured Image Section */}
         <section className="mb-24 relative group">
           <div className="rounded-[2.5rem] overflow-hidden border border-border/50 shadow-2xl">
-            <LightboxImage
-              src={project.image}
-              alt={project.description}
-              title={project.title}
-            />
+            <LightboxImage src={project.image} alt={project.description} title={project.title} />
           </div>
         </section>
 
         {/* Deep Case Study Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
-
           {/* Main Column (Technical Story) */}
           <div className="lg:col-span-8 space-y-24">
-
             {/* Architecture Section */}
             {project.architecture && (
               <section className="space-y-12">
@@ -118,11 +111,16 @@ export default async function ProjectPage({ params }: Props) {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary/10 text-secondary border border-secondary/20">
                     <Cpu size={24} />
                   </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Architecture</h2>
+                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">
+                    Architecture
+                  </h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {project.architecture.map((item, i) => (
-                    <div key={i} className="p-6 rounded-2xl border border-border/40 bg-surface/30 hover:border-secondary/30 transition-colors group">
+                    <div
+                      key={i}
+                      className="p-6 rounded-2xl border border-border/40 bg-surface/30 hover:border-secondary/30 transition-colors group"
+                    >
                       <div className="h-2 w-8 bg-secondary/30 group-hover:bg-secondary rounded-full mb-4 transition-all" />
                       <p className="font-bold text-foreground leading-snug">{item}</p>
                     </div>
@@ -138,12 +136,16 @@ export default async function ProjectPage({ params }: Props) {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary-text border border-primary/20">
                     <ShieldCheck size={24} />
                   </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Défis Techniques</h2>
+                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">
+                    Défis Techniques
+                  </h2>
                 </div>
                 <div className="space-y-8">
                   {project.challenges.map((challenge, i) => (
                     <div key={i} className="flex gap-6 items-start">
-                      <span className="text-secondary font-black text-2xl opacity-20">0{i + 1}</span>
+                      <span className="text-secondary font-black text-2xl opacity-20">
+                        0{i + 1}
+                      </span>
                       <p className="text-lg text-muted font-medium leading-relaxed pt-1 border-b border-border/20 pb-4 w-full">
                         {challenge}
                       </p>
@@ -160,7 +162,9 @@ export default async function ProjectPage({ params }: Props) {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground/5 text-foreground border border-border/50">
                     <Code2 size={24} />
                   </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">Extrait de code</h2>
+                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">
+                    Extrait de code
+                  </h2>
                 </div>
                 <div className="rounded-3xl border border-border bg-[#0d1117] p-1 shadow-2xl relative overflow-hidden group">
                   <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
@@ -169,7 +173,9 @@ export default async function ProjectPage({ params }: Props) {
                       <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
                       <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">logic_core.ts</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                      logic_core.ts
+                    </span>
                   </div>
                   <pre className="p-8 text-sm sm:text-base font-mono leading-relaxed overflow-x-auto text-blue-200/90 [scrollbar-width:none] [-ms-overflow-style:none]">
                     <code>{project.codeSnippet}</code>
@@ -183,24 +189,31 @@ export default async function ProjectPage({ params }: Props) {
 
           {/* Sidebar (Meta Info) */}
           <aside className="lg:col-span-4 space-y-12 h-fit lg:sticky lg:top-32">
-
             {/* Project Status & Meta */}
             <div className="p-8 rounded-[2rem] border border-border/50 bg-surface/30 space-y-8">
               <div className="space-y-3">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Statut Projet</h2>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">
+                  Statut Projet
+                </h2>
                 <div className="flex items-center gap-3">
                   <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="font-black text-foreground">{projectStatusLabels[project.status ?? "Live"]}</span>
+                  <span className="font-black text-foreground">
+                    {projectStatusLabels[project.status ?? "Live"]}
+                  </span>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Impact Majeur</h2>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">
+                  Impact Majeur
+                </h2>
                 <p className="font-bold text-foreground leading-tight">{project.impact}</p>
               </div>
 
               <div className="space-y-4 pt-4 border-t border-border/40">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">Stack technique</h2>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">
+                  Stack technique
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
@@ -220,7 +233,9 @@ export default async function ProjectPage({ params }: Props) {
                 <LayoutPanelLeft size={20} />
               </div>
               <p className="text-sm font-medium italic text-muted leading-relaxed">
-                &ldquo;Ce projet démontre ma capacité à transformer des problématiques métiers complexes en solutions scalables tout en garantissant une expérience utilisateur fluide.&rdquo;
+                &ldquo;Ce projet démontre ma capacité à transformer des problématiques métiers
+                complexes en solutions scalables tout en garantissant une expérience utilisateur
+                fluide.&rdquo;
               </p>
             </div>
           </aside>
@@ -232,14 +247,18 @@ export default async function ProjectPage({ params }: Props) {
             href={`/projects/${prevProject.slug}`}
             className="group p-10 rounded-[2.5rem] border border-border/40 bg-surface/20 transition-all hover:border-secondary/40 hover:bg-secondary/5 flex flex-col items-start gap-4"
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-dark group-hover:text-secondary transition-colors">← Précédent</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-dark group-hover:text-secondary transition-colors">
+              ← Précédent
+            </span>
             <p className="font-display text-2xl font-black text-foreground">{prevProject.title}</p>
           </Link>
           <Link
             href={`/projects/${nextProject.slug}`}
             className="group p-10 rounded-[2.5rem] border border-border/40 bg-surface/20 transition-all hover:border-secondary/40 hover:bg-secondary/5 flex flex-col items-end text-right gap-4"
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-dark group-hover:text-secondary transition-colors">Suivant →</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-dark group-hover:text-secondary transition-colors">
+              Suivant →
+            </span>
             <p className="font-display text-2xl font-black text-foreground">{nextProject.title}</p>
           </Link>
         </nav>

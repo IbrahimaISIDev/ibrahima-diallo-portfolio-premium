@@ -53,17 +53,13 @@ export default function AboutPage() {
             <h1 className="font-display text-4xl font-bold text-foreground sm:text-5xl">
               {personalInfo.fullName}
             </h1>
-            <p className="text-xl text-muted">
-              {personalInfo.title}
-            </p>
+            <p className="text-xl text-muted">{personalInfo.title}</p>
+            <p className="leading-relaxed text-muted">{personalInfo.summary}</p>
             <p className="leading-relaxed text-muted">
-              {personalInfo.summary}
-            </p>
-            <p className="leading-relaxed text-muted">
-              Basé à {personalInfo.location}, mon parcours, de la Sonatel Academy
-              à Nixacom en passant par Saraya Tech, Tekkil et AgriPont, m&apos;a permis
-              de développer une approche alliant excellence technique et
-              compréhension approfondie des besoins métiers.
+              Basé à {personalInfo.location}, mon parcours, de la Sonatel Academy à Nixacom en
+              passant par Saraya Tech, Tekkil et AgriPont, m&apos;a permis de développer une
+              approche alliant excellence technique et compréhension approfondie des besoins
+              métiers.
             </p>
 
             {/* Quick info */}
@@ -118,9 +114,7 @@ export default function AboutPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
                   <Icon size={24} />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground">
-                  {title}
-                </h3>
+                <h3 className="font-display text-lg font-semibold text-foreground">{title}</h3>
                 <p className="text-sm leading-relaxed text-muted">{text}</p>
               </div>
             ))}
@@ -154,17 +148,12 @@ export default function AboutPage() {
                     </span>
                   </div>
 
-                  <p className="mb-4 text-sm leading-relaxed text-muted">
-                    {exp.description}
-                  </p>
+                  <p className="mb-4 text-sm leading-relaxed text-muted">{exp.description}</p>
 
                   {exp.highlights.length > 0 && (
                     <ul className="mb-6 space-y-2">
                       {exp.highlights.map((highlight, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-sm text-muted"
-                        >
+                        <li key={i} className="flex items-start gap-2 text-sm text-muted">
                           <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                           {highlight}
                         </li>
@@ -201,9 +190,7 @@ export default function AboutPage() {
                 key={group.id}
                 className="rounded-2xl border border-border bg-surface p-6 space-y-5"
               >
-                <h3 className="font-display text-lg font-semibold text-secondary">
-                  {group.label}
-                </h3>
+                <h3 className="font-display text-lg font-semibold text-secondary">{group.label}</h3>
                 <ul className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
                     <li
@@ -226,8 +213,8 @@ export default function AboutPage() {
               Travaillons ensemble
             </h2>
             <p className="mx-auto mb-8 max-w-lg text-muted">
-              Vous avez un projet en tête ? Je suis disponible pour discuter de
-              vos besoins et trouver la meilleure solution.
+              Vous avez un projet en tête ? Je suis disponible pour discuter de vos besoins et
+              trouver la meilleure solution.
             </p>
             <a
               href="/contact"

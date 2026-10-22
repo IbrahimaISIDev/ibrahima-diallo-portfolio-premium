@@ -34,47 +34,47 @@
 
 @layer base {
   :root {
-    --primary: #1B5E20;
-    --primary-light: #2E7D32;
+    --primary: #1b5e20;
+    --primary-light: #2e7d32;
     --primary-dark: #145218;
-    --primary-text: #66BB6A;
-    --secondary: #F59E0B;
-    --secondary-light: #FBBF24;
-    --secondary-dark: #D97706;
-    --accent: #DC2626;
-    --accent-light: #EF4444;
+    --primary-text: #66bb6a;
+    --secondary: #f59e0b;
+    --secondary-light: #fbbf24;
+    --secondary-dark: #d97706;
+    --accent: #dc2626;
+    --accent-light: #ef4444;
 
     --background: #111111;
-    --surface: #1A1A1C;
+    --surface: #1a1a1c;
     --surface-light: #222225;
-    --border: #2A2A2D;
+    --border: #2a2a2d;
     --border-light: #353538;
 
-    --foreground: #F8FAFC;
-    --muted: #94A3B8;
+    --foreground: #f8fafc;
+    --muted: #94a3b8;
     /* ≥ 4.5:1 sur background, surface et surface-light (#64748B était à 3.65-3.97) */
-    --muted-dark: #8391A7;
+    --muted-dark: #8391a7;
 
     --pattern-line: rgba(255, 255, 255, 0.1);
   }
 
   .light {
-    --background: #F8FAFC;
-    --surface: #FFFFFF;
-    --surface-light: #F1F5F9;
-    --border: #E2E8F0;
-    --border-light: #CBD5E1;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-light: #f1f5f9;
+    --border: #e2e8f0;
+    --border-light: #cbd5e1;
 
-    --foreground: #0F172A;
+    --foreground: #0f172a;
     --muted: #475569;
-    --muted-dark: #1E293B;
+    --muted-dark: #1e293b;
 
     /* L'ambre #F59E0B tombait à 2.05:1 sur fond clair : amber-700 (≥ 4.58:1)
        pour le texte et les boutons, plus foncé encore au survol */
-    --secondary: #B45309;
-    --secondary-light: #92400E;
-    --secondary-dark: #92400E;
-    --primary-text: #2E7D32;
+    --secondary: #b45309;
+    --secondary-light: #92400e;
+    --secondary-dark: #92400e;
+    --primary-text: #2e7d32;
 
     --pattern-line: rgba(15, 23, 42, 0.06);
   }
@@ -109,11 +109,13 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: repeating-linear-gradient(45deg,
-      transparent,
-      transparent 35px,
-      var(--pattern-line) 35px,
-      var(--pattern-line) 36px);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 35px,
+    var(--pattern-line) 35px,
+    var(--pattern-line) 36px
+  );
   pointer-events: none;
   z-index: -10;
   mask-image: radial-gradient(circle at center, black, transparent 90%);
@@ -155,7 +157,7 @@ pre {
 ::selection {
   background-color: var(--color-primary);
   /* Blanc fixe : 7.9:1 sur le vert primaire dans les deux thèmes */
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* Reduced motion */
@@ -193,7 +195,7 @@ pre {
 
   /* Fix colors for print */
   .text-secondary {
-    color: #B45309 !important;
+    color: #b45309 !important;
   }
 
   .print\:text-black {

@@ -24,5 +24,5 @@ export const testimonials: Testimonial[] = [
     avatarColor: "from-purple-500 to-pink-500",
     content:
       "La digitalisation de notre clinique par Ibrahima a transformé notre façon de travailler. Le système est fiable, intuitif et a considérablement amélioré notre efficacité.",
-  }
+  },
 ];

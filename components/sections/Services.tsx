@@ -43,10 +43,16 @@ export default function Services() {
   return (
     <section ref={ref} id="services" className="relative py-24 overflow-hidden">
       {/* Background Storytelling elements */}
-      <motion.div style={{ y: y1 }} className="absolute -top-10 left-[10%] opacity-5 text-secondary pointer-events-none hidden xl:block">
+      <motion.div
+        style={{ y: y1 }}
+        className="absolute -top-10 left-[10%] opacity-5 text-secondary pointer-events-none hidden xl:block"
+      >
         <Code2 size={200} />
       </motion.div>
-      <motion.div style={{ y: y2 }} className="absolute -bottom-10 right-[5%] opacity-5 text-primary-text pointer-events-none hidden xl:block">
+      <motion.div
+        style={{ y: y2 }}
+        className="absolute -bottom-10 right-[5%] opacity-5 text-primary-text pointer-events-none hidden xl:block"
+      >
         <Smartphone size={300} />
       </motion.div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

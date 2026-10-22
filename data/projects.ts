@@ -41,8 +41,7 @@ export const projects: Project[] = [
     tags: ["React", "NestJS", "PostgreSQL", "TypeORM", "Docker"],
     category: "AgriTech",
     liveUrl: "https://agripont.com",
-    impact:
-      "Co-fondée et déployée en production ; mémoire de fin de cycle soutenu à l'ISI",
+    impact: "Co-fondée et déployée en production ; mémoire de fin de cycle soutenu à l'ISI",
     status: "Live",
     architecture: [
       "Architecture 3-tiers : React.js et Tailwind CSS, API REST NestJS en TypeScript, PostgreSQL avec TypeORM",
@@ -70,12 +69,12 @@ export const projects: Project[] = [
       "Architecture Client-Serveur avec REST API",
       "Gestion d'état avec React Context & Hooks",
       "Persistance des données sécurisée sur PostgreSQL",
-      "Authentification basée sur JWT"
+      "Authentification basée sur JWT",
     ],
     challenges: [
       "Gestion confidentielle et sécurisée des dossiers médicaux",
       "Optimisation de la recherche de patients parmi des milliers d'entrées",
-      "Interface utilisateur simplifiée pour le personnel soignant"
+      "Interface utilisateur simplifiée pour le personnel soignant",
     ],
     codeSnippet: `const searchPatient = async (query) => {
   const result = await db.patients.findMany({
@@ -88,7 +87,7 @@ export const projects: Project[] = [
     take: 10
   });
   return result;
-};`
+};`,
   },
   {
     title: "Abu Maryam TV",
@@ -152,13 +151,13 @@ export const projects: Project[] = [
       "Backend découplé avec NestJS (Modular Architecture)",
       "Application mobile cross-platform avec Flutter",
       "Infrastructure conteneurisée avec Docker",
-      "Intégration temps-réel avec WebSockets"
+      "Intégration temps-réel avec WebSockets",
     ],
     challenges: [
       "Synchronisation des données en temps réel pour le suivi GPS",
       "Gestion de gros volumes de logs de trajet rattachés aux véhicules",
-      "Calcul complexe de la consommation de carburant et maintenance"
-    ]
+      "Calcul complexe de la consommation de carburant et maintenance",
+    ],
   },
 
   {
@@ -171,7 +170,7 @@ export const projects: Project[] = [
     category: "Communauté",
     liveUrl: "https://aem-unchk-connect.vercel.app",
     impact: "Digitalisation de l'Association des Étudiants Musulmans de l'UN-CHK",
-    status: "Live"
+    status: "Live",
   },
   {
     title: "Workspace L&N Entreprise",
@@ -194,7 +193,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     category: "Web",
     impact: "Vitrine professionnelle moderne et performante",
-    status: "Live"
+    status: "Live",
   },
   {
     title: "Dashboard Analytics",
@@ -205,12 +204,9 @@ export const projects: Project[] = [
     tags: ["React", "D3.js", "Node.js", "MongoDB"],
     category: "Web",
     impact: "Suivi en temps réel des indicateurs de performance",
-    status: "Live"
+    status: "Live",
   },
 ];
 
 // Filtres du portfolio, déduits des projets : pas de catégorie vide, pas d'oubli
-export const projectCategories = [
-  "Tous",
-  ...new Set(projects.map((project) => project.category)),
-];
+export const projectCategories = ["Tous", ...new Set(projects.map((project) => project.category))];

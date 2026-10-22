@@ -18,16 +18,7 @@ export const skillGroups: SkillGroup[] = [
   {
     id: "backend-node",
     label: "Backend Node.js",
-    items: [
-      "Node.js",
-      "NestJS",
-      "Express",
-      "REST APIs",
-      "GraphQL",
-      "WebSockets",
-      "JWT",
-      "OAuth2",
-    ],
+    items: ["Node.js", "NestJS", "Express", "REST APIs", "GraphQL", "WebSockets", "JWT", "OAuth2"],
   },
   {
     id: "backend-java",

@@ -24,12 +24,12 @@ export default function Freelancing() {
               backgroundSize: "32px 32px",
             }}
             animate={{
-              backgroundPosition: ["0px 0px", "32px 32px"]
+              backgroundPosition: ["0px 0px", "32px 32px"],
             }}
             transition={{
               duration: 10,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
           />
 
@@ -47,8 +47,8 @@ export default function Freelancing() {
               Je suis disponible pour du Freelancing
             </h2>
             <p className="mx-auto max-w-lg text-lg text-white">
-              Du développement web au mobile, je vous accompagne dans la
-              réalisation de vos projets digitaux.
+              Du développement web au mobile, je vous accompagne dans la réalisation de vos projets
+              digitaux.
             </p>
             <MagneticButton className="inline-flex">
               <motion.a
