@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Github, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
 import { projects } from "@/data/projects";
 import LightboxImage from "@/components/shared/LightboxImage";
+import { pageMetadata } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,10 +21,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Projet introuvable" };
 
-  return {
+  return pageMetadata({
     title: `${project.title} - Ibrahima Sory Diallo`,
     description: project.description,
-  };
+    path: `/projects/${project.slug}`,
+    type: "article",
+    // Image générée par ./opengraph-image.tsx
+    image: `/projects/${project.slug}/opengraph-image`,
+  });
 }
 
 export default async function ProjectPage({ params }: Props) {

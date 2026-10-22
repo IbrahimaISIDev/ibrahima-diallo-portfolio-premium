@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import {
   Code2,
   Briefcase,
@@ -14,11 +15,12 @@ import { personalInfo } from "@/data/personal";
 import { experiences } from "@/data/experience";
 import { skills, skillCategories } from "@/data/skills";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "À propos - Ibrahima Sory Diallo",
   description:
     "Développeur Full-Stack basé à Dakar, Sénégal. Découvrez mon parcours, mes compétences et ma philosophie de travail.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   const groupedSkills = Object.entries(skillCategories).map(([key, label]) => ({

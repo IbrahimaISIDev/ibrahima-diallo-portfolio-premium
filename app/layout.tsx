@@ -6,6 +6,7 @@ import CustomCursor from "@/components/shared/CustomCursor";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import MotionProvider from "@/components/shared/MotionProvider";
 import { siteConfig } from "@/lib/constants";
+import { personalInfo } from "@/data/personal";
 import "./globals.css";
 
 // Les variables sont référencées par @theme dans globals.css
@@ -50,6 +51,24 @@ export const metadata: Metadata = {
   },
 };
 
+// Données structurées schema.org : identité, poste et profils pour les moteurs de recherche
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: personalInfo.fullName,
+  jobTitle: personalInfo.title,
+  url: siteConfig.url,
+  image: `${siteConfig.url}${personalInfo.profileImage}`,
+  email: `mailto:${personalInfo.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dakar",
+    addressCountry: "SN",
+  },
+  sameAs: [personalInfo.social.linkedin, personalInfo.social.github],
+  knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "Flutter", "PostgreSQL"],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -62,6 +81,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          // Contenu statique ; "<" échappé pour ne jamais pouvoir fermer la balise script
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
