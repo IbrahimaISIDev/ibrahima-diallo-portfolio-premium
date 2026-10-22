@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, type RefObject } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { navigationItems } from "@/data/navigation";
@@ -10,9 +11,53 @@ const MotionLink = motion.create(Link);
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  // Bouton d'ouverture : il reste dans le cycle du focus et le récupère à la fermeture
+  toggleRef: RefObject<HTMLButtonElement | null>;
 }
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, toggleRef }: MobileMenuProps) {
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const toggle = toggleRef.current;
+    const focusables = () => [
+      ...(toggle ? [toggle] : []),
+      ...Array.from(navRef.current?.querySelectorAll<HTMLElement>("a[href]") ?? []),
+    ];
+
+    // Bloque le défilement de la page derrière le menu
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    focusables()[1]?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // Piège de focus : Tab et Maj+Tab bouclent entre le bouton et les liens du menu
+      const items = focusables();
+      const index = items.indexOf(document.activeElement as HTMLElement);
+      const next = e.shiftKey
+        ? items[(index - 1 + items.length) % items.length]
+        : items[(index + 1) % items.length];
+      e.preventDefault();
+      next?.focus();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      toggle?.focus();
+    };
+  }, [isOpen, onClose, toggleRef]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -22,9 +67,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           exit="closed"
           variants={mobileMenuVariants}
           id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu de navigation"
           className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl lg:hidden"
         >
-          <nav className="flex h-full flex-col items-center justify-center gap-8">
+          <nav
+            ref={navRef}
+            aria-label="Navigation mobile"
+            className="flex h-full flex-col items-center justify-center gap-8"
+          >
             {navigationItems.map((item) => (
               <MotionLink
                 key={item.href}

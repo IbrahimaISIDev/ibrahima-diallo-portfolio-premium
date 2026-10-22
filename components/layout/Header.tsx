@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,9 @@ const MotionLink = motion.create(Link);
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  // Référence stable : le menu l'utilise comme dépendance d'effet
+  const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +52,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden items-center gap-8 lg:flex">
+            <nav aria-label="Navigation principale" className="hidden items-center gap-8 lg:flex">
               {navigationItems.map((item) => (
                 <Link
                   key={item.href}
@@ -83,6 +86,7 @@ export default function Header() {
             <div className="flex items-center gap-4 lg:hidden">
               <ThemeToggle />
               <button
+                ref={menuButtonRef}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5"
                 aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
@@ -115,7 +119,8 @@ export default function Header() {
 
       <MobileMenu
         isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
+        onClose={closeMobileMenu}
+        toggleRef={menuButtonRef}
       />
     </>
   );
