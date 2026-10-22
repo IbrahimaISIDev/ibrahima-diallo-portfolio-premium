@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import { personalInfo } from "@/data/personal";
 import { experiences } from "@/data/experience";
-import { skills, skillCategories } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 
 export const metadata: Metadata = pageMetadata({
   title: "À propos - Ibrahima Sory Diallo",
@@ -23,11 +23,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function AboutPage() {
-  const groupedSkills = Object.entries(skillCategories).map(([key, label]) => ({
-    label,
-    items: skills.filter((s) => s.category === key),
-  }));
-
   return (
     <main id="main" className="pt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -201,30 +196,24 @@ export default function AboutPage() {
             Compétences Techniques
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {groupedSkills.map((group) => (
+            {skillGroups.map((group) => (
               <div
-                key={group.label}
+                key={group.id}
                 className="rounded-2xl border border-border bg-surface p-6 space-y-5"
               >
                 <h3 className="font-display text-lg font-semibold text-secondary">
                   {group.label}
                 </h3>
-                {group.items.map((skill) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-foreground">
-                        {skill.name}
-                      </span>
-                      <span className="text-xs text-muted">{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-background">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-primary to-secondary"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-full bg-background px-3 py-1.5 text-sm font-medium text-muted"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>

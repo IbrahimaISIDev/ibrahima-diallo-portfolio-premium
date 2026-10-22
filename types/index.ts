@@ -21,11 +21,18 @@ export interface Project {
   status?: "Live" | "En Développement" | "Concept";
 }
 
-export interface Skill {
-  name: string;
-  icon?: string;
-  level?: number;
-  category: "frontend" | "backend" | "mobile" | "database" | "devops";
+// Compétences groupées par domaine, sans niveau chiffré
+export interface SkillGroup {
+  id:
+    | "frontend"
+    | "backend-node"
+    | "backend-java"
+    | "laravel"
+    | "mobile"
+    | "data-devops"
+    | "security";
+  label: string;
+  items: string[];
 }
 
 export interface Experience {

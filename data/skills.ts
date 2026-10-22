@@ -1,39 +1,113 @@
-import type { Skill } from "@/types";
+import type { SkillGroup } from "@/types";
 
-export const skills: Skill[] = [
-  // Frontend
-  { name: "React / Next.js", level: 95, category: "frontend" },
-  { name: "TypeScript", level: 90, category: "frontend" },
-  { name: "Tailwind CSS", level: 92, category: "frontend" },
-  { name: "HTML / CSS", level: 95, category: "frontend" },
-  { name: "Framer Motion", level: 80, category: "frontend" },
-
-  // Backend
-  { name: "Node.js / Express", level: 90, category: "backend" },
-  { name: "NestJS", level: 85, category: "backend" },
-  { name: "PHP / Laravel", level: 95, category: "backend" },
-  { name: "Python", level: 70, category: "backend" },
-
-  // Mobile
-  { name: "Flutter", level: 85, category: "mobile" },
-  { name: "React Native", level: 70, category: "mobile" },
-
-  // Database
-  { name: "PostgreSQL", level: 90, category: "database" },
-  { name: "MongoDB", level: 85, category: "database" },
-  { name: "Firebase", level: 85, category: "database" },
-
-  // DevOps
-  { name: "Docker", level: 78, category: "devops" },
-  { name: "Git / GitHub Actions", level: 90, category: "devops" },
-  { name: "AWS / Vercel / Render", level: 80, category: "devops" },
-  { name: "Firebase Hosting", level: 70, category: "devops" },
+export const skillGroups: SkillGroup[] = [
+  {
+    id: "frontend",
+    label: "Frontend",
+    items: [
+      "Angular",
+      "React 18/19",
+      "Next.js 15",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Redux",
+      "Hooks",
+    ],
+  },
+  {
+    id: "backend-node",
+    label: "Backend Node.js",
+    items: [
+      "Node.js",
+      "NestJS",
+      "Express",
+      "REST APIs",
+      "GraphQL",
+      "WebSockets",
+      "JWT",
+      "OAuth2",
+    ],
+  },
+  {
+    id: "backend-java",
+    label: "Backend Java",
+    items: [
+      "Java 17/21",
+      "POO",
+      "Spring Boot",
+      "Spring MVC",
+      "Spring Security",
+      "Spring Data JPA / Hibernate",
+      "JDBC",
+      "JavaFX",
+      "JEE / Jakarta EE",
+      "Maven / Gradle",
+      "REST APIs",
+      "JWT",
+      "Swagger / OpenAPI",
+    ],
+  },
+  {
+    id: "laravel",
+    label: "Laravel",
+    items: [
+      "Eloquent ORM",
+      "Services",
+      "Repositories",
+      "Events",
+      "Multi-tenancy",
+      "Laravel Passport",
+    ],
+  },
+  {
+    id: "mobile",
+    label: "Mobile & Offline",
+    items: [
+      "React Native (Android/iOS)",
+      "Flutter (Android/iOS)",
+      "PWA",
+      "Offline-first (IndexedDB, Dexie, SQLite)",
+      "Firebase",
+      "Push Notifications",
+      "Deep Linking",
+    ],
+  },
+  {
+    id: "data-devops",
+    label: "Bases de données, Cloud & DevOps",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "Firebase",
+      "Prisma",
+      "TypeORM",
+      "Git",
+      "GitHub Actions",
+      "Docker",
+      "CodeMagic",
+      "Postman",
+      "Jest",
+      "PHPUnit",
+    ],
+  },
+  {
+    id: "security",
+    label: "Sécurité & Architecture",
+    items: [
+      "JWT",
+      "OAuth2",
+      "Chiffrement AES-256",
+      "RBAC",
+      "Conformité RGPD/HDS",
+      "Agile/Scrum",
+      "Clean Code",
+      "Principes SOLID",
+      "Cache Redis",
+      "Lazy loading",
+      "Code splitting",
+    ],
+  },
 ];
-
-export const skillCategories = {
-  frontend: "Frontend",
-  backend: "Backend",
-  mobile: "Mobile",
-  database: "Bases de données",
-  devops: "DevOps & Outils",
-} as const;

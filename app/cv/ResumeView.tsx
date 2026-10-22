@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Download, MapPin, Mail, Phone, ExternalLink, GraduationCap, Briefcase, Award } from "lucide-react";
 import { personalInfo } from "@/data/personal";
-import { skills } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import { experiences } from "@/data/experience";
 import { fadeInUp, staggerContainer, fadeInLeft, fadeInRight } from "@/lib/animations";
 import { siteConfig } from "@/lib/constants";
@@ -202,30 +202,23 @@ export default function ResumeView() {
                                 </div>
 
                                 <div className="space-y-8 sm:space-y-10">
-                                    {skills.slice(0, 12).map((skill, i) => (
+                                    {skillGroups.map((group, i) => (
                                         <motion.div
-                                            key={skill.name}
-                                            className="space-y-2.5 sm:space-y-3"
+                                            key={group.id}
+                                            className="space-y-3 print:break-inside-avoid"
                                             initial={{ opacity: 0, x: 20 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ delay: i * 0.05 }}
                                             viewport={{ once: true }}
                                         >
-                                            <div className="flex justify-between items-end">
-                                                <span className="text-[11px] sm:text-sm font-black uppercase tracking-widest text-foreground print:text-black">{skill.name}</span>
-                                                <span className="text-[10px] sm:text-xs font-black text-secondary bg-secondary/10 px-2 py-0.5 rounded-md">{skill.level}%</span>
-                                            </div>
-                                            <div className="relative h-1.5 sm:h-2 w-full bg-border/30 print:bg-black/5 rounded-full overflow-hidden">
-                                                {/* Largeur fixée dans le style, animation sur scaleX : la barre reste correcte à l'impression */}
-                                                <motion.div
-                                                    className="h-full origin-left bg-primary"
-                                                    style={{ width: `${skill.level}%` }}
-                                                    initial={{ scaleX: 0 }}
-                                                    whileInView={{ scaleX: 1 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ duration: 1.5, ease: "easeOut" }}
-                                                />
-                                            </div>
+                                            <h4 className="text-[11px] sm:text-sm font-black uppercase tracking-widest text-foreground print:text-black">{group.label}</h4>
+                                            <ul className="flex flex-wrap gap-1.5">
+                                                {group.items.map((item) => (
+                                                    <li key={item} className="rounded-md border border-border/50 bg-surface-light/30 px-2 py-1 text-[11px] sm:text-xs font-semibold text-muted print:border-black/10 print:text-black/70">
+                                                        {item}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </motion.div>
                                     ))}
                                 </div>
