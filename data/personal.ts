@@ -1,6 +1,4 @@
 export const personalInfo = {
-  firstName: "Ibrahima",
-  lastName: "Sory Diallo",
   fullName: "Ibrahima Sory Diallo",
   profileImage: "/images/image.png",
   title: "Développeur Full-Stack",
@@ -12,7 +10,6 @@ export const personalInfo = {
   location: "Dakar, Sénégal",
   email: "ibrahimadev6@gmail.com",
   phone: "+221 78 561 91 15",
-  availability: "Disponible pour projets freelance",
   social: {
     linkedin: "https://www.linkedin.com/in/ibrahima-sory-diallo-363069249",
     github: "https://github.com/IbrahimaISIDev",
@@ -45,12 +42,5 @@ export const personalInfo = {
       title: "Co-fondateur d'AgriPont",
       desc: "Plateforme AgriTech conçue, développée et déployée en production",
     },
-  ],
-  services: [
-    "Développement Web (React, Next.js)",
-    "Développement Mobile (Flutter)",
-    "Backend API (Node.js, NestJS)",
-    "Consulting DevOps",
-    "Formation technique",
   ],
 } as const;

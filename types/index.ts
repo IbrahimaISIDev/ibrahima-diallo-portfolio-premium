@@ -7,7 +7,6 @@ export interface Project {
   title: string;
   slug: string;
   description: string;
-  longDescription?: string;
   image: string;
   video?: string;
   tags: string[];
@@ -46,15 +45,6 @@ export interface Experience {
   description: string;
   highlights: string[];
   technologies: string[];
-}
-
-export interface ContactInfo {
-  name: string;
-  email: string;
-  phone: string;
-  location: string;
-  timezone: string;
-  availability: string;
 }
 
 export interface WorkflowStep {

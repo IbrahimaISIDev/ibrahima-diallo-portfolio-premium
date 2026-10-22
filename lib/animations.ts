@@ -33,16 +33,6 @@ export const fadeInRight: Variants = {
   },
 };
 
-// Scale in
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: easeOut },
-  },
-};
-
 // Stagger container
 export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -51,18 +41,6 @@ export const staggerContainer: Variants = {
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.1,
-    },
-  },
-};
-
-// Stagger container (faster)
-export const staggerContainerFast: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.05,
     },
   },
 };
@@ -87,25 +65,6 @@ export const heroChild: Variants = {
     transition: { duration: 0.5, ease: easeOut },
   },
 };
-
-// Card hover
-export const cardHover = {
-  rest: { scale: 1, y: 0 },
-  hover: {
-    scale: 1.02,
-    y: -4,
-    transition: { duration: 0.3, ease: easeOut },
-  },
-} as const;
-
-// Progress bar fill
-export const progressBar = (width: number): Variants => ({
-  hidden: { width: 0 },
-  visible: {
-    width: `${width}%`,
-    transition: { duration: 1, ease: easeOut, delay: 0.3 },
-  },
-});
 
 // Counter animation (for stats)
 export const counterUp: Variants = {
@@ -144,11 +103,3 @@ export const mobileMenuItem: Variants = {
   open: { x: 0, opacity: 1 },
 };
 
-// Text slide up reveal
-export const textReveal: Variants = {
-  hidden: { y: "100%" },
-  visible: {
-    y: 0,
-    transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
-  },
-};
