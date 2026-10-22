@@ -160,6 +160,32 @@ pre {
   color: #ffffff;
 }
 
+/* Animations décoratives en boucle (CSS, pour pouvoir les mettre en pause) */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes dots-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 32px 32px;
+  }
+}
+
+/* Les animations en boucle d'une section hors écran sont mises en pause
+   (data-paused est posé par la section avec useInView) */
+[data-paused="true"],
+[data-paused="true"] * {
+  animation-play-state: paused !important;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {

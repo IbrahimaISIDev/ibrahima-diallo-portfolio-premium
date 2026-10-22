@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { Search, Layers, Code2, Rocket, CheckCircle2, type LucideIcon } from "lucide-react";
 import { workflowSteps } from "@/data/workflow";
 import type { WorkflowIcon } from "@/types";
@@ -18,6 +18,9 @@ const iconMap: Record<WorkflowIcon, LucideIcon> = {
 
 export default function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  // Met en pause les icônes qui pulsent quand la section est hors écran
+  const inView = useInView(sectionRef);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -31,7 +34,12 @@ export default function ProcessSection() {
   });
 
   return (
-    <section id="process" className="py-24 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      data-paused={!inView}
+      id="process"
+      className="py-24 relative overflow-hidden"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Méthodologie"

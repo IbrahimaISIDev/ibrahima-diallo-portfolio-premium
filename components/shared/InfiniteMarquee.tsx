@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 
 interface InfiniteMarqueeProps {
   items: string[];
@@ -15,22 +16,21 @@ export default function InfiniteMarquee({
 }: InfiniteMarqueeProps) {
   // Duplicate items to create seamless loop
   const duplicatedItems = [...items, ...items, ...items];
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
 
   return (
-    <div className="relative flex w-full overflow-hidden py-10">
+    // Animation CSS : en pause hors écran (data-paused) et coupée par « réduire les animations »
+    <div ref={ref} data-paused={!inView} className="relative flex w-full overflow-hidden py-10">
       {/* Gradient Mask for edges */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent" />
 
-      <motion.div
+      <div
         className="flex whitespace-nowrap"
-        animate={{
-          x: direction === "left" ? ["0%", "-33.33%"] : ["-33.33%", "0%"],
-        }}
-        transition={{
-          duration: speed,
-          repeat: Infinity,
-          ease: "linear",
+        style={{
+          animation: `marquee ${speed}s linear infinite`,
+          animationDirection: direction === "left" ? "normal" : "reverse",
         }}
       >
         {duplicatedItems.map((item, idx) => (
@@ -44,7 +44,7 @@ export default function InfiniteMarquee({
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

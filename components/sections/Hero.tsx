@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { ArrowRight, Download, Calendar } from "lucide-react";
@@ -10,7 +10,7 @@ import MagneticButton from "@/components/shared/MagneticButton";
 import Link from "next/link";
 
 export default function Hero() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -18,10 +18,13 @@ export default function Hero() {
 
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  // Met en pause les anneaux et l'indicateur de défilement une fois le Hero quitté
+  const inView = useInView(ref);
 
   return (
     <section
       ref={ref}
+      data-paused={!inView}
       id="accueil"
       className="relative flex min-h-[90vh] items-center overflow-hidden pt-20"
     >

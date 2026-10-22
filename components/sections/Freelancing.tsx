@@ -1,13 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
 import MagneticButton from "@/components/shared/MagneticButton";
 
 export default function Freelancing() {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref);
+
   return (
-    <section className="py-20">
+    <section ref={ref} data-paused={!inView} className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary-dark via-primary to-primary-light px-8 py-16 text-center sm:px-16"
@@ -17,19 +21,12 @@ export default function Freelancing() {
           transition={{ duration: 0.6 }}
         >
           {/* Decorative pattern */}
-          <motion.div
+          <div
             className="pointer-events-none absolute inset-0 opacity-10"
             style={{
               backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
               backgroundSize: "32px 32px",
-            }}
-            animate={{
-              backgroundPosition: ["0px 0px", "32px 32px"],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "linear",
+              animation: "dots-drift 10s linear infinite",
             }}
           />
 
