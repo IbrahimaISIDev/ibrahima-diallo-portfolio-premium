@@ -51,7 +51,8 @@ export interface SkillGroup {
     | "backend-java"
     | "laravel"
     | "mobile"
-    | "data-devops"
+    | "data"
+    | "devops"
     | "security";
   label: string;
   items: string[];

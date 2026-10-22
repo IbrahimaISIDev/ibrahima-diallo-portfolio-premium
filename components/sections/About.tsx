@@ -121,6 +121,7 @@ export default function About() {
               "Laravel",
               "React Native",
               "Docker",
+              "Nginx",
               "Redis",
             ]}
             speed={40}

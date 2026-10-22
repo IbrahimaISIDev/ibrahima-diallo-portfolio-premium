@@ -34,8 +34,17 @@ export const services: Service[] = [
   },
   {
     title: "Consulting DevOps",
-    description: "Déploiement, CI/CD, Docker et optimisation de l'infrastructure cloud.",
+    description:
+      "Mise en production sur serveur VPS Linux, configuration des noms de domaine et des certificats SSL, CI/CD et Docker.",
     icon: "Cloud",
-    technologies: ["Docker", "GitHub Actions", "AWS", "Vercel"],
+    technologies: [
+      "VPS Linux",
+      "Nginx",
+      "DNS & domaines",
+      "Docker",
+      "GitHub Actions",
+      "AWS",
+      "Vercel",
+    ],
   },
 ];

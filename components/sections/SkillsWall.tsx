@@ -8,6 +8,7 @@ import {
   Layers,
   Smartphone,
   Database,
+  Cloud,
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -69,25 +70,34 @@ const groupStyles: Record<
   },
   laravel: {
     Icon: Layers,
-    span: "md:col-span-4",
+    span: "md:col-span-7",
     accent: "text-red-700 dark:text-red-400",
     tile: "bg-red-500/10",
     dot: "bg-red-500",
     hover: "hover:border-red-500/50",
     spotlight: "rgba(239, 68, 68, 0.15)",
   },
-  "data-devops": {
+  data: {
     Icon: Database,
-    span: "md:col-span-8",
+    span: "md:col-span-5",
     accent: "text-emerald-700 dark:text-emerald-400",
     tile: "bg-emerald-500/10",
     dot: "bg-emerald-500",
     hover: "hover:border-emerald-500/50",
     spotlight: "rgba(34, 197, 94, 0.15)",
   },
+  devops: {
+    Icon: Cloud,
+    span: "md:col-span-6",
+    accent: "text-sky-700 dark:text-sky-400",
+    tile: "bg-sky-500/10",
+    dot: "bg-sky-500",
+    hover: "hover:border-sky-500/50",
+    spotlight: "rgba(14, 165, 233, 0.15)",
+  },
   security: {
     Icon: ShieldCheck,
-    span: "md:col-span-12",
+    span: "md:col-span-6",
     accent: "text-purple-700 dark:text-purple-400",
     tile: "bg-purple-500/10",
     dot: "bg-purple-500",
@@ -96,14 +106,15 @@ const groupStyles: Record<
   },
 };
 
-// Ordre d'affichage du bento (rangées de 12 colonnes : 7+5, 6+6, 4+8, 12)
+// Ordre d'affichage du bento (rangées de 12 colonnes : 7+5, 6+6, 7+5, 6+6)
 const bentoOrder: SkillGroup["id"][] = [
   "frontend",
   "mobile",
   "backend-node",
   "backend-java",
   "laravel",
-  "data-devops",
+  "data",
+  "devops",
   "security",
 ];
 
