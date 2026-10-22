@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Cpu, ShieldCheck, Code2, Rocket, LayoutPanelLeft } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Cpu,
+  ShieldCheck,
+  Code2,
+  Rocket,
+  MessageSquare,
+} from "lucide-react";
 import { Github } from "@/components/shared/BrandIcons";
 import { projects, projectStatusLabels } from "@/data/projects";
 import LightboxImage from "@/components/shared/LightboxImage";
@@ -228,16 +236,24 @@ export default async function ProjectPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Inspiration Note */}
-            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-secondary/5 to-primary/5 border border-secondary/10">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10 text-secondary mb-6">
-                <LayoutPanelLeft size={20} />
+            {/* Appel à l'action : le même texte générique sur chaque projet n'apportait rien */}
+            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-secondary/5 to-primary/5 border border-secondary/10 space-y-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
+                <MessageSquare size={20} />
               </div>
-              <p className="text-sm font-medium italic text-muted leading-relaxed">
-                &ldquo;Ce projet démontre ma capacité à transformer des problématiques métiers
-                complexes en solutions scalables tout en garantissant une expérience utilisateur
-                fluide.&rdquo;
+              <h2 className="font-display text-lg font-bold text-foreground">
+                Un projet similaire ?
+              </h2>
+              <p className="text-sm text-muted leading-relaxed">
+                Parlons de vos besoins : je vous réponds avec une première approche technique.
               </p>
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:underline underline-offset-4"
+              >
+                Me contacter
+                <ArrowRight size={16} />
+              </Link>
             </div>
           </aside>
         </div>
