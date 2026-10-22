@@ -164,6 +164,7 @@ pre {
   }
 
   /* Hide non-essential UI */
+  header,
   nav,
   footer,
   .print\:hidden,
@@ -199,6 +200,13 @@ pre {
 
   main {
     padding-top: 0 !important;
+  }
+
+  /* Les éléments animés au scroll (Framer Motion) peuvent être restés à
+     opacity:0 ou translatés s'ils n'ont jamais été affichés à l'écran */
+  main * {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   /* Force headers to be visible and clear */
