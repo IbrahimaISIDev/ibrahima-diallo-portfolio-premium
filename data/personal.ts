@@ -10,9 +10,9 @@ export const personalInfo = {
   // Accroche du Hero (page d'accueil)
   heroTagline:
     "Je conçois et développe des solutions web et mobile qui transforment les idées en produits digitaux exceptionnels.",
-  // Résumé de profil (CV, page À propos)
+  // Résumé de profil, repris mot pour mot du CV PDF (CV interactif, page À propos)
   summary:
-    "Développeur Full-Stack polyvalent, titulaire d'une Licence en Génie Logiciel de l'Institut Supérieur d'Informatique (ISI), obtenue avec la Mention Bien après un Prix d'Excellence et une 3ᵉ place de campus (17,37/20) en Licence 2, et étudiant en Licence 3 Informatique (Développement d'Applications) à l'Université Numérique Cheikh Hamidou Kane (UNCHK). Expertise confirmée dans le développement de systèmes complexes nécessitant une architecture robuste, une sécurité renforcée (chiffrement AES-256, JWT, conformité RGPD/HDS), une architecture offline-first, une synchronisation temps réel (WebSockets) et une optimisation des performances. Co-fondateur d'AgriPont, plateforme AgriTech déployée en production. Autonome sur tout le cycle de développement : analyse des besoins, architecture, développement backend, frontend et mobile, tests, CI/CD et mise en production.",
+    "Développeur Full-Stack polyvalent, titulaire d'une Licence Professionnelle en Génie Logiciel de l'Institut Supérieur d'Informatique (ISI) et étudiant en Licence 3 Informatique (Développement d'Applications) à l'Université Numérique Cheikh Hamidou Kane (UNCHK). Expertise confirmée dans le développement de systèmes complexes nécessitant une architecture robuste, une sécurité renforcée (chiffrement AES-256, JWT, conformité RGPD/HDS), une architecture offline-first, une synchronisation temps réel (WebSockets) et une optimisation des performances. Co-fondateur d'AgriPont, plateforme AgriTech déployée en production, démontrant une capacité à porter un projet de bout en bout — de l'idée à la mise en production. Autonome, capable de gérer l'ensemble du cycle de développement : analyse des besoins, architecture technique, développement backend/frontend/mobile, tests, CI/CD et mise en production.",
   location: "Dakar, Sénégal",
   email: "ibrahimadev6@gmail.com",
   phone: "+221 78 561 91 15",
