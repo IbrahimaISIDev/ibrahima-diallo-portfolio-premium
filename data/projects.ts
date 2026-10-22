@@ -60,7 +60,7 @@ export const projects: Project[] = [
     slug: "mimap",
     description:
       "Système de gestion complet pour une clinique médicale en Mauritanie. Digitalisation des dossiers patients, rendez-vous et facturation.",
-    image: "/images/projects/mimap.png",
+    image: "/images/projects/mimap.webp",
     tags: ["React", "TypeScript", "Node.js", "PostgreSQL"],
     category: "Santé",
     liveUrl: "https://mimapeds.com",
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     slug: "gestion-flotte",
     description:
       "Solution B2B pour Saraya Tech permettant d'optimiser la gestion de flottes automobiles avec suivi en temps réel.",
-    image: "/images/projects/flotte.png",
+    image: "/images/projects/flotte.webp",
     tags: ["NestJS", "PostgreSQL", "Flutter", "Docker"],
     category: "B2B",
     impact: "Optimisation de la gestion de flottes automobiles",
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     slug: "aem-unchk",
     description:
       "Plateforme communautaire digitalisant l'Association des Étudiants Musulmans de l'UN-CHK.",
-    image: "/images/projects/aem-unchk.png",
+    image: "/images/projects/aem-unchk.webp",
     tags: ["React", "Firebase", "Tailwind CSS"],
     category: "Communauté",
     liveUrl: "https://aem-unchk-connect.vercel.app",
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     slug: "portfolio",
     description:
       "Ce portfolio — conçu et développé avec Next.js 16, Tailwind CSS v4 et TypeScript.",
-    image: "/images/projects/portfolio.png",
+    image: "/images/projects/portfolio.webp",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     category: "Web",
     impact: "Vitrine professionnelle moderne et performante",
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     slug: "dashboard-analytics",
     description:
       "Tableau de bord interactif de visualisation de données pour le suivi de KPIs métier.",
-    image: "/images/projects/dashboard.png",
+    image: "/images/projects/dashboard.webp",
     tags: ["React", "D3.js", "Node.js", "MongoDB"],
     category: "Web",
     impact: "Suivi en temps réel des indicateurs de performance",

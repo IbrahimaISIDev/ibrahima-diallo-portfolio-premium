@@ -43,6 +43,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // AVIF en priorité (plus léger), WebP sinon, selon ce que le navigateur accepte
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   // N'annonce pas la technologie du serveur (en-tête X-Powered-By)
   poweredByHeader: false,
   async headers() {
