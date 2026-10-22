@@ -73,7 +73,7 @@ export default function ResumeView() {
           <div className="flex flex-col sm:flex-row gap-4">
             <MagneticButton>
               <a
-                href="/cv/Ibrahima-Sory-Diallo-CV_1.pdf"
+                href="/cv/Ibrahima_Sory_Diallo-CV.pdf"
                 download
                 className="flex grow sm:grow-0 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-light transition-all cursor-pointer whitespace-nowrap"
               >
