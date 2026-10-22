@@ -10,6 +10,14 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # Les types Node doivent correspondre à la version de Node qui exécute le site (22)
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # TypeScript 7 n'est pas encore supporté par typescript-eslint (utilisé par ESLint) ;
+      # à retirer quand typescript-eslint l'annoncera compatible
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
 
   # Actions GitHub du workflow CI
   - package-ecosystem: github-actions
