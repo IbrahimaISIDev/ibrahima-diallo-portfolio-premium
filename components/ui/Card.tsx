@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from "react";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface CardOptions {
@@ -23,6 +23,7 @@ interface CardProps extends CardOptions {
   className?: string;
   children: ReactNode;
   id?: string;
+  style?: CSSProperties;
 }
 
 export default function Card({
@@ -32,9 +33,10 @@ export default function Card({
   interactive,
   size,
   id,
+  style,
 }: CardProps) {
   return (
-    <Tag id={id} className={cn(cardClass({ interactive, size }), className)}>
+    <Tag id={id} style={style} className={cn(cardClass({ interactive, size }), className)}>
       {children}
     </Tag>
   );

@@ -1,178 +1,211 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/metadata";
-import {
-  Code2,
-  Briefcase,
-  GraduationCap,
-  Heart,
-  MapPin,
-  Calendar,
-  Languages,
-  Gamepad2,
-} from "lucide-react";
+import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
-import { personalInfo } from "@/data/personal";
-import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
-import { skillGroups } from "@/data/skills";
+import { Award, BookOpen, Code2, Globe2, Languages, MapPin, ShieldCheck } from "lucide-react";
+import Timeline from "@/components/about/Timeline";
+import ContactCta from "@/components/home/ContactCta";
+import Reveal from "@/components/motion/Reveal";
+import Card from "@/components/ui/Card";
+import Container from "@/components/ui/Container";
+import { Chip, Eyebrow, SectionHeader } from "@/components/ui/Typography";
+import { getContent } from "@/content";
+import { defaultLocale, isLocale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = pageMetadata({
-  title: "À propos - Ibrahima Sory Diallo",
-  description:
-    "Développeur Full-Stack basé à Dakar, Sénégal. Découvrez mon parcours, mes compétences et ma philosophie de travail.",
-  path: "/about",
-});
+type Props = { params: Promise<{ lang: string }> };
 
-export default function AboutPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { meta } = getDictionary(locale);
+  return pageMetadata({
+    title: meta.aboutTitle,
+    description: meta.aboutDescription,
+    path: "/about",
+    locale,
+  });
+}
+
+// Icône de chaque valeur, dans l'ordre du dictionnaire
+const valueIcons = [Code2, Globe2, ShieldCheck, BookOpen];
+
+export default async function AboutPage({ params }: Props) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+
+  const content = getContent(lang);
+  const dict = getDictionary(lang);
+  const { profile, experiences, skillGroups } = content;
+  const { about, hero, home } = dict;
+  const work = experiences.filter((item) => item.type === "work");
+  const education = experiences.filter((item) => item.type === "education");
+
   return (
-    <main id="main" className="pt-20">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Hero */}
-        <section className="mb-24 grid gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Photo */}
-          <div className="relative group">
-            <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-surface-light shadow-2xl border-4 border-surface relative">
-              <Image
-                src={personalInfo.profileImage}
-                alt={personalInfo.fullName}
-                fill
-                priority
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-            {/* Decorative element */}
-            <div className="absolute -bottom-6 -right-6 -z-10 h-full w-full rounded-3xl border-2 border-secondary/20" />
-          </div>
-
-          {/* Intro */}
-          <div className="flex flex-col justify-center space-y-6">
-            <span className="inline-block w-fit text-sm font-semibold uppercase tracking-widest text-secondary">
-              À propos de moi
-            </span>
-            <h1 className="font-display text-4xl font-bold text-foreground sm:text-5xl">
-              {personalInfo.fullName}
-            </h1>
-            <p className="text-xl text-muted">{personalInfo.headline}</p>
-            <p className="leading-relaxed text-muted">{personalInfo.summary}</p>
-            <p className="leading-relaxed text-muted">
-              Basé à {personalInfo.location}, mon parcours, de la Sonatel Academy à Nixacom en
-              passant par Saraya Tech, Tekkil et AgriPont, m&apos;a permis de développer une
-              approche alliant excellence technique et compréhension approfondie des besoins
-              métiers.
-            </p>
-
-            {/* Quick info */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              {[
-                { icon: MapPin, text: personalInfo.location },
-                { icon: Languages, text: "Français, Anglais, Peul" },
-                { icon: Calendar, text: "Disponible pour projets" },
-                { icon: Gamepad2, text: "Sports, Cinéma anglophone" },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-3">
-                  <Icon size={18} className="shrink-0 text-secondary" />
-                  <span className="text-sm text-muted">{text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Values */}
-        <section className="mb-24">
-          <h2 className="mb-12 text-center font-display text-3xl font-bold text-foreground">
-            Mes Valeurs
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: Code2,
-                title: "Excellence technique",
-                text: "Code propre, architectures solides et bonnes pratiques pour des produits durables.",
-              },
-              {
-                icon: Heart,
-                title: "Innovation sociale",
-                text: "La technologie au service des communautés africaines et de leur développement.",
-              },
-              {
-                icon: Briefcase,
-                title: "Rigueur & Qualité",
-                text: "Engagement total vers la qualité du code et la satisfaction des besoins utilisateurs.",
-              },
-              {
-                icon: GraduationCap,
-                title: "Apprentissage continu",
-                text: "Curiosité permanente et veille technologique pour rester à la pointe.",
-              },
-            ].map(({ icon: Icon, title, text }) => (
-              <div
-                key={title}
-                className="rounded-2xl border border-border bg-surface p-6 space-y-4"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
-                  <Icon size={24} />
-                </div>
-                <h3 className="font-display text-lg font-semibold text-foreground">{title}</h3>
-                <p className="text-sm leading-relaxed text-muted">{text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Parcours (composant partagé, plus de liste dupliquée) */}
-        <section className="mb-24">
-          <ExperienceTimeline />
-        </section>
-
-        {/* Skills */}
-        <section className="mb-24">
-          <h2 className="mb-12 text-center font-display text-3xl font-bold text-foreground">
-            Compétences Techniques
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {skillGroups.map((group) => (
-              <div
-                key={group.id}
-                className="rounded-2xl border border-border bg-surface p-6 space-y-5"
-              >
-                <h3 className="font-display text-lg font-semibold text-secondary">{group.label}</h3>
-                <ul className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-full bg-background px-3 py-1.5 text-sm font-medium text-muted"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="text-center">
-          <div className="rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/5 to-primary/5 p-12">
-            <h2 className="mb-4 font-display text-3xl font-bold text-foreground">
-              Travaillons ensemble
-            </h2>
-            <p className="mx-auto mb-8 max-w-lg text-muted">
-              Vous avez un projet en tête ? Je suis disponible pour discuter de vos besoins et
-              trouver la meilleure solution.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-3.5 font-semibold text-background transition-all duration-300 hover:bg-secondary-light hover:shadow-lg hover:shadow-secondary/25"
+    <main id="main">
+      <Container>
+        <section
+          aria-labelledby="about-title"
+          className="grid gap-3 pt-6 sm:gap-4 sm:pt-8 lg:grid-cols-12"
+        >
+          <Card className="rise flex flex-col gap-6 p-7 sm:p-10 lg:col-span-7 lg:p-12">
+            <Eyebrow>{about.eyebrow}</Eyebrow>
+            <h1
+              id="about-title"
+              className="font-display text-[clamp(2.5rem,5.5vw,4.25rem)] leading-[0.98] font-bold tracking-[-0.045em] text-ink"
             >
-              Me contacter
-            </Link>
+              {profile.fullName}
+            </h1>
+            <p className="font-display text-lg font-medium text-gold-ink sm:text-xl">
+              {profile.headline}
+            </p>
+            <p className="text-base leading-relaxed text-ink-soft sm:text-[17px]">
+              {profile.summary}
+            </p>
+            <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6 text-sm text-ink-muted">
+              <li className="flex items-center gap-2">
+                <MapPin size={16} aria-hidden="true" className="text-gold-ink" />
+                {profile.location}
+              </li>
+              <li className="flex items-center gap-2">
+                <Languages size={16} aria-hidden="true" className="text-gold-ink" />
+                <span>
+                  <span className="sr-only">{hero.languages} : </span>
+                  {profile.languages}
+                </span>
+              </li>
+              <li className="flex items-center gap-2 text-leaf-ink">
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-leaf-ink" />
+                {hero.available}
+              </li>
+            </ul>
+          </Card>
+
+          <Card
+            className="rise relative min-h-[420px] overflow-hidden lg:col-span-5"
+            style={{ "--i": 1 } as React.CSSProperties}
+          >
+            <Image
+              src={profile.photo}
+              alt={hero.photoAlt}
+              fill
+              priority
+              sizes="(min-width: 1240px) 500px, (min-width: 1024px) 42vw, 100vw"
+              className="object-cover object-[55%_30%]"
+            />
+          </Card>
+        </section>
+
+        <section aria-labelledby="achievements-title" className="pt-24 sm:pt-32">
+          <Reveal>
+            <SectionHeader
+              id="achievements-title"
+              eyebrow={about.achievementsEyebrow}
+              title={about.achievementsTitle}
+            />
+          </Reveal>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            {profile.achievements.map((achievement, index) => (
+              <Reveal key={achievement.title} index={index}>
+                <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/12 text-gold-ink">
+                    <Award size={20} aria-hidden="true" />
+                  </span>
+                  <h3 className="font-display text-lg leading-snug font-bold tracking-[-0.02em] text-ink">
+                    {achievement.title}
+                  </h3>
+                  <p className="text-[15px] leading-relaxed text-ink-muted">{achievement.desc}</p>
+                </Card>
+              </Reveal>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="path-title" className="pt-24 sm:pt-32">
+          <Reveal>
+            <SectionHeader
+              id="path-title"
+              eyebrow={home.pathEyebrow}
+              title={about.pathTitle}
+              description={about.pathText}
+            />
+          </Reveal>
+          <div className="mt-8 grid gap-3 sm:gap-4 lg:grid-cols-2">
+            {[
+              { title: about.work, items: work },
+              { title: about.education, items: education },
+            ].map((column, index) => (
+              <Reveal key={column.title} index={index}>
+                <Card className="flex h-full flex-col gap-8 p-7 sm:p-9">
+                  <h3 className="font-mono text-xs tracking-[0.12em] text-gold-ink uppercase">
+                    {column.title}
+                  </h3>
+                  <Timeline items={column.items} />
+                </Card>
+              </Reveal>
+            ))}
           </div>
         </section>
-      </div>
+
+        <section aria-labelledby="values-title" className="pt-24 sm:pt-32">
+          <Reveal>
+            <SectionHeader
+              id="values-title"
+              eyebrow={about.valuesEyebrow}
+              title={about.valuesTitle}
+            />
+          </Reveal>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            {about.values.map((value, index) => {
+              const Icon = valueIcons[index % valueIcons.length];
+              return (
+                <Reveal key={value.title} index={index}>
+                  <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-card-2 text-gold-ink">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3 className="font-display text-lg font-bold tracking-[-0.02em] text-ink">
+                      {value.title}
+                    </h3>
+                    <p className="text-[15px] leading-relaxed text-ink-muted">{value.text}</p>
+                  </Card>
+                </Reveal>
+              );
+            })}
+          </ul>
+        </section>
+
+        <section aria-labelledby="skills-title" className="pt-24 sm:pt-32">
+          <Reveal>
+            <SectionHeader
+              id="skills-title"
+              eyebrow={home.expertiseEyebrow}
+              title={about.skillsTitle}
+              description={about.skillsText}
+            />
+          </Reveal>
+          <ul className="mt-8 grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {skillGroups.map((group, index) => (
+              <Reveal key={group.id} index={index % 3}>
+                <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+                  <h3 className="font-display text-lg font-bold tracking-[-0.02em] text-ink">
+                    {group.label}
+                  </h3>
+                  <ul className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <li key={item}>
+                        <Chip className="px-3 py-1.5 text-[13px]">{item}</Chip>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </Reveal>
+            ))}
+          </ul>
+        </section>
+
+        <ContactCta content={content} dict={dict} />
+      </Container>
     </main>
   );
 }

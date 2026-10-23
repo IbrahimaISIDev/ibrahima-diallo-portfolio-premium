@@ -147,6 +147,8 @@ const fr = {
     skillsTitle: "Compétences techniques",
     skillsText: "Groupées par domaine, sans auto-évaluation chiffrée.",
     achievementsTitle: "Distinctions",
+    achievementsEyebrow: "Reconnaissance",
+    valuesEyebrow: "Façon de travailler",
   },
   cv: {
     title: "Curriculum vitae",
@@ -358,6 +360,8 @@ const en: Dictionary = {
     skillsTitle: "Technical skills",
     skillsText: "Grouped by domain, without self-rated percentages.",
     achievementsTitle: "Awards",
+    achievementsEyebrow: "Recognition",
+    valuesEyebrow: "How I work",
   },
   cv: {
     title: "Résumé",
