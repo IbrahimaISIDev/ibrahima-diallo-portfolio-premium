@@ -259,70 +259,46 @@ html:not(.js) [style*="scale(0)"] {
   }
 }
 
-/* Print Styles */
+/* Impression (CV) : thème clair forcé, fond blanc, sans header, footer ni effets */
 @media print {
   @page {
     size: auto;
     margin: 15mm;
   }
 
+  :root,
+  .light,
+  .dark {
+    --canvas: #ffffff;
+    --card: #ffffff;
+    --card-2: #ffffff;
+    --line: #d6d1c6;
+    --ink: #000000;
+    --ink-soft: #1f1f1f;
+    --ink-muted: #3f3b36;
+    --gold-ink: #7c5a12;
+  }
+
   body {
-    background: white !important;
-    color: black !important;
     font-size: 11pt;
   }
 
-  /* Hide non-essential UI */
-  header,
-  nav,
+  header#top,
   footer,
-  .print\:hidden,
-  .constellation-bg {
+  .print\:hidden {
     display: none !important;
   }
 
-  /* Fix colors for print */
-  .text-secondary {
-    color: #b45309 !important;
-  }
-
-  .print\:text-black {
-    color: black !important;
-  }
-
-  .bg-surface,
-  .bg-surface\/50 {
-    background: transparent !important;
-  }
-
-  .border-border {
-    border-color: rgba(0, 0, 0, 0.1) !important;
-  }
-
-  /* Optimize layout */
-  .max-w-5xl {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  main {
-    padding-top: 0 !important;
-  }
-
-  /* Les éléments animés au scroll (Framer Motion) peuvent être restés à
-     opacity:0 ou translatés s'ils n'ont jamais été affichés à l'écran */
+  /* Les éléments animés (entrée, apparition au scroll) sont imprimés à leur état final */
   main * {
     opacity: 1 !important;
     transform: none !important;
+    animation: none !important;
   }
 
-  /* Force headers to be visible and clear */
   h1,
   h2,
-  h3,
-  h4 {
-    page-break-after: avoid;
+  h3 {
     break-after: avoid;
   }
 }
