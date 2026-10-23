@@ -711,3 +711,22 @@ Total : **23 vulnérabilités** (1 critique, 15 hautes, 6 modérées, 1 faible),
 | Formulaire : message sous chaque champ, vrai message du serveur, confirmation explicite, compteur de caractères | 13 tests unitaires ; scénarios vérifiés dans Chrome |
 | Contact WhatsApp (bloc contact, footer, CV) | — |
 | Photo de profil visible sur mobile, en version compacte | Performance mobile stable ou meilleure (90-93 contre 88-91) |
+
+### Refonte « Bento immersif » et version anglaise : 23 octobre 2026
+
+Trois directions ont été maquettées (éditoriale, bento, éditoriale à grande typographie). La direction retenue combine le bento immersif, la grande typographie du héros et une liste de parcours sobre. L'identité « Premium Sénégal » est conservée en version raffinée, avec des animations riches mais maîtrisées.
+
+| Étape | Contenu | Vérification |
+|---|---|---|
+| Charte | Nouveaux tokens (`canvas`, `card`, `line`, `ink`, `gold`, `leaf`, `ember`…) dans les deux thèmes ; composants `ui/` (carte, bouton, typographie, conteneur) | Contrastes AA mesurés pour chaque couple texte / fond |
+| Contenu bilingue | `content/` remplace `data/` : chaque texte en `{ fr, en }`, résolu par `getContent(locale)` ; dictionnaires d'interface typés (l'anglais doit avoir la forme du français) | Typage strict : une traduction manquante ne compile pas |
+| Routage | Toutes les pages sous `app/[lang]` ; français à la racine par réécritures statiques, anglais sous `/en`, `/fr/...` redirigé en 308, URL inconnues en 404 dans la bonne langue | Statuts HTTP vérifiés sur le build ; tests de bout en bout |
+| Gabarit | Header en pastille flottante (navigation, FR \| EN, thème, contact), menu mobile plein écran, footer ; curseur personnalisé et confettis retirés | Focus, Échap et section active testés |
+| Pages | Accueil en bento, projets filtrables, études de cas, à propos, CV imprimable rendu côté serveur, contact, 404 | Captures 1440 px (sombre et clair) et 390 px ; CV imprimé en 5 pages A4 |
+| Formulaire | L'API renvoie un code d'erreur stable, traduit par le formulaire ; la langue de l'expéditeur figure dans le sujet de l'email | 21 tests unitaires |
+| SEO | Métadonnées par langue, `hreflang` (fr, en, x-default), images de partage par page et par langue, sitemap de 34 URL | Balises vérifiées dans le HTML servi |
+| Nettoyage | Suppression de `components/sections`, `data/`, `types/`, des anciens tokens, des animations en boucle et de `canvas-confetti` ; CSP resserrée (`worker-src 'self'`) | Lint, types, build et 19 tests de bout en bout au vert |
+
+**Lighthouse (build de production local, performance / accessibilité / bonnes pratiques / SEO)** : accueil mobile 93 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100 ; autres pages mobiles entre 90 et 93 en performance, 100 ailleurs ; CLS 0 partout. Le LCP mobile simulé (3,1 à 3,6 s) vient surtout de l'émulation réseau ; le LCP observé est d'environ 0,2 s.
+
+**Restent ouverts** : les mêmes éléments qui dépendent d'Ibrahima (domaine, Calendly, nouveaux témoignages, détails des petits projets, visuels de Gestion de Flotte et Dashboard Analytics, domaine Resend vérifié, analytics). Les témoignages sont des traductions signalées comme telles en anglais.

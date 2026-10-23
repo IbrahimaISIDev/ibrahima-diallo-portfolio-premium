@@ -1,25 +1,24 @@
-import { personalInfo } from "@/data/personal";
+import { profile } from "@/content/profile";
 
-// Configuration du site. L'identité (nom, contact, réseaux) vient de
-// data/personal.ts, seule source de vérité.
+// Configuration du site. L'identité vient de content/profile.ts ; les titres et
+// descriptions de chaque langue sont dans lib/i18n/dictionaries.ts.
 export const siteConfig = {
-  name: personalInfo.fullName,
-  title: `${personalInfo.fullName} - ${personalInfo.title} | ${personalInfo.location}`,
-  description: `Portfolio de ${personalInfo.fullName}, développeur Full-Stack spécialisé en React, Next.js, Node.js et Flutter. Basé à ${personalInfo.location}.`,
+  name: profile.fullName,
   // Adresse de production (Vercel). À remplacer si un domaine personnalisé est branché.
   url: "https://ibrahima-devs-portfolio.vercel.app",
   keywords: [
     "développeur full-stack",
-    "react",
+    "full-stack developer",
+    "nestjs",
     "nextjs",
-    "nodejs",
+    "react",
     "flutter",
-    "angular",
-    "java",
     "spring boot",
     "laravel",
+    "devops",
     "dakar",
     "sénégal",
+    "senegal",
     "freelance",
     "portfolio",
   ] as string[],

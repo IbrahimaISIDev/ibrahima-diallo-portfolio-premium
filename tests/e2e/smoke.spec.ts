@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const pages = ["/", "/about", "/projects", "/cv", "/contact", "/projects/tekkil"];
+const pages = ["/", "/en", "/about", "/projects", "/cv", "/contact", "/projects/tekkil"];
 
 for (const path of pages) {
   test(`${path} se charge avec un h1 et sans erreur JavaScript`, async ({ page }) => {
@@ -18,7 +18,14 @@ for (const path of pages) {
 test("une route inconnue affiche la page 404", async ({ page }) => {
   const response = await page.goto("/cette-page-n-existe-pas");
   expect(response?.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("disparu");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cette page n’existe pas");
+});
+
+test("une route anglaise inconnue affiche la page 404 en anglais", async ({ page }) => {
+  const response = await page.goto("/en/this-page-does-not-exist");
+  expect(response?.status()).toBe(404);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("This page does not exist");
 });
 
 test("la navigation du header ramène vers les sections de l'accueil depuis une autre page", async ({
@@ -27,10 +34,51 @@ test("la navigation du header ramène vers les sections de l'accueil depuis une 
   await page.goto("/cv");
   await page
     .getByRole("navigation", { name: "Navigation principale" })
-    .getByRole("link", { name: "Contact" })
+    .getByRole("link", { name: "Expertise" })
     .click();
-  await expect(page).toHaveURL(/\/#contact$/);
-  await expect(page.locator("section#contact")).toBeInViewport();
+  await expect(page).toHaveURL(/\/#expertise$/);
+  await expect(page.locator("section#expertise")).toBeInViewport();
+});
+
+test("l'accueil anglais est servi sous /en, avec ses textes et sa langue", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Contact me" }).first()).toHaveAttribute(
+    "href",
+    "/en#contact",
+  );
+  // Version française de l'accueil : la racine du site, sans préfixe de langue
+  await expect(page.locator('link[rel="alternate"][hreflang="fr"]')).toHaveAttribute(
+    "href",
+    /^https:\/\/[^/]+\/?$/,
+  );
+});
+
+test("le sélecteur de langue mène à la même page dans l'autre langue", async ({ page }) => {
+  await page.goto("/about");
+  await page
+    .getByRole("navigation", { name: "Langue du site" })
+    .getByRole("link", { name: "English" })
+    .click();
+  await expect(page).toHaveURL(/\/en\/about$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+
+  await page
+    .getByRole("navigation", { name: "Site language" })
+    .getByRole("link", { name: "Français" })
+    .click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+});
+
+test("une carte de projet de l'accueil ouvre son étude de cas", async ({ page }) => {
+  await page.goto("/");
+  await page
+    .locator("section#projects")
+    .getByRole("link", { name: /Tekkil/ })
+    .click();
+  await expect(page).toHaveURL(/\/projects\/tekkil$/);
 });
 
 test("le lien d'évitement mène au contenu principal", async ({ page }) => {
@@ -68,7 +116,7 @@ test("le bouton de thème bascule entre sombre et clair", async ({ page }) => {
 test("le filtre du portfolio n'affiche que les projets de la catégorie", async ({ page }) => {
   await page.goto("/projects");
   await page.getByRole("button", { name: "E-commerce", exact: true }).click();
-  const cards = page.locator("#portfolio h3");
+  const cards = page.locator("#project-list h2");
   await expect(cards).toHaveText(["Fily Mode Royale"]);
 });
 
@@ -78,11 +126,10 @@ test("le header indique la section active, au défilement et sur les pages dédi
   const nav = page.getByRole("navigation", { name: "Navigation principale" });
 
   await page.goto("/");
-  await page.locator("section#portfolio").scrollIntoViewIfNeeded();
   await page.evaluate(() =>
-    document.getElementById("portfolio")?.scrollIntoView({ block: "start", behavior: "instant" }),
+    document.getElementById("projects")?.scrollIntoView({ block: "start", behavior: "instant" }),
   );
-  await expect(nav.getByRole("link", { name: "Portfolio" })).toHaveAttribute(
+  await expect(nav.getByRole("link", { name: "Projets" })).toHaveAttribute(
     "aria-current",
     "location",
   );
@@ -92,4 +139,23 @@ test("le header indique la section active, au défilement et sur les pages dédi
     "aria-current",
     "location",
   );
+});
+
+test("le formulaire de contact affiche les erreurs du serveur dans la langue de la page", async ({
+  page,
+}) => {
+  await page.goto("/en/contact");
+  await page.getByLabel("Name").fill("Awa Ndiaye");
+  // Acceptée par le navigateur (type="email"), refusée par la validation du serveur
+  await page.getByRole("textbox", { name: "Email" }).fill("awa@example");
+  await page.getByLabel("Subject").fill("Project");
+  await page.getByLabel("Message").fill("Hello, I would like to talk about a project.");
+  await page.getByRole("button", { name: "Send message" }).click();
+
+  await expect(page.getByRole("status")).toContainText("Some fields need your attention.");
+  await expect(page.getByRole("textbox", { name: "Email" })).toHaveAttribute(
+    "aria-invalid",
+    "true",
+  );
+  await expect(page.locator("#email-error")).toHaveText("Enter a valid email address.");
 });

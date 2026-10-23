@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { personalInfo } from "@/data/personal";
+import { profile } from "@/content/profile";
+import { locales } from "@/lib/i18n/config";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-const CONTACT_TO = process.env.CONTACT_TO ?? personalInfo.email;
+const CONTACT_TO = process.env.CONTACT_TO ?? profile.email;
 const CONTACT_FROM = process.env.CONTACT_FROM ?? "Portfolio Contact <onboarding@resend.dev>";
 
 // Retire les retours à la ligne pour éviter toute injection dans le sujet
@@ -25,8 +26,12 @@ const contactSchema = z.object({
   // Anti-spam : champ piège invisible (doit rester vide) et heure d'affichage du formulaire
   website: z.string().optional(),
   startedAt: z.number().optional(),
+  // Langue de la page d'envoi : indiquée dans l'email reçu
+  locale: z.enum(locales).optional(),
 });
 
+// Chaque réponse d'erreur porte un code stable, traduit par le formulaire dans la langue
+// de la page ; le texte français reste fourni pour les clients qui ne le traduisent pas.
 // Message affiché sous chaque champ refusé par la validation
 const fieldMessages = {
   name: "Indiquez votre nom (100 caractères au plus).",
@@ -67,7 +72,7 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "Requête invalide" }, { status: 400 });
+    return NextResponse.json({ code: "invalid", error: "Requête invalide" }, { status: 400 });
   }
 
   const parsed = contactSchema.safeParse(body);
@@ -81,7 +86,7 @@ export async function POST(req: Request) {
       }
     }
     return NextResponse.json(
-      { error: "Certains champs sont à corriger.", fields },
+      { code: "invalid", error: "Certains champs sont à corriger.", fields },
       { status: 400 },
     );
   }
@@ -96,7 +101,7 @@ export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
   if (isRateLimited(ip)) {
     return NextResponse.json(
-      { error: "Trop de messages envoyés, réessayez dans quelques minutes" },
+      { code: "rate_limited", error: "Trop de messages envoyés, réessayez dans quelques minutes" },
       { status: 429 },
     );
   }
@@ -104,31 +109,38 @@ export async function POST(req: Request) {
   if (!resend) {
     console.error("Resend API key is missing");
     return NextResponse.json(
-      { error: "Le service d'envoi d'emails n'est pas configuré" },
+      { code: "unavailable", error: "Le service d'envoi d'emails n'est pas configuré" },
       { status: 500 },
     );
   }
 
-  const { name, email, subject, message } = parsed.data;
+  const { name, email, subject, message, locale } = parsed.data;
+  const language = locale ? ` ${locale.toUpperCase()}` : "";
 
   try {
     // Resend ne lève pas d'exception en cas d'échec : il renvoie { data, error }
     const { data, error } = await resend.emails.send({
       from: CONTACT_FROM,
       to: [CONTACT_TO],
-      subject: `[Portfolio] Nouveau message de ${name}: ${subject}`,
+      subject: `[Portfolio${language}] Nouveau message de ${name}: ${subject}`,
       replyTo: email,
       text: `Nom: ${name}\nEmail: ${email}\nSujet: ${subject}\n\nMessage:\n${message}`,
     });
 
     if (error || !data) {
       console.error("Resend error:", error);
-      return NextResponse.json({ error: "Erreur lors de l'envoi du message" }, { status: 502 });
+      return NextResponse.json(
+        { code: "send_failed", error: "Erreur lors de l'envoi du message" },
+        { status: 502 },
+      );
     }
 
     return NextResponse.json({ id: data.id });
   } catch (error) {
     console.error("Contact route error:", error);
-    return NextResponse.json({ error: "Erreur lors de l'envoi du message" }, { status: 500 });
+    return NextResponse.json(
+      { code: "send_failed", error: "Erreur lors de l'envoi du message" },
+      { status: 500 },
+    );
   }
 }
