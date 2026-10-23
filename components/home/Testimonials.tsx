@@ -25,8 +25,8 @@ export default function Testimonials({ content, dict }: TestimonialsProps) {
 
       <ul className="mt-8 grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
         {content.testimonials.map((testimonial, index) => (
-          <Reveal key={testimonial.name} index={index % 2}>
-            <Card as="li" size="md" className="h-full">
+          <Reveal as="li" className="h-full" key={testimonial.name} index={index % 2}>
+            <Card size="md" className="h-full">
               <figure className="flex h-full flex-col gap-6 p-7 sm:p-8">
                 <span aria-hidden="true" className="font-display text-5xl leading-[0.5] text-gold">
                   “

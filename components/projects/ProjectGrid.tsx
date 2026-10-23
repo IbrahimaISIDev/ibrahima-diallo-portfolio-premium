@@ -67,7 +67,7 @@ export default function ProjectGrid({ locale, projects, categories, labels }: Pr
         className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
       >
         <AnimatePresence mode="popLayout" initial={false}>
-          {visible.map((project) => (
+          {visible.map((project, index) => (
             <motion.li
               key={project.slug}
               layout
@@ -88,6 +88,8 @@ export default function ProjectGrid({ locale, projects, categories, labels }: Pr
                   alt=""
                   sizes="(min-width: 1240px) 370px, (min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw"
                   className="aspect-[16/10]"
+                  // Première rangée, visible dès l'arrivée sur la page
+                  priority={index < 3}
                 />
                 <div className="flex flex-1 flex-col gap-2.5">
                   <div className="flex items-center justify-between gap-3 font-mono text-xs text-ink-muted">

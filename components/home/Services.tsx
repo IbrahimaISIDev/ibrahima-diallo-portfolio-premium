@@ -47,8 +47,8 @@ export default function Services({ content, dict }: ServicesProps) {
         {services.map((service, index) => {
           const Icon = icons[service.icon];
           return (
-            <Reveal key={service.id} index={index % 3}>
-              <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+            <Reveal as="li" className="h-full" key={service.id} index={index % 3}>
+              <Card size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-card-2 text-gold-ink">
                   <Icon size={20} aria-hidden="true" />
                 </span>

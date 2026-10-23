@@ -106,8 +106,8 @@ export default async function AboutPage({ params }: Props) {
           </Reveal>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {profile.achievements.map((achievement, index) => (
-              <Reveal key={achievement.title} index={index}>
-                <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+              <Reveal as="li" className="h-full" key={achievement.title} index={index}>
+                <Card size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/12 text-gold-ink">
                     <Award size={20} aria-hidden="true" />
                   </span>
@@ -159,8 +159,8 @@ export default async function AboutPage({ params }: Props) {
             {about.values.map((value, index) => {
               const Icon = valueIcons[index % valueIcons.length];
               return (
-                <Reveal key={value.title} index={index}>
-                  <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+                <Reveal as="li" className="h-full" key={value.title} index={index}>
+                  <Card size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-card-2 text-gold-ink">
                       <Icon size={20} aria-hidden="true" />
                     </span>
@@ -186,8 +186,8 @@ export default async function AboutPage({ params }: Props) {
           </Reveal>
           <ul className="mt-8 grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
             {skillGroups.map((group, index) => (
-              <Reveal key={group.id} index={index % 3}>
-                <Card as="li" size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
+              <Reveal as="li" className="h-full" key={group.id} index={index % 3}>
+                <Card size="md" className="flex h-full flex-col gap-4 p-6 sm:p-7">
                   <h3 className="font-display text-lg font-bold tracking-[-0.02em] text-ink">
                     {group.label}
                   </h3>
