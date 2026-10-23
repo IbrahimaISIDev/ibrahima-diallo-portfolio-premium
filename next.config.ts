@@ -49,6 +49,30 @@ const nextConfig: NextConfig = {
   },
   // N'annonce pas la technologie du serveur (en-tête X-Powered-By)
   poweredByHeader: false,
+  // Français à la racine, anglais sous /en : les URL françaises sont servies par app/[lang]
+  // avec lang = "fr". En afterFiles, les fichiers statiques (images, CV, robots.txt…) passent
+  // avant ; les routes de métadonnées dynamiques et l'API sont exclues explicitement.
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [
+        { source: "/", destination: "/fr" },
+        {
+          source:
+            "/:path((?!en(?:/|$)|fr(?:/|$)|api(?:/|$)|_next(?:/|$)|icon(?:/|$)|apple-icon(?:/|$)|opengraph-image(?:/|$)).*)",
+          destination: "/fr/:path",
+        },
+      ],
+      fallback: [],
+    };
+  },
+  // /fr/... n'est pas une adresse publique : redirection vers l'URL sans préfixe
+  async redirects() {
+    return [
+      { source: "/fr", destination: "/", permanent: true },
+      { source: "/fr/:path*", destination: "/:path*", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

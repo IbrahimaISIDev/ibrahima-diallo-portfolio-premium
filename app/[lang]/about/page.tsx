@@ -11,6 +11,7 @@ import {
   Gamepad2,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { personalInfo } from "@/data/personal";
 import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
 import { skillGroups } from "@/data/skills";
@@ -163,12 +164,12 @@ export default function AboutPage() {
               Vous avez un projet en tête ? Je suis disponible pour discuter de vos besoins et
               trouver la meilleure solution.
             </p>
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-3.5 font-semibold text-background transition-all duration-300 hover:bg-secondary-light hover:shadow-lg hover:shadow-secondary/25"
             >
               Me contacter
-            </a>
+            </Link>
           </div>
         </section>
       </div>

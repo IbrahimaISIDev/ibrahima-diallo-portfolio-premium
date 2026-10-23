@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navigationItems } from "@/data/navigation";
+import { stripLocale } from "@/lib/i18n/config";
 
 // Pages dédiées et la section de la navigation qu'elles prolongent
 const pageSections: Record<string, string> = {
@@ -15,7 +16,8 @@ const pageSections: Record<string, string> = {
 // Sur l'accueil : la section qui traverse le milieu de l'écran (suit le défilement).
 // Ailleurs : la section correspondant à la page, ou aucune.
 export function useActiveSection(): string | null {
-  const pathname = usePathname();
+  // Chemin public sans préfixe de langue (/fr/about, /en/about -> /about)
+  const pathname = stripLocale(usePathname());
   const [section, setSection] = useState<string | null>(null);
 
   useEffect(() => {

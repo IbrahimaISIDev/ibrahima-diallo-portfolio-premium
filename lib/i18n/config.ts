@@ -18,10 +18,10 @@ export function localePath(locale: Locale, path = "/"): string {
   return clean === "/" ? `/${locale}` : `/${locale}${clean}`;
 }
 
-// Chemin sans préfixe de langue : "/en/about" -> "/about", "/en" -> "/"
+// Chemin sans préfixe de langue : "/en/about" -> "/about", "/en" -> "/".
+// Retire aussi "/fr" : sous une URL réécrite, usePathname() renvoie le chemin interne.
 export function stripLocale(pathname: string): string {
   for (const locale of locales) {
-    if (locale === defaultLocale) continue;
     if (pathname === `/${locale}`) return "/";
     if (pathname.startsWith(`/${locale}/`)) return pathname.slice(locale.length + 1);
   }

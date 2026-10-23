@@ -7,7 +7,9 @@ import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import MotionProvider from "@/components/shared/MotionProvider";
 import { siteConfig } from "@/lib/constants";
 import { personalInfo } from "@/data/personal";
-import "./globals.css";
+import "../globals.css";
+import { notFound } from "next/navigation";
+import { isLocale, locales } from "@/lib/i18n/config";
 
 // Les variables sont référencées par @theme dans globals.css
 const sora = Sora({
@@ -87,10 +89,26 @@ const personJsonLd = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+// Les deux langues sont générées au build ; toute autre valeur de [lang] renvoie une 404
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
+
+export const dynamicParams = false;
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+
   return (
     <html
-      lang="fr"
+      lang={lang}
       className={`${sora.variable} ${dmSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
