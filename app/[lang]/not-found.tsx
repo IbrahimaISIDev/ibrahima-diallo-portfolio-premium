@@ -1,32 +1,45 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+"use client";
 
+import { usePathname } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+import { defaultLocale, isLocale, localePath } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
+
+// not-found ne reçoit pas les paramètres de la route : la langue est lue dans le chemin
+// (sous une URL réécrite, usePathname() renvoie le chemin interne /fr/… ou /en/…)
 export default function NotFound() {
+  const segment = usePathname().split("/")[1] ?? "";
+  const locale = isLocale(segment) ? segment : defaultLocale;
+  const { notFound, common } = getDictionary(locale);
+
   return (
-    <main
-      id="main"
-      className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center"
-    >
-      <div className="relative mb-8 text-9xl font-bold tracking-tighter text-secondary/10 sm:text-[12rem]">
-        404
-        <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-secondary sm:text-6xl">
-          Oups !
+    <main id="main">
+      <Container className="flex min-h-[60vh] flex-col items-start justify-center gap-6 pt-16">
+        <p
+          aria-hidden="true"
+          className="rise font-display text-[clamp(6rem,22vw,14rem)] leading-[0.8] font-bold tracking-[-0.06em] text-gold"
+        >
+          404
+        </p>
+        <h1 className="font-display text-3xl font-bold tracking-[-0.035em] text-ink sm:text-5xl">
+          {notFound.title}
+        </h1>
+        <p className="max-w-md text-base leading-relaxed text-ink-muted sm:text-lg">
+          {notFound.text}
+        </p>
+        <div className="mt-2 flex flex-wrap gap-3">
+          <Button href={localePath(locale, "/")} size="lg">
+            <ArrowLeft size={16} aria-hidden="true" />
+            {notFound.back}
+          </Button>
+          <Button href={localePath(locale, "/projects")} variant="outline" size="lg">
+            {common.allProjects}
+            <ArrowRight size={16} aria-hidden="true" />
+          </Button>
         </div>
-      </div>
-      <h1 className="mb-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
-        Cette page a disparu dans le cloud
-      </h1>
-      <p className="mb-8 max-w-md text-muted">
-        Le lien que vous avez suivi est peut-être rompu ou la page a été déplacée. Pas de panique,
-        le retour est facile.
-      </p>
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
-      >
-        <ArrowLeft size={20} />
-        Retour à l&apos;accueil
-      </Link>
+      </Container>
     </main>
   );
 }

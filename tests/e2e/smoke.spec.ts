@@ -18,7 +18,14 @@ for (const path of pages) {
 test("une route inconnue affiche la page 404", async ({ page }) => {
   const response = await page.goto("/cette-page-n-existe-pas");
   expect(response?.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("disparu");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cette page n’existe pas");
+});
+
+test("une route anglaise inconnue affiche la page 404 en anglais", async ({ page }) => {
+  const response = await page.goto("/en/this-page-does-not-exist");
+  expect(response?.status()).toBe(404);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("This page does not exist");
 });
 
 test("la navigation du header ramène vers les sections de l'accueil depuis une autre page", async ({
