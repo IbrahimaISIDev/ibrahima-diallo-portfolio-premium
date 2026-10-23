@@ -133,3 +133,22 @@ test("le header indique la section active, au défilement et sur les pages dédi
     "location",
   );
 });
+
+test("le formulaire de contact affiche les erreurs du serveur dans la langue de la page", async ({
+  page,
+}) => {
+  await page.goto("/en/contact");
+  await page.getByLabel("Name").fill("Awa Ndiaye");
+  // Acceptée par le navigateur (type="email"), refusée par la validation du serveur
+  await page.getByRole("textbox", { name: "Email" }).fill("awa@example");
+  await page.getByLabel("Subject").fill("Project");
+  await page.getByLabel("Message").fill("Hello, I would like to talk about a project.");
+  await page.getByRole("button", { name: "Send message" }).click();
+
+  await expect(page.getByRole("status")).toContainText("Some fields need your attention.");
+  await expect(page.getByRole("textbox", { name: "Email" })).toHaveAttribute(
+    "aria-invalid",
+    "true",
+  );
+  await expect(page.locator("#email-error")).toHaveText("Enter a valid email address.");
+});
