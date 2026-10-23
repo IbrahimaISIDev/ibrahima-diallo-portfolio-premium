@@ -109,7 +109,7 @@ test("le bouton de thème bascule entre sombre et clair", async ({ page }) => {
 test("le filtre du portfolio n'affiche que les projets de la catégorie", async ({ page }) => {
   await page.goto("/projects");
   await page.getByRole("button", { name: "E-commerce", exact: true }).click();
-  const cards = page.locator("#portfolio h3");
+  const cards = page.locator("#project-list h2");
   await expect(cards).toHaveText(["Fily Mode Royale"]);
 });
 

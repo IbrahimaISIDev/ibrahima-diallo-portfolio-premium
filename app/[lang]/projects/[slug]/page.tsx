@@ -1,283 +1,295 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Cpu,
-  ShieldCheck,
-  Code2,
-  Rocket,
-  MessageSquare,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Github } from "@/components/shared/BrandIcons";
-import { projects, projectStatusLabels } from "@/data/projects";
 import LightboxImage from "@/components/shared/LightboxImage";
+import Reveal from "@/components/motion/Reveal";
+import Button from "@/components/ui/Button";
+import Card, { cardClass } from "@/components/ui/Card";
+import Container from "@/components/ui/Container";
+import { Chip, Eyebrow } from "@/components/ui/Typography";
+import { getContent } from "@/content";
+import { projects } from "@/content/projects";
+import { defaultLocale, isLocale, localePath } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import { pageMetadata } from "@/lib/metadata";
+import { cn } from "@/lib/utils";
 
-interface Props {
-  params: Promise<{ slug: string }>;
-}
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
-  if (!project) return { title: "Projet introuvable" };
+  const { lang, slug } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const project = getContent(locale).projects.find((item) => item.slug === slug);
+  if (!project) return {};
 
+  const { meta } = getDictionary(locale);
   return pageMetadata({
-    title: `${project.title} - Ibrahima Sory Diallo`,
+    title: `${project.title} — ${meta.caseStudySuffix} | Ibrahima Sory Diallo`,
     description: project.description,
     path: `/projects/${project.slug}`,
+    locale,
     type: "article",
     // Image générée par ./opengraph-image.tsx
-    image: `/projects/${project.slug}/opengraph-image`,
+    image: `${localePath(locale, `/projects/${project.slug}`)}/opengraph-image`,
   });
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const { lang, slug } = await params;
+  if (!isLocale(lang)) notFound();
 
-  if (!project) notFound();
+  const { projects: all } = getContent(lang);
+  const index = all.findIndex((item) => item.slug === slug);
+  if (index === -1) notFound();
 
-  const projectIndex = projects.findIndex((p) => p.slug === slug);
-  const nextProject = projects[(projectIndex + 1) % projects.length];
-  const prevProject = projects[(projectIndex - 1 + projects.length) % projects.length];
+  const project = all[index];
+  const previous = all[(index - 1 + all.length) % all.length];
+  const next = all[(index + 1) % all.length];
+  const { projects: t, common, nav } = getDictionary(lang);
+
+  // Appel à l'action : dans la colonne latérale sur grand écran, après l'étude de cas sur mobile
+  const cta = (visibility: string) => (
+    <Card
+      size="md"
+      className={cn("relative flex-col gap-3 overflow-hidden p-6 sm:p-7", visibility)}
+    >
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-20 -right-16 h-48 w-48 rounded-full bg-gold/15 blur-3xl"
+      />
+      <h2 className="relative font-display text-xl font-bold tracking-[-0.02em] text-ink">
+        {t.ctaTitle}
+      </h2>
+      <p className="relative text-[15px] leading-relaxed text-ink-muted">{t.ctaText}</p>
+      <Button
+        href={localePath(lang, "/contact")}
+        variant="gold"
+        className="relative mt-2 self-start"
+      >
+        {nav.contact}
+        <ArrowRight size={16} aria-hidden="true" />
+      </Button>
+    </Card>
+  );
 
   return (
-    <main id="main" className="pt-20 bg-background min-h-screen">
-      <article className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Navigation & Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-          <div className="space-y-6">
+    <main id="main">
+      <Container>
+        <article>
+          <header className="rise flex flex-col gap-8 pt-10 sm:pt-16">
             <Link
-              href="/#portfolio"
-              className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-secondary hover:translate-x-[-4px] transition-transform"
+              href={localePath(lang, "/projects")}
+              className="group inline-flex items-center gap-2 self-start rounded text-sm text-ink-muted outline-none transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-gold"
             >
-              <ArrowLeft size={16} />
-              Retour au Portfolio
+              <ArrowLeft
+                size={16}
+                aria-hidden="true"
+                className="transition-transform group-hover:-translate-x-0.5"
+              />
+              {t.back}
             </Link>
-            <div>
-              <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-[10px] font-black uppercase tracking-widest text-secondary mb-4">
-                {project.category}
+
+            <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+              <div className="flex max-w-3xl flex-col gap-5">
+                <Eyebrow>
+                  {common.caseStudy} · {project.categoryLabel}
+                </Eyebrow>
+                <h1 className="font-display text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.95] font-bold tracking-[-0.045em] text-balance text-ink">
+                  {project.title}
+                </h1>
+                <p className="text-lg leading-relaxed text-ink-muted sm:text-xl">
+                  {project.description}
+                </p>
+              </div>
+
+              {(project.liveUrl || project.githubUrl) && (
+                <div className="flex flex-wrap gap-3 lg:shrink-0">
+                  {project.liveUrl && (
+                    <Button href={project.liveUrl} variant="leaf" size="lg">
+                      {common.visitSite}
+                      <ArrowUpRight size={16} aria-hidden="true" />
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button href={project.githubUrl} variant="outline" size="lg">
+                      <Github size={16} aria-hidden="true" />
+                      {common.sourceCode}
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
+          </header>
+
+          <div className="rise mt-10 sm:mt-14" style={{ "--i": 1 } as React.CSSProperties}>
+            <LightboxImage
+              src={project.image}
+              alt={project.description}
+              title={project.title}
+              zoomLabel={t.zoom}
+            />
+          </div>
+
+          <div className="mt-3 grid gap-3 sm:mt-4 sm:gap-4 lg:grid-cols-12">
+            <aside className="flex flex-col gap-3 sm:gap-4 lg:sticky lg:top-28 lg:order-last lg:col-span-4 lg:self-start">
+              <Card size="md" className="flex flex-col gap-6 p-6 sm:p-7">
+                <dl className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-1.5">
+                    <dt className="font-mono text-xs tracking-[0.12em] text-gold-ink uppercase">
+                      {t.status}
+                    </dt>
+                    <dd
+                      className={cn(
+                        "inline-flex items-center gap-2 font-medium",
+                        project.liveUrl ? "text-leaf-ink" : "text-ink",
+                      )}
+                    >
+                      {project.liveUrl && (
+                        <span aria-hidden="true" className="h-2 w-2 rounded-full bg-leaf-ink" />
+                      )}
+                      {project.liveUrl ? common.live : common.privateProject}
+                    </dd>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <dt className="font-mono text-xs tracking-[0.12em] text-gold-ink uppercase">
+                      {t.impact}
+                    </dt>
+                    <dd className="leading-relaxed text-ink-soft">{project.impact}</dd>
+                  </div>
+                  <div className="flex flex-col gap-2.5">
+                    <dt className="font-mono text-xs tracking-[0.12em] text-gold-ink uppercase">
+                      {t.stack}
+                    </dt>
+                    <dd>
+                      <ul className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <li key={tag}>
+                            <Chip>{tag}</Chip>
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+              </Card>
+
+              {cta("hidden lg:flex")}
+            </aside>
+
+            <div className="flex flex-col gap-3 sm:gap-4 lg:col-span-8">
+              {project.architecture && (
+                <Reveal>
+                  <Card className="flex flex-col gap-6 p-7 sm:p-9">
+                    <h2 className="font-display text-2xl font-bold tracking-[-0.03em] text-ink">
+                      {t.architecture}
+                    </h2>
+                    <ul className="grid gap-3 sm:grid-cols-2">
+                      {project.architecture.map((item) => (
+                        <li
+                          key={item}
+                          className="rounded-2xl border border-line bg-card-2 p-5 text-[15px] leading-relaxed text-ink-soft"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="mb-3 block h-1 w-6 rounded-full bg-gold"
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </Reveal>
+              )}
+
+              {project.challenges && (
+                <Reveal>
+                  <Card className="flex flex-col gap-6 p-7 sm:p-9">
+                    <h2 className="font-display text-2xl font-bold tracking-[-0.03em] text-ink">
+                      {t.challenges}
+                    </h2>
+                    <ol className="flex flex-col">
+                      {project.challenges.map((challenge, i) => (
+                        <li
+                          key={challenge}
+                          className="flex gap-5 border-b border-line py-4 last:border-b-0"
+                        >
+                          <span className="pt-0.5 font-mono text-sm text-gold-ink">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <p className="text-[15px] leading-relaxed text-ink-soft sm:text-base">
+                            {challenge}
+                          </p>
+                        </li>
+                      ))}
+                    </ol>
+                  </Card>
+                </Reveal>
+              )}
+
+              {project.codeSnippet && (
+                <Reveal>
+                  <Card className="flex flex-col gap-6 p-7 sm:p-9">
+                    <h2 className="font-display text-2xl font-bold tracking-[-0.03em] text-ink">
+                      {t.code}
+                    </h2>
+                    {/* Fond sombre fixe dans les deux thèmes : lisibilité du code */}
+                    <pre
+                      tabIndex={0}
+                      className="overflow-x-auto rounded-2xl border border-line bg-[#0d0d0f] p-6 font-mono text-sm leading-relaxed text-[#e4e4e7] outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    >
+                      <code>{project.codeSnippet}</code>
+                    </pre>
+                  </Card>
+                </Reveal>
+              )}
+
+              {!project.architecture && !project.challenges && !project.codeSnippet && (
+                <Card className="flex flex-col gap-3 p-7 sm:p-9">
+                  <h2 className="font-display text-2xl font-bold tracking-[-0.03em] text-ink">
+                    {t.impact}
+                  </h2>
+                  <p className="text-base leading-relaxed text-ink-soft sm:text-lg">
+                    {project.impact}
+                  </p>
+                </Card>
+              )}
+
+              {cta("flex lg:hidden")}
+            </div>
+          </div>
+        </article>
+
+        <nav aria-label={t.back} className="mt-16 grid gap-3 sm:mt-24 sm:grid-cols-2 sm:gap-4">
+          {[
+            { project: previous, label: t.previous, align: "items-start" },
+            { project: next, label: t.next, align: "items-end text-right" },
+          ].map(({ project: item, label, align }) => (
+            <Link
+              key={label}
+              href={localePath(lang, `/projects/${item.slug}`)}
+              className={cn(
+                cardClass({ interactive: true }),
+                "group flex flex-col gap-3 p-7 outline-none focus-visible:ring-2 focus-visible:ring-gold sm:p-9",
+                align,
+              )}
+            >
+              <span className="font-mono text-xs tracking-[0.12em] text-ink-muted uppercase transition-colors group-hover:text-gold-ink">
+                {label}
               </span>
-              <h1 className="font-display text-5xl md:text-7xl font-black text-foreground tracking-tighter leading-[0.9] mb-6">
-                {project.title}
-              </h1>
-              <p className="text-xl md:text-2xl font-medium text-muted max-w-2xl leading-relaxed">
-                {project.description}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-4">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-black text-white shadow-xl shadow-primary/30 hover:bg-primary-light transition-all text-sm"
-              >
-                <Rocket size={18} />
-                Voir le site
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-full border border-border bg-surface px-8 py-4 font-black text-foreground hover:border-secondary transition-all text-sm"
-              >
-                <Github size={18} />
-                Code source
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Featured Image Section */}
-        <section className="mb-24 relative group">
-          <div className="rounded-[2.5rem] overflow-hidden border border-border/50 shadow-2xl">
-            <LightboxImage src={project.image} alt={project.description} title={project.title} />
-          </div>
-        </section>
-
-        {/* Deep Case Study Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
-          {/* Main Column (Technical Story) */}
-          <div className="lg:col-span-8 space-y-24">
-            {/* Architecture Section */}
-            {project.architecture && (
-              <section className="space-y-12">
-                <div className="flex items-center gap-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary/10 text-secondary border border-secondary/20">
-                    <Cpu size={24} />
-                  </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">
-                    Architecture
-                  </h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {project.architecture.map((item, i) => (
-                    <div
-                      key={i}
-                      className="p-6 rounded-2xl border border-border/40 bg-surface/30 hover:border-secondary/30 transition-colors group"
-                    >
-                      <div className="h-2 w-8 bg-secondary/30 group-hover:bg-secondary rounded-full mb-4 transition-all" />
-                      <p className="font-bold text-foreground leading-snug">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Implementation & Challenges */}
-            {project.challenges && (
-              <section className="space-y-12">
-                <div className="flex items-center gap-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary-text border border-primary/20">
-                    <ShieldCheck size={24} />
-                  </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">
-                    Défis Techniques
-                  </h2>
-                </div>
-                <div className="space-y-8">
-                  {project.challenges.map((challenge, i) => (
-                    <div key={i} className="flex gap-6 items-start">
-                      <span className="text-muted-dark font-black text-2xl">0{i + 1}</span>
-                      <p className="text-lg text-muted font-medium leading-relaxed pt-1 border-b border-border/20 pb-4 w-full">
-                        {challenge}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Code Highlight */}
-            {project.codeSnippet && (
-              <section className="space-y-12">
-                <div className="flex items-center gap-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground/5 text-foreground border border-border/50">
-                    <Code2 size={24} />
-                  </div>
-                  <h2 className="font-display text-3xl font-black uppercase tracking-tight text-foreground">
-                    Extrait de code
-                  </h2>
-                </div>
-                <div className="rounded-3xl border border-border bg-[#0d1117] p-1 shadow-2xl relative overflow-hidden group">
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
-                    <div className="flex gap-2">
-                      <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                      <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                      <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                      logic_core.ts
-                    </span>
-                  </div>
-                  <pre className="p-8 text-sm sm:text-base font-mono leading-relaxed overflow-x-auto text-blue-200/90 [scrollbar-width:none] [-ms-overflow-style:none]">
-                    <code>{project.codeSnippet}</code>
-                  </pre>
-                  {/* Decorative glow */}
-                  <div className="absolute top-0 right-0 h-32 w-32 bg-secondary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </section>
-            )}
-          </div>
-
-          {/* Sidebar (Meta Info) */}
-          <aside className="lg:col-span-4 space-y-12 h-fit lg:sticky lg:top-32">
-            {/* Project Status & Meta */}
-            <div className="p-8 rounded-[2rem] border border-border/50 bg-surface/30 space-y-8">
-              <div className="space-y-3">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">
-                  Statut Projet
-                </h2>
-                <div className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="font-black text-foreground">
-                    {projectStatusLabels[project.status ?? "Live"]}
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">
-                  Impact Majeur
-                </h2>
-                <p className="font-bold text-foreground leading-tight">{project.impact}</p>
-              </div>
-
-              <div className="space-y-4 pt-4 border-t border-border/40">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">
-                  Stack technique
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-lg bg-background border border-border/50 text-xs font-bold text-muted transition-colors hover:text-secondary hover:border-secondary/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Appel à l'action : le même texte générique sur chaque projet n'apportait rien */}
-            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-secondary/5 to-primary/5 border border-secondary/10 space-y-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
-                <MessageSquare size={20} />
-              </div>
-              <h2 className="font-display text-lg font-bold text-foreground">
-                Un projet similaire ?
-              </h2>
-              <p className="text-sm text-muted leading-relaxed">
-                Parlons de vos besoins : je vous réponds avec une première approche technique.
-              </p>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:underline underline-offset-4"
-              >
-                Me contacter
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-          </aside>
-        </div>
-
-        {/* Project Navigation Footer */}
-        <nav className="mt-40 pt-16 border-t border-border/40 grid gap-6 sm:grid-cols-2">
-          <Link
-            href={`/projects/${prevProject.slug}`}
-            className="group p-10 rounded-[2.5rem] border border-border/40 bg-surface/20 transition-all hover:border-secondary/40 hover:bg-secondary/5 flex flex-col items-start gap-4"
-          >
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-dark group-hover:text-secondary transition-colors">
-              ← Précédent
-            </span>
-            <p className="font-display text-2xl font-black text-foreground">{prevProject.title}</p>
-          </Link>
-          <Link
-            href={`/projects/${nextProject.slug}`}
-            className="group p-10 rounded-[2.5rem] border border-border/40 bg-surface/20 transition-all hover:border-secondary/40 hover:bg-secondary/5 flex flex-col items-end text-right gap-4"
-          >
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-dark group-hover:text-secondary transition-colors">
-              Suivant →
-            </span>
-            <p className="font-display text-2xl font-black text-foreground">{nextProject.title}</p>
-          </Link>
+              <span className="font-display text-2xl font-bold tracking-[-0.03em] text-ink">
+                {item.title}
+              </span>
+              <span className="text-sm text-ink-muted">{item.categoryLabel}</span>
+            </Link>
+          ))}
         </nav>
-      </article>
+      </Container>
     </main>
   );
 }

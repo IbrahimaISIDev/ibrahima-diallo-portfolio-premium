@@ -61,3 +61,30 @@ export function Chip({ children, className }: { children: ReactNode; className?:
     </span>
   );
 }
+
+// En-tête d'une page intérieure : libellé, titre h1 en grand et introduction
+export function PageHeader({
+  eyebrow,
+  title,
+  intro,
+  children,
+  className,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  intro?: ReactNode;
+  // Contenu sous l'introduction (boutons, filtres…)
+  children?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <header className={cn("rise flex max-w-3xl flex-col gap-5 pt-12 sm:pt-20", className)}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.98] font-bold tracking-[-0.045em] text-balance text-ink">
+        {title}
+      </h1>
+      {intro && <p className="text-base leading-relaxed text-ink-muted sm:text-lg">{intro}</p>}
+      {children}
+    </header>
+  );
+}
