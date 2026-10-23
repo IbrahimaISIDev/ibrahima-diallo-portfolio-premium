@@ -14,8 +14,7 @@ const contentSecurityPolicy = [
   "font-src 'self'",
   "connect-src 'self'",
   "media-src 'self'",
-  // canvas-confetti (confettis du logo) dessine dans un Web Worker créé depuis une URL blob:
-  "worker-src 'self' blob:",
+  "worker-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

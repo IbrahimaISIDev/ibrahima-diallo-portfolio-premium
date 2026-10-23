@@ -5,29 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  --color-primary-dark: var(--primary-dark);
-  /* Vert lisible en texte (primary-light sert aussi de fond derrière du texte blanc) */
-  --color-primary-text: var(--primary-text);
-  --color-secondary: var(--secondary);
-  --color-secondary-light: var(--secondary-light);
-  --color-secondary-dark: var(--secondary-dark);
-  --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
-
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-light: var(--surface-light);
-  --color-border: var(--border);
-  --color-border-light: var(--border-light);
-
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-dark: var(--muted-dark);
-
-  /* Charte de la refonte (direction « Bento immersif ») : noms neutres, distincts
-     des anciens tokens que les pages en cours de migration utilisent encore */
+  /* Charte « Bento immersif » : fonds, textes et accents (or, vert, rouge du drapeau) */
   --color-canvas: var(--canvas);
   --color-card: var(--card);
   --color-card-2: var(--card-2);
@@ -46,7 +24,7 @@
   --color-ember: var(--ember);
   --color-ember-ink: var(--ember-ink);
 
-  /* Polices chargées par next/font dans app/layout.tsx */
+  /* Polices chargées par next/font dans app/[lang]/layout.tsx */
   --font-display: var(--font-sora), system-ui, sans-serif;
   --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono), "Fira Code", monospace;
@@ -54,28 +32,7 @@
 
 @layer base {
   :root {
-    --primary: #1b5e20;
-    --primary-light: #2e7d32;
-    --primary-dark: #145218;
-    --primary-text: #66bb6a;
-    --secondary: #f59e0b;
-    --secondary-light: #fbbf24;
-    --secondary-dark: #d97706;
-    --accent: #dc2626;
-    --accent-light: #ef4444;
-
-    --background: #111111;
-    --surface: #1a1a1c;
-    --surface-light: #222225;
-    --border: #2a2a2d;
-    --border-light: #353538;
-
-    --foreground: #f8fafc;
-    --muted: #94a3b8;
-    /* ≥ 4.5:1 sur background, surface et surface-light (#64748B était à 3.65-3.97) */
-    --muted-dark: #8391a7;
-
-    /* Charte de la refonte — thème sombre (contrastes AA vérifiés) */
+    /* Thème sombre (contrastes AA vérifiés) */
     --canvas: #09090a;
     --card: #121214;
     --card-2: #18181b;
@@ -96,24 +53,7 @@
   }
 
   .light {
-    --background: #f8fafc;
-    --surface: #ffffff;
-    --surface-light: #f1f5f9;
-    --border: #e2e8f0;
-    --border-light: #cbd5e1;
-
-    --foreground: #0f172a;
-    --muted: #475569;
-    --muted-dark: #1e293b;
-
-    /* L'ambre #F59E0B tombait à 2.05:1 sur fond clair : amber-700 (≥ 4.58:1)
-       pour le texte et les boutons, plus foncé encore au survol */
-    --secondary: #b45309;
-    --secondary-light: #92400e;
-    --secondary-dark: #92400e;
-    --primary-text: #2e7d32;
-
-    /* Charte de la refonte — thème clair (ivoire chaud, contrastes AA vérifiés) */
+    /* Thème clair : ivoire chaud (contrastes AA vérifiés) */
     --canvas: #f7f5f0;
     --card: #ffffff;
     --card-2: #f2efe8;
@@ -185,32 +125,6 @@ pre {
 ::selection {
   background-color: var(--color-gold);
   color: var(--color-on-gold);
-}
-
-/* Animations décoratives en boucle (CSS, pour pouvoir les mettre en pause) */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
-@keyframes dots-drift {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 32px 32px;
-  }
-}
-
-/* Les animations en boucle d'une section hors écran sont mises en pause
-   (data-paused est posé par la section avec useInView) */
-[data-paused="true"],
-[data-paused="true"] * {
-  animation-play-state: paused !important;
 }
 
 /* Sans JavaScript, les animations au scroll ne se déclenchent jamais : Framer Motion
