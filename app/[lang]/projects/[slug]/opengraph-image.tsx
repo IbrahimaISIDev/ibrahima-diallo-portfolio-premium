@@ -1,9 +1,11 @@
-import { projects } from "@/data/projects";
-import { personalInfo } from "@/data/personal";
+import { getContent } from "@/content";
+import { projects } from "@/content/projects";
+import { defaultLocale, isLocale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import { ogSize, renderOgImage } from "@/lib/og";
 
-// Image de partage propre à chaque étude de cas
-export const alt = "Étude de cas - Ibrahima Sory Diallo";
+// Image de partage propre à chaque étude de cas, dans chaque langue
+export const alt = "Ibrahima Sory Diallo — Case study";
 export const size = ogSize;
 export const contentType = "image/png";
 
@@ -14,15 +16,18 @@ export function generateStaticParams() {
 export default async function ProjectOpengraphImage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const { lang, slug } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { profile, projects: all } = getContent(locale);
+  const project = all.find((item) => item.slug === slug);
+  const { common } = getDictionary(locale);
 
   return renderOgImage({
-    title: project?.title ?? personalInfo.fullName,
-    accent: project ? `Étude de cas · ${project.category}` : personalInfo.title,
+    title: project?.title ?? profile.fullName,
+    accent: project ? `${common.caseStudy} · ${project.categoryLabel}` : profile.shortHeadline,
     details: project?.tags.join(" · ") ?? "",
-    footer: `${personalInfo.fullName} · ${personalInfo.title}`,
+    footer: `${profile.fullName} · ${profile.title}`,
   });
 }

@@ -10,6 +10,13 @@ export function alternateLanguages(path: string): Record<string, string> {
   };
 }
 
+// Image de partage d'une page générée par un opengraph-image.tsx : "/opengraph-image" (fr),
+// "/en/opengraph-image", "/en/projects/tekkil/opengraph-image"…
+export function ogImagePath(locale: Locale, path = "/"): string {
+  const base = localePath(locale, path);
+  return `${base === "/" ? "" : base}/opengraph-image`;
+}
+
 interface PageMetadataOptions {
   title: string;
   description: string;
@@ -17,7 +24,7 @@ interface PageMetadataOptions {
   path: string;
   locale?: Locale;
   type?: "website" | "article";
-  // Route d'une image générée par opengraph-image.tsx (par défaut, celle du site)
+  // Route d'une image générée par opengraph-image.tsx (par défaut, celle du site dans la langue)
   image?: string;
 }
 
@@ -32,7 +39,7 @@ export function pageMetadata({
   path,
   locale = defaultLocale,
   type = "website",
-  image = "/opengraph-image",
+  image = ogImagePath(locale),
 }: PageMetadataOptions): Metadata {
   const url = localePath(locale, path);
   const images = [{ url: image, width: 1200, height: 630, alt: title }];

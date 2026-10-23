@@ -6,12 +6,29 @@ import Services from "@/components/home/Services";
 import Testimonials from "@/components/home/Testimonials";
 import Container from "@/components/ui/Container";
 import { getContent } from "@/content";
-import { isLocale } from "@/lib/i18n/config";
+import { defaultLocale, isLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { pageMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-// Titre, description, URL canonique et hreflang de l'accueil viennent du layout
-export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+type Props = { params: Promise<{ lang: string }> };
+
+// Déclarées ici et non seulement dans le layout : au niveau du layout, Next remplace
+// l'image de partage par l'adresse interne /fr/opengraph-image (redirigée en 308)
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { meta } = getDictionary(locale);
+  return pageMetadata({
+    title: meta.homeTitle,
+    description: meta.homeDescription,
+    path: "/",
+    locale,
+  });
+}
+
+export default async function Home({ params }: Props) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
 

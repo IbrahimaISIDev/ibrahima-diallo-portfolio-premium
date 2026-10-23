@@ -13,7 +13,7 @@ import { getContent } from "@/content";
 import { projects } from "@/content/projects";
 import { defaultLocale, isLocale, localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { pageMetadata } from "@/lib/metadata";
+import { ogImagePath, pageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     type: "article",
     // Image générée par ./opengraph-image.tsx
-    image: `${localePath(locale, `/projects/${project.slug}`)}/opengraph-image`,
+    image: ogImagePath(locale, `/projects/${project.slug}`),
   });
 }
 

@@ -51,7 +51,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Français à la racine, anglais sous /en : les URL françaises sont servies par app/[lang]
   // avec lang = "fr". En afterFiles, les fichiers statiques (images, CV, robots.txt…) passent
-  // avant ; les routes de métadonnées dynamiques et l'API sont exclues explicitement.
+  // avant ; l'API et les icônes (non traduites) sont exclues. Les images de partage
+  // (opengraph-image) existent par langue et passent donc par la réécriture.
   async rewrites() {
     return {
       beforeFiles: [],
@@ -59,7 +60,7 @@ const nextConfig: NextConfig = {
         { source: "/", destination: "/fr" },
         {
           source:
-            "/:path((?!en(?:/|$)|fr(?:/|$)|api(?:/|$)|_next(?:/|$)|icon(?:/|$)|apple-icon(?:/|$)|opengraph-image(?:/|$)).*)",
+            "/:path((?!en(?:/|$)|fr(?:/|$)|api(?:/|$)|_next(?:/|$)|icon(?:/|$)|apple-icon(?:/|$)).*)",
           destination: "/fr/:path",
         },
       ],
