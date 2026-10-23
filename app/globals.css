@@ -26,6 +26,26 @@
   --color-muted: var(--muted);
   --color-muted-dark: var(--muted-dark);
 
+  /* Charte de la refonte (direction « Bento immersif ») : noms neutres, distincts
+     des anciens tokens que les pages en cours de migration utilisent encore */
+  --color-canvas: var(--canvas);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-field: var(--field);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-on-gold: var(--on-gold);
+  --color-leaf: var(--leaf);
+  --color-leaf-ink: var(--leaf-ink);
+  --color-on-leaf: var(--on-leaf);
+  --color-ember: var(--ember);
+  --color-ember-ink: var(--ember-ink);
+
   /* Polices chargées par next/font dans app/layout.tsx */
   --font-display: var(--font-sora), system-ui, sans-serif;
   --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -56,6 +76,25 @@
     --muted-dark: #8391a7;
 
     --pattern-line: rgba(255, 255, 255, 0.1);
+
+    /* Charte de la refonte — thème sombre (contrastes AA vérifiés) */
+    --canvas: #09090a;
+    --card: #121214;
+    --card-2: #18181b;
+    --line: #232326;
+    --line-strong: #3a3a40;
+    --field: #6b6b75; /* bordure des champs : ≥ 3:1 sur card */
+    --ink: #f5f2ea; /* 17.8:1 */
+    --ink-soft: #d4d4d8; /* 13.5:1 */
+    --ink-muted: #a1a1aa; /* 7.8:1 */
+    --gold: #e3b65c; /* aplat d'accent, texte on-gold 10.5:1 */
+    --gold-ink: #e3b65c; /* or en texte : 10.5:1 */
+    --on-gold: #09090a;
+    --leaf: #1f7a4d; /* action principale, texte blanc 5.3:1 */
+    --leaf-ink: #4fbf85; /* vert en texte : 8.7:1 */
+    --on-leaf: #ffffff;
+    --ember: #d24b37; /* rouge : liseré, jamais en texte */
+    --ember-ink: #f07a66; /* rouge en texte (erreurs) : 7.3:1 */
   }
 
   .light {
@@ -77,6 +116,25 @@
     --primary-text: #2e7d32;
 
     --pattern-line: rgba(15, 23, 42, 0.06);
+
+    /* Charte de la refonte — thème clair (ivoire chaud, contrastes AA vérifiés) */
+    --canvas: #f7f5f0;
+    --card: #ffffff;
+    --card-2: #f2efe8;
+    --line: #e5e1d8;
+    --line-strong: #d6d1c6;
+    --field: #8c857a; /* 3.75:1 sur card */
+    --ink: #141413;
+    --ink-soft: #3f3b36;
+    --ink-muted: #57534e; /* 7:1 */
+    --gold: #e3b65c; /* même aplat, texte on-gold sombre 9.8:1 */
+    --gold-ink: #7c5a12; /* or foncé pour le texte : ≥ 5.5:1 */
+    --on-gold: #141413;
+    --leaf: #1f7a4d;
+    --leaf-ink: #1a6b43; /* ≥ 5.7:1 */
+    --on-leaf: #ffffff;
+    --ember: #d24b37;
+    --ember-ink: #b3361f; /* ≥ 5.1:1 */
   }
 }
 
