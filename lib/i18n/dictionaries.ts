@@ -193,6 +193,11 @@ const fr = {
     },
   },
   footer: {
+    tagline:
+      "Développeur Full-Stack à Dakar. Je conçois des produits web et mobiles complets, de l’API à la mise en production.",
+    navigation: "Navigation",
+    contact: "Contact",
+    home: "Accueil",
     rights: "Tous droits réservés.",
     madeIn: "Fait à Dakar",
   },
@@ -395,6 +400,11 @@ const en: Dictionary = {
     },
   },
   footer: {
+    tagline:
+      "Full-stack developer in Dakar. I build complete web and mobile products, from the API to production.",
+    navigation: "Navigation",
+    contact: "Contact",
+    home: "Home",
     rights: "All rights reserved.",
     madeIn: "Made in Dakar",
   },

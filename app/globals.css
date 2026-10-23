@@ -75,8 +75,6 @@
     /* ≥ 4.5:1 sur background, surface et surface-light (#64748B était à 3.65-3.97) */
     --muted-dark: #8391a7;
 
-    --pattern-line: rgba(255, 255, 255, 0.1);
-
     /* Charte de la refonte — thème sombre (contrastes AA vérifiés) */
     --canvas: #09090a;
     --card: #121214;
@@ -115,8 +113,6 @@
     --secondary-dark: #92400e;
     --primary-text: #2e7d32;
 
-    --pattern-line: rgba(15, 23, 42, 0.06);
-
     /* Charte de la refonte — thème clair (ivoire chaud, contrastes AA vérifiés) */
     --canvas: #f7f5f0;
     --card: #ffffff;
@@ -141,42 +137,16 @@
 /* Base styles */
 html {
   scroll-behavior: smooth;
-}
-
-/* Curseur natif masqué uniquement quand CustomCursor est monté (classe posée par le composant) */
-html.has-custom-cursor,
-html.has-custom-cursor * {
-  cursor: none !important;
-}
-
-/* Les champs de saisie gardent le curseur texte natif */
-html.has-custom-cursor :is(input, textarea, [contenteditable="true"]) {
-  cursor: text !important;
+  /* Les ancres s'arrêtent sous le header sticky */
+  scroll-padding-top: 6rem;
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 35px,
-    var(--pattern-line) 35px,
-    var(--pattern-line) 36px
-  );
-  pointer-events: none;
-  z-index: -10;
-  mask-image: radial-gradient(circle at center, black, transparent 90%);
 }
 
 h1,
@@ -199,23 +169,22 @@ pre {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: var(--color-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-light);
+  background: var(--color-line-strong);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted-dark);
+  background: var(--color-field);
 }
 
-/* Selection */
+/* Selection : aplat or et texte sombre, lisibles dans les deux thèmes */
 ::selection {
-  background-color: var(--color-primary);
-  /* Blanc fixe : 7.9:1 sur le vert primaire dans les deux thèmes */
-  color: #ffffff;
+  background-color: var(--color-gold);
+  color: var(--color-on-gold);
 }
 
 /* Animations décoratives en boucle (CSS, pour pouvoir les mettre en pause) */
@@ -308,7 +277,6 @@ html:not(.js) [style*="scale(0)"] {
   nav,
   footer,
   .print\:hidden,
-  #custom-cursor,
   .constellation-bg {
     display: none !important;
   }

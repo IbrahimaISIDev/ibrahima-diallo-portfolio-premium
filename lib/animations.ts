@@ -75,30 +75,3 @@ export const counterUp: Variants = {
     transition: { duration: 0.5, ease: easeOut, type: "spring", stiffness: 100 },
   },
 };
-
-// Mobile menu variants
-export const mobileMenuVariants: Variants = {
-  closed: {
-    x: "100%",
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-    },
-  },
-  open: {
-    x: 0,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-export const mobileMenuItem: Variants = {
-  closed: { x: 20, opacity: 0 },
-  open: { x: 0, opacity: 1 },
-};

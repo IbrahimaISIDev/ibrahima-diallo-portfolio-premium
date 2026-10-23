@@ -2,15 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navigationItems } from "@/data/navigation";
 import { stripLocale } from "@/lib/i18n/config";
-
-// Pages dédiées et la section de la navigation qu'elles prolongent
-const pageSections: Record<string, string> = {
-  "/about": "about",
-  "/projects": "portfolio",
-  "/contact": "contact",
-};
+import { homeSections, pageSections } from "@/lib/navigation";
 
 // Section de la navigation à mettre en évidence dans le header.
 // Sur l'accueil : la section qui traverse le milieu de l'écran (suit le défilement).
@@ -23,15 +16,18 @@ export function useActiveSection(): string | null {
   useEffect(() => {
     if (pathname !== "/") return;
 
-    const sections = navigationItems
-      .map((item) => document.getElementById(item.href.split("#")[1]))
+    const sections = homeSections
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
-    // Bande fine au milieu de l'écran : une seule section la traverse à la fois
+    // Bande fine au milieu de l'écran : une seule section la traverse à la fois.
+    // Au-dessus de la première section (présentation), aucun lien n'est actif.
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) setSection(entry.target.id);
+          else if (entry.target === sections[0] && entry.boundingClientRect.top > 0)
+            setSection(null);
         }
       },
       { rootMargin: "-45% 0px -50% 0px" },

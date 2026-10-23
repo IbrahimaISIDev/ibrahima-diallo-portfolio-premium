@@ -30,3 +30,6 @@ export function stripLocale(pathname: string): string {
 
 // Locale BCP 47 complète (formatage des dates, balises Open Graph)
 export const htmlLocale: Localized<string> = { fr: "fr_FR", en: "en_US" };
+
+// Nom de chaque langue dans cette langue (sélecteur de langue)
+export const languageNames: Localized<string> = { fr: "Français", en: "English" };
