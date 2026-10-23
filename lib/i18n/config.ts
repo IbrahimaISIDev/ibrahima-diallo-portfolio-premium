@@ -11,11 +11,14 @@ export function isLocale(value: string): value is Locale {
 // Texte ou donnée disponible dans chaque langue
 export type Localized<T> = Record<Locale, T>;
 
-// URL publique d'un chemin dans une langue : "/about" -> "/about" (fr) ou "/en/about" (en)
+// URL publique d'un chemin dans une langue : "/about" -> "/about" (fr) ou "/en/about" (en).
+// Une ancre ou des paramètres sur l'accueil restent collés au préfixe : "/#contact" -> "/en#contact".
 export function localePath(locale: Locale, path = "/"): string {
   const clean = path.startsWith("/") ? path : `/${path}`;
   if (locale === defaultLocale) return clean;
-  return clean === "/" ? `/${locale}` : `/${locale}${clean}`;
+  const end = clean.search(/[#?]/);
+  const pathname = end === -1 ? clean : clean.slice(0, end);
+  return pathname === "/" ? `/${locale}${clean.slice(1)}` : `/${locale}${clean}`;
 }
 
 // Chemin sans préfixe de langue : "/en/about" -> "/about", "/en" -> "/".

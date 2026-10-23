@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const pages = ["/", "/about", "/projects", "/cv", "/contact", "/projects/tekkil"];
+const pages = ["/", "/en", "/about", "/projects", "/cv", "/contact", "/projects/tekkil"];
 
 for (const path of pages) {
   test(`${path} se charge avec un h1 et sans erreur JavaScript`, async ({ page }) => {
@@ -27,10 +27,51 @@ test("la navigation du header ramène vers les sections de l'accueil depuis une 
   await page.goto("/cv");
   await page
     .getByRole("navigation", { name: "Navigation principale" })
-    .getByRole("link", { name: "Contact" })
+    .getByRole("link", { name: "Expertise" })
     .click();
-  await expect(page).toHaveURL(/\/#contact$/);
-  await expect(page.locator("section#contact")).toBeInViewport();
+  await expect(page).toHaveURL(/\/#expertise$/);
+  await expect(page.locator("section#expertise")).toBeInViewport();
+});
+
+test("l'accueil anglais est servi sous /en, avec ses textes et sa langue", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Contact me" }).first()).toHaveAttribute(
+    "href",
+    "/en#contact",
+  );
+  // Version française de l'accueil : la racine du site, sans préfixe de langue
+  await expect(page.locator('link[rel="alternate"][hreflang="fr"]')).toHaveAttribute(
+    "href",
+    /^https:\/\/[^/]+\/?$/,
+  );
+});
+
+test("le sélecteur de langue mène à la même page dans l'autre langue", async ({ page }) => {
+  await page.goto("/about");
+  await page
+    .getByRole("navigation", { name: "Langue du site" })
+    .getByRole("link", { name: "English" })
+    .click();
+  await expect(page).toHaveURL(/\/en\/about$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+
+  await page
+    .getByRole("navigation", { name: "Site language" })
+    .getByRole("link", { name: "Français" })
+    .click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+});
+
+test("une carte de projet de l'accueil ouvre son étude de cas", async ({ page }) => {
+  await page.goto("/");
+  await page
+    .locator("section#projects")
+    .getByRole("link", { name: /Tekkil/ })
+    .click();
+  await expect(page).toHaveURL(/\/projects\/tekkil$/);
 });
 
 test("le lien d'évitement mène au contenu principal", async ({ page }) => {
@@ -78,11 +119,10 @@ test("le header indique la section active, au défilement et sur les pages dédi
   const nav = page.getByRole("navigation", { name: "Navigation principale" });
 
   await page.goto("/");
-  await page.locator("section#portfolio").scrollIntoViewIfNeeded();
   await page.evaluate(() =>
-    document.getElementById("portfolio")?.scrollIntoView({ block: "start", behavior: "instant" }),
+    document.getElementById("projects")?.scrollIntoView({ block: "start", behavior: "instant" }),
   );
-  await expect(nav.getByRole("link", { name: "Portfolio" })).toHaveAttribute(
+  await expect(nav.getByRole("link", { name: "Projets" })).toHaveAttribute(
     "aria-current",
     "location",
   );

@@ -326,3 +326,18 @@ html:not(.js) [style*="scale(0)"] {
     break-after: avoid;
   }
 }
+
+/* Entrée de la présentation de l'accueil : les cartes montent l'une après l'autre.
+   Animation CSS (pas de JavaScript) : visible même avant l'hydratation, et neutralisée
+   par la règle prefers-reduced-motion ci-dessus. --i : rang de la carte. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}

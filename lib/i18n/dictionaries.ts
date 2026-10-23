@@ -68,6 +68,8 @@ const fr = {
   home: {
     projectsEyebrow: "Projets en ligne",
     projectsTitle: "Des produits utilisés, pas des démos",
+    allProjects: "Les {count} projets",
+    localTime: "à Dakar",
     moreProjects: "projets de plus",
     moreProjectsHint: "Voir tous les projets",
     servicesEyebrow: "Ce que je fais",
@@ -87,6 +89,7 @@ const fr = {
     expertiseOpsText: "VPS, Docker, Nginx, DNS, CI/CD.",
     expertiseSecurity: "Sécurité",
     expertiseSecurityText: "AES-256, RBAC, RGPD/HDS, DRM.",
+    skillsTitle: "{count} compétences, par domaine",
     testimonialsEyebrow: "Témoignages",
     testimonialsTitle: "Ils ont travaillé avec moi",
     translatedFromFrench: "Traduit du français",
@@ -276,6 +279,8 @@ const en: Dictionary = {
   home: {
     projectsEyebrow: "Live projects",
     projectsTitle: "Products people use, not demos",
+    allProjects: "All {count} projects",
+    localTime: "in Dakar",
     moreProjects: "more projects",
     moreProjectsHint: "See all projects",
     servicesEyebrow: "What I do",
@@ -295,6 +300,7 @@ const en: Dictionary = {
     expertiseOpsText: "VPS, Docker, Nginx, DNS, CI/CD.",
     expertiseSecurity: "Security",
     expertiseSecurityText: "AES-256, RBAC, GDPR/HDS, DRM.",
+    skillsTitle: "{count} skills, by area",
     testimonialsEyebrow: "Testimonials",
     testimonialsTitle: "People I have worked with",
     translatedFromFrench: "Translated from French",
@@ -416,6 +422,11 @@ const en: Dictionary = {
 };
 
 const dictionaries: Record<Locale, Dictionary> = { fr, en };
+
+// Remplace les variables {nom} d'un texte : format("Les {count} projets", { count: 12 })
+export function format(text: string, values: Record<string, string | number>): string {
+  return text.replace(/\{(\w+)\}/g, (match, key: string) => String(values[key] ?? match));
+}
 
 export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];

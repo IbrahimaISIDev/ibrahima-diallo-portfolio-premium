@@ -97,27 +97,29 @@ export default function SiteFooter({ locale, profile, dict }: SiteFooterProps) {
         </div>
       </Container>
 
-      <Container className="flex flex-col-reverse items-start justify-between gap-6 border-t border-line py-8 text-[13px] text-ink-muted sm:flex-row sm:items-center">
-        <p>
-          © {new Date().getFullYear()} {profile.fullName}. {footer.rights}
-        </p>
-        <div className="flex items-center gap-6">
-          <span className="flex items-center gap-2.5">
-            {/* Liseré aux couleurs du drapeau sénégalais */}
-            <span aria-hidden="true" className="flex h-1 w-12 overflow-hidden rounded">
-              <span className="flex-1 bg-leaf" />
-              <span className="flex-1 bg-gold" />
-              <span className="flex-1 bg-ember" />
+      <Container>
+        <div className="flex flex-col-reverse items-start justify-between gap-6 border-t border-line py-8 text-[13px] text-ink-muted sm:flex-row sm:items-center">
+          <p>
+            © {new Date().getFullYear()} {profile.fullName}. {footer.rights}
+          </p>
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2.5">
+              {/* Liseré aux couleurs du drapeau sénégalais */}
+              <span aria-hidden="true" className="flex h-1 w-12 overflow-hidden rounded">
+                <span className="flex-1 bg-leaf" />
+                <span className="flex-1 bg-gold" />
+                <span className="flex-1 bg-ember" />
+              </span>
+              {footer.madeIn}
             </span>
-            {footer.madeIn}
-          </span>
-          <a
-            href="#top"
-            aria-label={a11y.backToTop}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-muted outline-none transition-colors hover:border-line-strong hover:text-ink focus-visible:ring-2 focus-visible:ring-gold"
-          >
-            <ArrowUp size={16} aria-hidden="true" />
-          </a>
+            <a
+              href="#top"
+              aria-label={a11y.backToTop}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-muted outline-none transition-colors hover:border-line-strong hover:text-ink focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              <ArrowUp size={16} aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </Container>
     </footer>
