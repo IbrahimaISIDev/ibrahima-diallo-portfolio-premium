@@ -125,11 +125,18 @@ export const skillGroups: SkillGroupContent[] = [
 
 // Technologies mises en avant (accueil) : les plus représentatives du profil
 export const featuredStack = [
-  "NestJS",
+  // Le cœur du profil : Full-Stack TypeScript, la combinaison la plus recherchée
+  "TypeScript",
+  "React",
   "Next.js",
+  "Node.js",
+  "NestJS",
+  // L'atout qui distingue : le mobile
   "Flutter",
+  // Le profil « entreprise » (banques, télécoms)
   "Spring Boot",
+  "Angular",
+  // La mise en production
   "PostgreSQL",
   "Docker",
-  "Angular",
 ];

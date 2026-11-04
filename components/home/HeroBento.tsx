@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Download, MapPin } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { cardClass } from "@/components/ui/Card";
@@ -139,7 +140,14 @@ export default function HeroBento({ content, dict }: HeroBentoProps) {
             </li>
           ))}
           <li>
-            <Chip className="text-gold-ink">+ {skillCount - featuredStack.length}</Chip>
+            {/* Mène à la liste complète des compétences, section Expertise */}
+            <Link
+              href="#expertise"
+              className="inline-flex items-center rounded-[10px] border border-line bg-card-2 px-3.5 py-2 text-sm text-gold-ink outline-none transition-colors hover:border-gold-ink/50 focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              + {skillCount - featuredStack.length}
+              <span className="sr-only"> {hero.allSkills}</span>
+            </Link>
           </li>
         </ul>
       </div>

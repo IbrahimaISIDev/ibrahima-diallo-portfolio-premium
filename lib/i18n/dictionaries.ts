@@ -63,6 +63,7 @@ const fr = {
     statAverage: "Prix d’Excellence · ISI",
     statYears: "Années de pratique",
     stackLabel: "Stack principale",
+    allSkills: "compétences : voir la liste complète",
     photoAlt: "Ibrahima Sory Diallo à son bureau",
   },
   home: {
@@ -277,6 +278,7 @@ const en: Dictionary = {
     statAverage: "Award of Excellence · ISI",
     statYears: "Years of practice",
     stackLabel: "Core stack",
+    allSkills: "skills: see the full list",
     photoAlt: "Ibrahima Sory Diallo at his desk",
   },
   home: {
