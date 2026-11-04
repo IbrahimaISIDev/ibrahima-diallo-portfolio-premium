@@ -70,12 +70,14 @@ describe("POST /api/contact", () => {
     expect(res.status).toBe(400);
     expect(Object.keys(json.fields).sort()).toEqual(["email", "subject"]);
     expect(json.fields.email).toMatch(/email valide/);
+    expect(json.code).toBe("invalid");
   });
 
   it("répond 500 si la clé Resend n'est pas configurée", async () => {
     const { POST } = await loadRoute(undefined);
     const res = await POST(request(validBody));
     expect(res.status).toBe(500);
+    expect((await res.json()).code).toBe("unavailable");
   });
 
   it("envoie l'email et ne renvoie que son identifiant", async () => {
@@ -91,6 +93,21 @@ describe("POST /api/contact", () => {
     });
   });
 
+  it("indique dans le sujet la langue de la page d'envoi", async () => {
+    const { POST } = await loadRoute("re_test");
+    await POST(request({ ...validBody, locale: "en" }));
+    expect(send.mock.calls[0][0].subject).toBe(
+      "[Portfolio EN] Nouveau message de Awa Ndiaye: Projet web",
+    );
+  });
+
+  it("refuse une langue inconnue", async () => {
+    const { POST } = await loadRoute("re_test");
+    const res = await POST(request({ ...validBody, locale: "de" }));
+    expect(res.status).toBe(400);
+    expect(send).not.toHaveBeenCalled();
+  });
+
   it("retire les retours à la ligne du sujet de l'email", async () => {
     const { POST } = await loadRoute("re_test");
     await POST(request({ ...validBody, subject: "Projet\r\nBcc: spam@example.com" }));
@@ -102,6 +119,7 @@ describe("POST /api/contact", () => {
     const { POST } = await loadRoute("re_test");
     const res = await POST(request(validBody));
     expect(res.status).toBe(502);
+    expect((await res.json()).code).toBe("send_failed");
   });
 
   it("simule un succès sans envoyer si le champ piège est rempli", async () => {
@@ -126,6 +144,9 @@ describe("POST /api/contact", () => {
       statuses.push((await POST(request(validBody, "192.168.1.1"))).status);
     }
     expect(statuses).toEqual([200, 200, 200, 200, 200, 429]);
+    expect((await (await POST(request(validBody, "192.168.1.1"))).json()).code).toBe(
+      "rate_limited",
+    );
     expect((await POST(request(validBody, "192.168.1.2"))).status).toBe(200);
   });
 });

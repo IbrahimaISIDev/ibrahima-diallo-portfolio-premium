@@ -11,9 +11,11 @@ interface LightboxImageProps {
   src: string;
   alt: string;
   title: string;
+  // Libellé du bouton d'agrandissement, dans la langue de la page
+  zoomLabel: string;
 }
 
-export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
+export default function LightboxImage({ src, alt, title, zoomLabel }: LightboxImageProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -22,8 +24,8 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
         {/* Vrai bouton : agrandissement accessible au clavier et annoncé aux lecteurs d'écran */}
         <button
           type="button"
-          aria-label={`Agrandir l'image : ${title}`}
-          className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border bg-background shadow-2xl transition-all hover:border-secondary/30 outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+          aria-label={`${zoomLabel} : ${title}`}
+          className="group relative block w-full cursor-zoom-in overflow-hidden rounded-[28px] border border-line bg-card outline-none transition-colors hover:border-line-strong focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-canvas"
           onClick={() => setOpen(true)}
         >
           <span className="relative block aspect-video w-full overflow-hidden">
@@ -31,16 +33,13 @@ export default function LightboxImage({ src, alt, title }: LightboxImageProps) {
               src={src}
               alt={alt}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              // Largeur réelle : pleine largeur sur mobile, conteneur max-w-5xl (~960 px) au-delà
-              sizes="(max-width: 1024px) 100vw, 960px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              // Largeur réelle : pleine largeur sur mobile, conteneur de 1240 px au-delà
+              sizes="(min-width: 1240px) 1176px, 100vw"
               priority
             />
-            <span className="absolute inset-0 bg-black/20 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" />
-            <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-              <span className="rounded-full bg-secondary/80 p-3 text-background shadow-lg backdrop-blur-sm">
-                <span className="text-sm font-bold uppercase tracking-wider">Agrandir</span>
-              </span>
+            <span className="absolute right-4 bottom-4 rounded-full border border-white/10 bg-[#09090a]/75 px-4 py-2 text-sm font-medium text-[#f5f2ea] opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+              {zoomLabel}
             </span>
           </span>
         </button>

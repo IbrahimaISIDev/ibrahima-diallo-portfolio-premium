@@ -5,28 +5,26 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  --color-primary-dark: var(--primary-dark);
-  /* Vert lisible en texte (primary-light sert aussi de fond derrière du texte blanc) */
-  --color-primary-text: var(--primary-text);
-  --color-secondary: var(--secondary);
-  --color-secondary-light: var(--secondary-light);
-  --color-secondary-dark: var(--secondary-dark);
-  --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
+  /* Charte « Bento immersif » : fonds, textes et accents (or, vert, rouge du drapeau) */
+  --color-canvas: var(--canvas);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-field: var(--field);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-on-gold: var(--on-gold);
+  --color-leaf: var(--leaf);
+  --color-leaf-ink: var(--leaf-ink);
+  --color-on-leaf: var(--on-leaf);
+  --color-ember: var(--ember);
+  --color-ember-ink: var(--ember-ink);
 
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-light: var(--surface-light);
-  --color-border: var(--border);
-  --color-border-light: var(--border-light);
-
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-dark: var(--muted-dark);
-
-  /* Polices chargées par next/font dans app/layout.tsx */
+  /* Polices chargées par next/font dans app/[lang]/layout.tsx */
   --font-display: var(--font-sora), system-ui, sans-serif;
   --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono), "Fira Code", monospace;
@@ -34,91 +32,61 @@
 
 @layer base {
   :root {
-    --primary: #1b5e20;
-    --primary-light: #2e7d32;
-    --primary-dark: #145218;
-    --primary-text: #66bb6a;
-    --secondary: #f59e0b;
-    --secondary-light: #fbbf24;
-    --secondary-dark: #d97706;
-    --accent: #dc2626;
-    --accent-light: #ef4444;
-
-    --background: #111111;
-    --surface: #1a1a1c;
-    --surface-light: #222225;
-    --border: #2a2a2d;
-    --border-light: #353538;
-
-    --foreground: #f8fafc;
-    --muted: #94a3b8;
-    /* ≥ 4.5:1 sur background, surface et surface-light (#64748B était à 3.65-3.97) */
-    --muted-dark: #8391a7;
-
-    --pattern-line: rgba(255, 255, 255, 0.1);
+    /* Thème sombre (contrastes AA vérifiés) */
+    --canvas: #09090a;
+    --card: #121214;
+    --card-2: #18181b;
+    --line: #232326;
+    --line-strong: #3a3a40;
+    --field: #6b6b75; /* bordure des champs : ≥ 3:1 sur card */
+    --ink: #f5f2ea; /* 17.8:1 */
+    --ink-soft: #d4d4d8; /* 13.5:1 */
+    --ink-muted: #a1a1aa; /* 7.8:1 */
+    --gold: #e3b65c; /* aplat d'accent, texte on-gold 10.5:1 */
+    --gold-ink: #e3b65c; /* or en texte : 10.5:1 */
+    --on-gold: #09090a;
+    --leaf: #1f7a4d; /* action principale, texte blanc 5.3:1 */
+    --leaf-ink: #4fbf85; /* vert en texte : 8.7:1 */
+    --on-leaf: #ffffff;
+    --ember: #d24b37; /* rouge : liseré, jamais en texte */
+    --ember-ink: #f07a66; /* rouge en texte (erreurs) : 7.3:1 */
   }
 
   .light {
-    --background: #f8fafc;
-    --surface: #ffffff;
-    --surface-light: #f1f5f9;
-    --border: #e2e8f0;
-    --border-light: #cbd5e1;
-
-    --foreground: #0f172a;
-    --muted: #475569;
-    --muted-dark: #1e293b;
-
-    /* L'ambre #F59E0B tombait à 2.05:1 sur fond clair : amber-700 (≥ 4.58:1)
-       pour le texte et les boutons, plus foncé encore au survol */
-    --secondary: #b45309;
-    --secondary-light: #92400e;
-    --secondary-dark: #92400e;
-    --primary-text: #2e7d32;
-
-    --pattern-line: rgba(15, 23, 42, 0.06);
+    /* Thème clair : ivoire chaud (contrastes AA vérifiés) */
+    --canvas: #f7f5f0;
+    --card: #ffffff;
+    --card-2: #f2efe8;
+    --line: #e5e1d8;
+    --line-strong: #d6d1c6;
+    --field: #8c857a; /* 3.75:1 sur card */
+    --ink: #141413;
+    --ink-soft: #3f3b36;
+    --ink-muted: #57534e; /* 7:1 */
+    --gold: #e3b65c; /* même aplat, texte on-gold sombre 9.8:1 */
+    --gold-ink: #7c5a12; /* or foncé pour le texte : ≥ 5.5:1 */
+    --on-gold: #141413;
+    --leaf: #1f7a4d;
+    --leaf-ink: #1a6b43; /* ≥ 5.7:1 */
+    --on-leaf: #ffffff;
+    --ember: #d24b37;
+    --ember-ink: #b3361f; /* ≥ 5.1:1 */
   }
 }
 
 /* Base styles */
 html {
   scroll-behavior: smooth;
-}
-
-/* Curseur natif masqué uniquement quand CustomCursor est monté (classe posée par le composant) */
-html.has-custom-cursor,
-html.has-custom-cursor * {
-  cursor: none !important;
-}
-
-/* Les champs de saisie gardent le curseur texte natif */
-html.has-custom-cursor :is(input, textarea, [contenteditable="true"]) {
-  cursor: text !important;
+  /* Les ancres s'arrêtent sous le header sticky */
+  scroll-padding-top: 6rem;
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 35px,
-    var(--pattern-line) 35px,
-    var(--pattern-line) 36px
-  );
-  pointer-events: none;
-  z-index: -10;
-  mask-image: radial-gradient(circle at center, black, transparent 90%);
 }
 
 h1,
@@ -141,49 +109,22 @@ pre {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: var(--color-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-light);
+  background: var(--color-line-strong);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted-dark);
+  background: var(--color-field);
 }
 
-/* Selection */
+/* Selection : aplat or et texte sombre, lisibles dans les deux thèmes */
 ::selection {
-  background-color: var(--color-primary);
-  /* Blanc fixe : 7.9:1 sur le vert primaire dans les deux thèmes */
-  color: #ffffff;
-}
-
-/* Animations décoratives en boucle (CSS, pour pouvoir les mettre en pause) */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
-@keyframes dots-drift {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 32px 32px;
-  }
-}
-
-/* Les animations en boucle d'une section hors écran sont mises en pause
-   (data-paused est posé par la section avec useInView) */
-[data-paused="true"],
-[data-paused="true"] * {
-  animation-play-state: paused !important;
+  background-color: var(--color-gold);
+  color: var(--color-on-gold);
 }
 
 /* Sans JavaScript, les animations au scroll ne se déclenchent jamais : Framer Motion
@@ -232,71 +173,61 @@ html:not(.js) [style*="scale(0)"] {
   }
 }
 
-/* Print Styles */
+/* Impression (CV) : thème clair forcé, fond blanc, sans header, footer ni effets */
 @media print {
   @page {
     size: auto;
     margin: 15mm;
   }
 
+  :root,
+  .light,
+  .dark {
+    --canvas: #ffffff;
+    --card: #ffffff;
+    --card-2: #ffffff;
+    --line: #d6d1c6;
+    --ink: #000000;
+    --ink-soft: #1f1f1f;
+    --ink-muted: #3f3b36;
+    --gold-ink: #7c5a12;
+  }
+
   body {
-    background: white !important;
-    color: black !important;
     font-size: 11pt;
   }
 
-  /* Hide non-essential UI */
-  header,
-  nav,
+  header#top,
   footer,
-  .print\:hidden,
-  #custom-cursor,
-  .constellation-bg {
+  .print\:hidden {
     display: none !important;
   }
 
-  /* Fix colors for print */
-  .text-secondary {
-    color: #b45309 !important;
-  }
-
-  .print\:text-black {
-    color: black !important;
-  }
-
-  .bg-surface,
-  .bg-surface\/50 {
-    background: transparent !important;
-  }
-
-  .border-border {
-    border-color: rgba(0, 0, 0, 0.1) !important;
-  }
-
-  /* Optimize layout */
-  .max-w-5xl {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  main {
-    padding-top: 0 !important;
-  }
-
-  /* Les éléments animés au scroll (Framer Motion) peuvent être restés à
-     opacity:0 ou translatés s'ils n'ont jamais été affichés à l'écran */
+  /* Les éléments animés (entrée, apparition au scroll) sont imprimés à leur état final */
   main * {
     opacity: 1 !important;
     transform: none !important;
+    animation: none !important;
   }
 
-  /* Force headers to be visible and clear */
   h1,
   h2,
-  h3,
-  h4 {
-    page-break-after: avoid;
+  h3 {
     break-after: avoid;
   }
+}
+
+/* Entrée de la présentation de l'accueil : les cartes montent l'une après l'autre.
+   Animation CSS (pas de JavaScript) : visible même avant l'hydratation, et neutralisée
+   par la règle prefers-reduced-motion ci-dessus. --i : rang de la carte. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
 }

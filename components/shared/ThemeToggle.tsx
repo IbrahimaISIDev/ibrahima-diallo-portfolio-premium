@@ -4,37 +4,39 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { useHydrated } from "@/lib/useHydrated";
+import { cn } from "@/lib/utils";
 
-export default function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+const base =
+  "relative flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-soft outline-none transition-colors hover:border-line-strong hover:text-ink focus-visible:ring-2 focus-visible:ring-gold";
+
+export default function ThemeToggle({ label, className }: { label: string; className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme();
   // Le thème n'est connu que côté client : évite un écart d'hydratation
   const mounted = useHydrated();
 
-  if (!mounted)
-    return <div className="h-10 w-10 rounded-full border border-border bg-surface/50" />;
+  if (!mounted) return <span aria-hidden="true" className={cn(base, className)} />;
 
   const isDark = resolvedTheme === "dark";
 
   return (
-    <motion.button
+    <button
+      type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative h-10 w-10 rounded-full border border-border bg-surface/50 p-2 text-foreground transition-colors hover:border-secondary hover:bg-surface"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      aria-label="Changer de thème"
+      className={cn(base, className)}
+      aria-label={label}
     >
       <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={theme}
-          initial={{ y: 10, opacity: 0, rotate: -45 }}
+        <motion.span
+          key={isDark ? "dark" : "light"}
+          initial={{ y: 8, opacity: 0, rotate: -45 }}
           animate={{ y: 0, opacity: 1, rotate: 0 }}
-          exit={{ y: -10, opacity: 0, rotate: 45 }}
+          exit={{ y: -8, opacity: 0, rotate: 45 }}
           transition={{ duration: 0.2 }}
-          className="flex h-full w-full items-center justify-center"
+          className="flex"
         >
-          {isDark ? <Sun size={20} /> : <Moon size={20} />}
-        </motion.div>
+          {isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+        </motion.span>
       </AnimatePresence>
-    </motion.button>
+    </button>
   );
 }

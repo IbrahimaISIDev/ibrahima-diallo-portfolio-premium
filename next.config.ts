@@ -14,8 +14,7 @@ const contentSecurityPolicy = [
   "font-src 'self'",
   "connect-src 'self'",
   "media-src 'self'",
-  // canvas-confetti (confettis du logo) dessine dans un Web Worker créé depuis une URL blob:
-  "worker-src 'self' blob:",
+  "worker-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -49,6 +48,31 @@ const nextConfig: NextConfig = {
   },
   // N'annonce pas la technologie du serveur (en-tête X-Powered-By)
   poweredByHeader: false,
+  // Français à la racine, anglais sous /en : les URL françaises sont servies par app/[lang]
+  // avec lang = "fr". En afterFiles, les fichiers statiques (images, CV, robots.txt…) passent
+  // avant ; l'API et les icônes (non traduites) sont exclues. Les images de partage
+  // (opengraph-image) existent par langue et passent donc par la réécriture.
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [
+        { source: "/", destination: "/fr" },
+        {
+          source:
+            "/:path((?!en(?:/|$)|fr(?:/|$)|api(?:/|$)|_next(?:/|$)|icon(?:/|$)|apple-icon(?:/|$)).*)",
+          destination: "/fr/:path",
+        },
+      ],
+      fallback: [],
+    };
+  },
+  // /fr/... n'est pas une adresse publique : redirection vers l'URL sans préfixe
+  async redirects() {
+    return [
+      { source: "/fr", destination: "/", permanent: true },
+      { source: "/fr/:path*", destination: "/:path*", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
