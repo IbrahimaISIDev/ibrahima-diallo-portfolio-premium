@@ -15,7 +15,7 @@ export default async function OpengraphImage({ params }: { params: Promise<{ lan
 
   return renderOgImage({
     title: profile.fullName,
-    accent: profile.shortHeadline,
+    accent: profile.title,
     details: featuredStack.slice(0, 5).join(" · "),
     footer: `${profile.location} · ${getDictionary(locale).hero.available}`,
   });

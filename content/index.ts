@@ -37,6 +37,7 @@ function getProfile(locale: Locale) {
     title: profile.title[locale],
     headline: profile.headline[locale],
     shortHeadline: profile.shortHeadline[locale],
+    ambition: profile.ambition[locale],
     pitch: profile.pitch[locale],
     summary: profile.summary[locale],
     social: { ...profile.social, whatsapp: profile.social.whatsapp[locale] },

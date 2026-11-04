@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Award, BookOpen, Code2, Globe2, Languages, MapPin, ShieldCheck } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Code2,
+  Globe2,
+  Languages,
+  MapPin,
+  ShieldCheck,
+  TrendingUp,
+} from "lucide-react";
 import Timeline from "@/components/about/Timeline";
 import ContactCta from "@/components/home/ContactCta";
 import Reveal from "@/components/motion/Reveal";
@@ -56,11 +65,15 @@ export default async function AboutPage({ params }: Props) {
             >
               {profile.fullName}
             </h1>
-            <p className="font-display text-lg font-medium text-gold-ink sm:text-xl">
+            <p className="font-display text-lg font-medium text-balance text-gold-ink sm:text-xl">
               {profile.headline}
             </p>
             <p className="text-base leading-relaxed text-ink-soft sm:text-[17px]">
               {profile.summary}
+            </p>
+            <p className="flex items-center gap-2.5 text-[15px] font-medium text-ink">
+              <TrendingUp size={18} aria-hidden="true" className="shrink-0 text-gold-ink" />
+              {profile.ambition}
             </p>
             <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6 text-sm text-ink-muted">
               <li className="flex items-center gap-2">

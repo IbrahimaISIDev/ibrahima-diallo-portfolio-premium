@@ -17,15 +17,20 @@ export const profile = {
 
   // Poste actuel : titre des pages (Google tronque vers 60 caractères) et données structurées
   title: { fr: "Développeur Full-Stack", en: "Full-Stack Developer" } satisfies Localized<string>,
-  // Titre complet du CV : Hero, CV, page À propos, image de partage
+  // Titre complet : pages À propos et CV
   headline: {
-    fr: "Développeur Full-Stack & Aspirant Ingénieur Cloud / DevOps & IA",
-    en: "Full-Stack Developer & Aspiring Cloud / DevOps & AI Engineer",
+    fr: "Développeur Full-Stack · NestJS · Next.js · Flutter · Spring Boot",
+    en: "Full-Stack Developer · NestJS · Next.js · Flutter · Spring Boot",
   } satisfies Localized<string>,
-  // Version courte du titre, pour les espaces étroits (cartes, badges)
+  // Version courte, pour les espaces étroits : présentation de l'accueil, image de partage
   shortHeadline: {
-    fr: "Full-Stack · Cloud / DevOps · IA",
-    en: "Full-Stack · Cloud / DevOps · AI",
+    fr: "Développeur Full-Stack · NestJS · Next.js · Flutter",
+    en: "Full-Stack Developer · NestJS · Next.js · Flutter",
+  } satisfies Localized<string>,
+  // Cap professionnel, affiché sous la présentation (À propos, CV) plutôt que dans le titre
+  ambition: {
+    fr: "En évolution vers le Cloud, le DevOps et l'IA",
+    en: "Growing towards Cloud, DevOps and AI",
   } satisfies Localized<string>,
   // Accroche de la page d'accueil
   pitch: {

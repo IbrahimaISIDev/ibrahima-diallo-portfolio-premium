@@ -109,6 +109,7 @@ export default async function ResumePage({ params }: Props) {
             <p className="text-[15px] leading-relaxed text-ink-soft sm:text-base">
               {profile.summary}
             </p>
+            <p className="text-[15px] font-medium text-ink sm:text-base">{profile.ambition}.</p>
           </section>
 
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14 print:grid-cols-1">

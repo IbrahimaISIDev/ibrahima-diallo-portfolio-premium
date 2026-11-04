@@ -26,7 +26,7 @@ export default async function ProjectOpengraphImage({
 
   return renderOgImage({
     title: project?.title ?? profile.fullName,
-    accent: project ? `${common.caseStudy} · ${project.categoryLabel}` : profile.shortHeadline,
+    accent: project ? `${common.caseStudy} · ${project.categoryLabel}` : profile.title,
     details: project?.tags.join(" · ") ?? "",
     footer: `${profile.fullName} · ${profile.title}`,
   });
